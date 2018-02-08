@@ -38,7 +38,6 @@
 		43ACB5D60FFF4A53005DB589 /* DirectionInputViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 43ACB5D50FFF4A53005DB589 /* DirectionInputViewController.m */; };
 		43ACB5D80FFF4A9F005DB589 /* DirectionInputView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 43ACB5D70FFF4A9F005DB589 /* DirectionInputView.xib */; };
 		43AE49080FFDE32B0010A6F5 /* TextInputViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 43AE49070FFDE32B0010A6F5 /* TextInputViewController.m */; };
-		43AE49100FFDE3620010A6F5 /* TextInputView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 43AE490F0FFDE3620010A6F5 /* TextInputView.xib */; };
 		43AECC03100A03EE008B7BE6 /* TileSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 43AECC02100A03EE008B7BE6 /* TileSet.m */; };
 		43AECC7D100A0DB0008B7BE6 /* tile.c in Sources */ = {isa = PBXBuildFile; fileRef = 43AECC7C100A0DB0008B7BE6 /* tile.c */; };
 		43AFFBE0103FDF4B00DCC8C1 /* NSString+NetHack.m in Sources */ = {isa = PBXBuildFile; fileRef = 43AFFBDF103FDF4B00DCC8C1 /* NSString+NetHack.m */; };
@@ -316,8 +315,10 @@
 		FB33C48B1A7F774A0020F638 /* dawnhack32.png in Resources */ = {isa = PBXBuildFile; fileRef = FB33C48A1A7F774A0020F638 /* dawnhack32.png */; };
 		FB4307201A72A0D7003B7010 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FB43071F1A72A0D6003B7010 /* Images.xcassets */; };
 		FB64D9551A785ED80035BA74 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = FB64D9541A785ED80035BA74 /* Icon.png */; };
+		FB7EFBDC202D080900D66201 /* dawnhack32new.png in Resources */ = {isa = PBXBuildFile; fileRef = FB7EFBDB202D080900D66201 /* dawnhack32new.png */; };
 		FBA6C9DA1B47442C006C88B5 /* nevanda32.png in Resources */ = {isa = PBXBuildFile; fileRef = FBA6C9D81B47442C006C88B5 /* nevanda32.png */; };
 		FBA6C9DB1B47442C006C88B5 /* nevanda32black.png in Resources */ = {isa = PBXBuildFile; fileRef = FBA6C9D91B47442C006C88B5 /* nevanda32black.png */; };
+		FBA6D35E1D52410A006B4238 /* TextInputView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FBA6D35D1D52410A006B4238 /* TextInputView.xib */; };
 		FBB7FAA51A893650008F64AD /* Images-2.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FBB7FAA41A89364F008F64AD /* Images-2.xcassets */; };
 		FBB7FAA91A8C256D008F64AD /* nextstep.png in Resources */ = {isa = PBXBuildFile; fileRef = FBB7FAA81A8C256C008F64AD /* nextstep.png */; };
 /* End PBXBuildFile section */
@@ -370,7 +371,6 @@
 		43ACB5D70FFF4A9F005DB589 /* DirectionInputView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DirectionInputView.xib; sourceTree = "<group>"; };
 		43AE49060FFDE32B0010A6F5 /* TextInputViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextInputViewController.h; sourceTree = "<group>"; };
 		43AE49070FFDE32B0010A6F5 /* TextInputViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextInputViewController.m; sourceTree = "<group>"; tabWidth = 4; };
-		43AE490F0FFDE3620010A6F5 /* TextInputView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TextInputView.xib; sourceTree = "<group>"; };
 		43AECC01100A03EE008B7BE6 /* TileSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TileSet.h; sourceTree = "<group>"; };
 		43AECC02100A03EE008B7BE6 /* TileSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TileSet.m; sourceTree = "<group>"; };
 		43AECC7C100A0DB0008B7BE6 /* tile.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = tile.c; path = nethack/src/tile.c; sourceTree = "<group>"; };
@@ -762,8 +762,10 @@
 		FB33C48A1A7F774A0020F638 /* dawnhack32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dawnhack32.png; sourceTree = "<group>"; };
 		FB43071F1A72A0D6003B7010 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = iNetHack2/Images.xcassets; sourceTree = "<group>"; };
 		FB64D9541A785ED80035BA74 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
+		FB7EFBDB202D080900D66201 /* dawnhack32new.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dawnhack32new.png; sourceTree = "<group>"; };
 		FBA6C9D81B47442C006C88B5 /* nevanda32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nevanda32.png; sourceTree = "<group>"; };
 		FBA6C9D91B47442C006C88B5 /* nevanda32black.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nevanda32black.png; sourceTree = "<group>"; };
+		FBA6D35D1D52410A006B4238 /* TextInputView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TextInputView.xib; sourceTree = "<group>"; };
 		FBB7FAA41A89364F008F64AD /* Images-2.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = "Images-2.xcassets"; path = "iNetHack2/Images-2.xcassets"; sourceTree = "<group>"; };
 		FBB7FAA81A8C256C008F64AD /* nextstep.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nextstep.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -899,8 +901,8 @@
 				43DD07B10FF4C64100580249 /* MainView.xib */,
 				43C103D20FF8D59C00DBD0EF /* MenuView.xib */,
 				43C5AD920FFA772B004F67ED /* NethackMenuView.xib */,
-				43AE490F0FFDE3620010A6F5 /* TextInputView.xib */,
 				43ACB5D70FFF4A9F005DB589 /* DirectionInputView.xib */,
+				FBA6D35D1D52410A006B4238 /* TextInputView.xib */,
 				439F0DD41001FECB0050AED4 /* MenuViewLeaf.xib */,
 				439F0ED3100210770050AED4 /* ExtendedCommandView.xib */,
 				43AFFC20103FE53500DCC8C1 /* ItemAmountView.xib */,
@@ -927,6 +929,7 @@
 		4394EB9510394C5F0053C8C2 /* Tilesets */ = {
 			isa = PBXGroup;
 			children = (
+				FB7EFBDB202D080900D66201 /* dawnhack32new.png */,
 				FBA6C9D81B47442C006C88B5 /* nevanda32.png */,
 				FBA6C9D91B47442C006C88B5 /* nevanda32black.png */,
 				FB33C48A1A7F774A0020F638 /* dawnhack32.png */,
@@ -1359,7 +1362,7 @@
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0700;
+				LastUpgradeCheck = 0920;
 				TargetAttributes = {
 					1D6058900D05DD3D006BFB54 = {
 						DevelopmentTeam = JV43X8XJFX;
@@ -1461,6 +1464,7 @@
 				43DD0B110FF4E0FC00580249 /* Mon-goal.lev in Resources */,
 				43DD0B120FF4E0FC00580249 /* Mon-loca.lev in Resources */,
 				43DD0B130FF4E0FC00580249 /* Mon-strt.lev in Resources */,
+				FBA6D35E1D52410A006B4238 /* TextInputView.xib in Resources */,
 				43DD0B150FF4E0FC00580249 /* opthelp in Resources */,
 				43DD0B160FF4E0FC00580249 /* options in Resources */,
 				43DD0B180FF4E0FC00580249 /* oracle.lev in Resources */,
@@ -1502,6 +1506,7 @@
 				43DD0B3D0FF4E0FC00580249 /* soko2-1.lev in Resources */,
 				43DD0B3E0FF4E0FC00580249 /* soko2-2.lev in Resources */,
 				43DD0B3F0FF4E0FC00580249 /* soko3-1.lev in Resources */,
+				FB7EFBDC202D080900D66201 /* dawnhack32new.png in Resources */,
 				43DD0B400FF4E0FC00580249 /* soko3-2.lev in Resources */,
 				43DD0B410FF4E0FC00580249 /* soko4-1.lev in Resources */,
 				43DD0B420FF4E0FC00580249 /* soko4-2.lev in Resources */,
@@ -1536,7 +1541,6 @@
 				43DD0B600FF4E0FC00580249 /* wizhelp in Resources */,
 				43C103D30FF8D59C00DBD0EF /* MenuView.xib in Resources */,
 				43C5AD930FFA772B004F67ED /* NethackMenuView.xib in Resources */,
-				43AE49100FFDE3620010A6F5 /* TextInputView.xib in Resources */,
 				43ACB5D80FFF4A9F005DB589 /* DirectionInputView.xib in Resources */,
 				439F0DD51001FECB0050AED4 /* MenuViewLeaf.xib in Resources */,
 				439F0ED4100210770050AED4 /* ExtendedCommandView.xib in Resources */,
@@ -1751,12 +1755,33 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = NO;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Dirk Zimmermann";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				PREBINDING = NO;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "6E06132B-5A72-4984-AB28-86AB1CECD2DF";
 				SDKROOT = iphoneos;
@@ -1786,12 +1811,33 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = NO;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				ONLY_ACTIVE_ARCH = YES;
 				PREBINDING = NO;
 				SDKROOT = iphoneos;
@@ -1802,11 +1848,32 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = NO;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				PREBINDING = NO;
 				SDKROOT = iphoneos;
 			};

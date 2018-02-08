@@ -122,6 +122,7 @@
 
 	// reuse the more button
 	moreButton = [[UIButton buttonWithType:UIButtonTypeDetailDisclosure] retain];
+
 }
 
 - (CGPoint) subViewedCenter {
