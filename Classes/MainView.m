@@ -557,8 +557,8 @@
 
 - (void) resetOffset {
 	offset = CGPointMake(0,0);
-    offset.x+=[MainView screenXOffset];
-    offset.y+=[MainView screenYOffset];
+    //offset.x+=[MainView screenXOffset];
+    //offset.y+=[MainView screenYOffset];
 }
 
 - (void) zoom:(CGFloat)d {
