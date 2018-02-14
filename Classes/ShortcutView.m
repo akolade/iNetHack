@@ -68,7 +68,7 @@ static Shortcut *ShortcutForIdentifier (NSString *identifier) {
 {
 	if (self = [super init]) {
         ShortcutTileSize =  CGSizeMake(40, 40);
-        if ([[UIScreen mainScreen] bounds].size.width>740)  //iNethack2: increase shortcut boxes slightly for larger screens
+        if ([[UIScreen mainScreen] bounds].size.width>813)  //iNethack2: increase shortcut boxes slightly for larger screens
             ShortcutTileSize =  CGSizeMake(60, 60);
 		self.opacity       = 1.0f;
 		self.isHighlighted = NO;
@@ -96,7 +96,7 @@ static Shortcut *ShortcutForIdentifier (NSString *identifier) {
 	if (self.title) {
         //UIFont* const font = [UIFont boldSystemFontOfSize:12];
         UIFont* font = [UIFont boldSystemFontOfSize:12];
-        if ([[UIScreen mainScreen] bounds].size.width>740)  //iNethack2: increase shortcut font slightly for larger screens
+        if ([[UIScreen mainScreen] bounds].size.width>813)  //iNethack2: increase shortcut font slightly for larger screens.
             font = [UIFont boldSystemFontOfSize:16];
         UIGraphicsPushContext(context);
 		CGContextSetFillColorWithColor(context, TextColor);

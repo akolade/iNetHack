@@ -63,6 +63,8 @@
     maxTileSize = CGSizeMake(48,48);    //iNethack2 increasing max zoom-in a little bit.
 	minTileSize = CGSizeMake(8,8);
 	offset = CGPointMake(0,0);
+    offset.x+=[MainView screenXOffset];
+    offset.y+=[MainView screenYOffset];
 	float ts = [[NSUserDefaults standardUserDefaults] floatForKey:kKeyTileSize];
 	tileSize = CGSizeMake(ts,ts);
 	if (tileSize.width > maxTileSize.width) {
@@ -139,6 +141,7 @@
     s = [shortcutView sizeThatFits:s];
 
     frame.origin.x = ([MainView screenSize].width-s.width)/2;
+    frame.origin.x+=[MainView screenXOffset];
     frame.origin.y = [MainView screenSize].height-s.height;
     
     frame.size.width = s.width;
@@ -158,11 +161,65 @@
 //iNethack2: screenSize that works with both iOS7 + 8
 + (CGSize)screenSize {
     CGSize screenSize = [UIScreen mainScreen].bounds.size;
+
+    //Check for insets in case we need to adjust safe screen size
+    BOOL hasInsets = NO;
+    if (@available(iOS 11.0, *)) {
+        UIEdgeInsets safeRect = [[[[UIApplication sharedApplication] delegate] window] safeAreaInsets];
+        if (safeRect.top > 0.0 || safeRect.left > 0.0 || safeRect.right > 0.0 || safeRect.bottom >  0.0) {
+            hasInsets = YES;
+        }
+        if (hasInsets) {
+            screenSize.height-=safeRect.top;
+            screenSize.height-=safeRect.bottom;
+            screenSize.width-=safeRect.left;
+            screenSize.width-=safeRect.right;
+        }
+    }
+
     if ((NSFoundationVersionNumber <= NSFoundationVersionNumber_iOS_7_1) && UIInterfaceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation)) {
         return CGSizeMake(screenSize.height, screenSize.width);
     }
 
     return screenSize;
+}
+
++ (int) screenYOffset {
+    BOOL hasInsets = NO;
+    int offset=0;
+    if (@available(iOS 11.0, *)) {
+        UIEdgeInsets safeRect = [[[[UIApplication sharedApplication] delegate] window] safeAreaInsets];
+        if (safeRect.top > 0.0 || safeRect.bottom >  0.0) {
+            hasInsets = YES;
+        }
+        if (hasInsets) {
+            //NSLog(@"%f, %f - %f,%f" , safeRect.left, safeRect.top, safeRect.right, safeRect.bottom);
+            if (safeRect.top > 0.0)
+                offset+=safeRect.top;
+            else
+                offset+=safeRect.bottom;
+        }
+    }
+    return offset;
+}
++ (int) screenXOffset {
+    BOOL hasInsets = NO;
+    
+    int offset=0;
+    if (@available(iOS 11.0, *)) {
+        UIEdgeInsets safeRect = [[[[UIApplication sharedApplication] delegate] window] safeAreaInsets];
+        if (safeRect.left > 0.0 || safeRect.right > 0.0) {
+            hasInsets = YES;
+        }
+        if (hasInsets) {
+            NSLog(@"%f, %f - %f,%f" , safeRect.left, safeRect.top, safeRect.right, safeRect.bottom);
+            if (safeRect.left > 0.0)
+                offset+=safeRect.left;
+            else
+                offset+=safeRect.right;
+        }
+    }
+    return offset;
 }
 
 #pragma mark drawing
@@ -324,9 +381,11 @@
     [shadow setShadowColor: [UIColor colorWithWhite:0.0f alpha:1.0f]];
     [shadow setShadowOffset: CGSizeMake(1.0f, 1.0f)];
     [shadow setShadowBlurRadius:1.5f];
-
-	for (NSString *s in strings) {
-        
+    
+    p.x+=[MainView screenXOffset];
+    p.y+=[MainView screenYOffset];
+    
+    for (NSString *s in strings) {
 		UIFont *font = [self fontAndSize:&backgroundRect.size forString:s withFont:statusFont];
 
         CGRect backgroundRect = CGRectMake(p.x, p.y, backgroundRect.size.width, backgroundRect.size.height);
@@ -337,9 +396,8 @@
         //iNethack2: old drawAtPoint below
         //   [s drawAtPoint:p withAttributes: @ {NSFontAttributeName:font, NSForegroundColorAttributeName: [UIColor whiteColor],NSShadowAttributeName: shadow,
         // NSBackgroundColorAttributeName: [UIColor clearColor]}]; //iNethack2: fix for drawAtPoint
-        
-        
-		p.y += tmp.height;
+
+        p.y += tmp.height;
 		total.height += tmp.height;
 	}
 	return total;
@@ -376,6 +434,7 @@
 	
 	CGSize statusSize = CGSizeMake(0,0);
 	CGPoint p = CGPointMake(0,0);
+   
 	if (status) {
 		NSArray *strings = nil;
 		[status lock];
@@ -391,6 +450,9 @@
         CGSize avgLineSize = [@"O" sizeWithAttributes: @{ NSFontAttributeName: statusFont} ];
 		float maxY = center.y - avgLineSize.height*2;
 		p.y = statusSize.height;
+        p.x+=[MainView screenXOffset];
+        p.y+=[MainView screenYOffset];
+
 		NSArray *strings = nil;
 		[message lock];
 		strings = [message.strings copy];
@@ -477,7 +539,7 @@
 	UIFont *f = statusFont;
     CGFloat width = [MainView screenSize].width;
 	CGFloat height = 0;
-	for (NSString *s in strings) {
+    for (NSString *s in strings) {
         CGSize size = [s sizeWithAttributes:@ { NSFontAttributeName:f}];
 		while (size.width > width) {
 			CGFloat pointSize = f.pointSize-1;
@@ -495,6 +557,8 @@
 
 - (void) resetOffset {
 	offset = CGPointMake(0,0);
+    offset.x+=[MainView screenXOffset];
+    offset.y+=[MainView screenYOffset];
 }
 
 - (void) zoom:(CGFloat)d {

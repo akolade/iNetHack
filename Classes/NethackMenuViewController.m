@@ -126,6 +126,22 @@ extern short glyph2tile[];
 //iNethack2: screenSize that works with both iOS7 + 8
 + (CGSize)screenSize {
     CGSize screenSize = [UIScreen mainScreen].bounds.size;
+    
+    //Check for insets in case we need to adjust safe screen size
+    BOOL hasInsets = NO;
+    if (@available(iOS 11.0, *)) {
+        if ([[[[UIApplication sharedApplication] delegate] window] safeAreaInsets].top > 0.0) {
+            hasInsets = YES;
+        }
+        if (hasInsets) {
+            UIEdgeInsets safeRect = [[[[UIApplication sharedApplication] delegate] window] safeAreaInsets];
+            screenSize.height-=safeRect.top;
+            screenSize.height-=safeRect.bottom;
+            screenSize.width-=safeRect.left;
+            screenSize.width-=safeRect.right;
+        }
+    }
+    
     if ((NSFoundationVersionNumber <= NSFoundationVersionNumber_iOS_7_1) && UIInterfaceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation)) {
         return CGSizeMake(screenSize.height, screenSize.width);
     }

@@ -50,6 +50,7 @@
 #define kOptionAutopickup (@"autopickup")
 #define kOptionPickupTypes (@"pickupTypes")
 #define kOptionBoulderSym (@"boulderSym")
+#define kOptionTravel (@"travel")
 #define kOptionPickupThrown (@"pickupThrown")
 #define kOptionWizard (@"wizard")
 #define kOptionAutokick (@"autokick")
@@ -62,6 +63,7 @@
 
 boolean winiphone_autokick = TRUE;
 boolean winiphone_clickable_tiles = FALSE;
+boolean winiphone_travel = TRUE;
 
 struct window_procs iphone_procs = {
 "iphone",
@@ -139,6 +141,7 @@ genl_preference_update,
 								@"YES", kOptionAutopickup,
 								@"$\"=/!?+", kOptionPickupTypes,
                                 @"`", kOptionBoulderSym,
+                                @"YES", kOptionTravel,
                                 @"YES", kOptionPickupThrown,
 								@"YES", kOptionAutokick,
 								@"YES", kOptionShowExp,
@@ -574,6 +577,9 @@ void iphone_init_options() {
 	wizard = [defaults boolForKey:kOptionWizard];
 #endif
 	winiphone_autokick = [defaults boolForKey:kOptionAutokick];
+    //iNethack2: travel setting. not the travelcmd setting as that would prevent clickable tiles from working.
+    winiphone_travel = [defaults boolForKey:kOptionTravel];
+   
 	flags.showexp = [defaults boolForKey:kOptionShowExp];
 	flags.time = [defaults boolForKey:kOptionTime];
 	flags.autodig = [defaults boolForKey:kOptionAutoDig];
