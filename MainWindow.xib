@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina5_9" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment version="2304" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -26,10 +24,9 @@
         <window opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" resizesToFullScreen="NO" id="2">
             <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="uVz-LA-dKS"/>
-            <point key="canvasLocation" x="28" y="-133"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="40.579710144927539" y="-89.0625"/>
         </window>
         <navigationController navigationBarHidden="YES" id="12">
             <extendedEdge key="edgesForExtendedLayout"/>
@@ -48,14 +45,14 @@
             <connections>
                 <outlet property="delegate" destination="13" id="18"/>
             </connections>
-            <point key="canvasLocation" x="-352" y="552"/>
+            <point key="canvasLocation" x="-510.14492753623193" y="369.64285714285711"/>
         </navigationController>
         <viewController nibName="MainMenuView" id="19" customClass="MainMenuViewController">
             <extendedEdge key="edgesForExtendedLayout"/>
             <connections>
                 <outlet property="mainNavigationController" destination="12" id="21"/>
             </connections>
-            <point key="canvasLocation" x="431" y="531"/>
+            <point key="canvasLocation" x="624.63768115942037" y="355.58035714285711"/>
         </viewController>
     </objects>
 </document>

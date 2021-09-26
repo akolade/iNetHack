@@ -134,7 +134,8 @@ static float _colorTable[][4] = {
 		r.size = tileSize;
 		CGContextFillRect(ctx, r);
 		CGContextSetFillColorWithColor(ctx, color.CGColor);
-        [s drawAtPoint:p withAttributes:@ { NSFontAttributeName: font, NSForegroundColorAttributeName: color }];
+        [s drawAtPoint:p withAttributes:@ { NSFontAttributeName: font, NSBackgroundColorAttributeName: [UIColor clearColor],
+                NSForegroundColorAttributeName: color }];
 		UIImage *img = UIGraphicsGetImageFromCurrentImageContext();
 		images[tile] = CGImageRetain(img.CGImage);
 		UIGraphicsEndImageContext();

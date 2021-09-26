@@ -572,7 +572,7 @@ void iphone_init_options() {
 		[tmp getCString:flags.pickup_types maxLength:MAXOCLASSES encoding:NSASCIIStringEncoding];
 	}
 #if TARGET_IPHONE_SIMULATOR
-	wizard = NO; //iNethack2 YES for sim usually..
+	wizard = YES; //iNethack2 YES for sim usually..
 #else
 	wizard = [defaults boolForKey:kOptionWizard];
 #endif

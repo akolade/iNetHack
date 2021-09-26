@@ -87,7 +87,8 @@
             CGSize size = [sh.title sizeWithAttributes: @{NSFontAttributeName: font} ];
 			CGPoint p = CGPointMake(rects[i].origin.x + (tileSize.width-size.width)/2,
 									rects[i].origin.y + (tileSize.height-size.height)/2);
-            [sh.title drawAtPoint:p withAttributes:@ { NSFontAttributeName: font, NSForegroundColorAttributeName: [UIColor whiteColor]  }];
+            [sh.title drawAtPoint:p withAttributes:@ { NSFontAttributeName: font, NSBackgroundColorAttributeName: [UIColor clearColor],
+                    NSForegroundColorAttributeName: [UIColor whiteColor]  }];
 		}
 	}
 }

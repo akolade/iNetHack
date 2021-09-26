@@ -957,8 +957,8 @@
 		43C0DCFF0FE79DE000B63ED3 /* src */ = {
 			isa = PBXGroup;
 			children = (
-				43AECC7C100A0DB0008B7BE6 /* tile.c */,
 				43DD076D0FF4C3E900580249 /* monstr.c */,
+				43AECC7C100A0DB0008B7BE6 /* tile.c */,
 				43C0DD020FE79DFE00B63ED3 /* allmain.c */,
 				43C0DD030FE79DFE00B63ED3 /* alloc.c */,
 				43C0DD040FE79DFE00B63ED3 /* apply.c */,
@@ -1374,6 +1374,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 1;
 			knownRegions = (
+				English,
 				en,
 			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
@@ -1723,11 +1724,14 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 32;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = iNetHack_Prefix.pch;
 				INFOPLIST_FILE = Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MARKETING_VERSION = 2.0.8;
 				PRODUCT_BUNDLE_IDENTIFIER = com.futureshocksoftware.inethack2;
 				PRODUCT_NAME = iNetHack2;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1742,9 +1746,12 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
+				CURRENT_PROJECT_VERSION = 32;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = iNetHack_Prefix.pch;
 				INFOPLIST_FILE = Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MARKETING_VERSION = 2.0.8;
 				PRODUCT_BUNDLE_IDENTIFIER = com.futureshocksoftware.inethack2;
 				PRODUCT_NAME = iNetHack2;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1797,9 +1804,12 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COPY_PHASE_STRIP = YES;
+				CURRENT_PROJECT_VERSION = 32;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = iNetHack_Prefix.pch;
 				INFOPLIST_FILE = Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MARKETING_VERSION = 2.0.8;
 				PRODUCT_BUNDLE_IDENTIFIER = com.futureshocksoftware.inethack2;
 				PRODUCT_NAME = iNetHack2;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";

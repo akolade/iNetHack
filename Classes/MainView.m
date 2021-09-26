@@ -57,7 +57,7 @@
 	bundleVersionString = [[NSString alloc] initWithFormat:@"%@",
 						   [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"]];
 	statusFont = [UIFont systemFontOfSize:16];
-	
+    
 	// tileSize
 	maxTileSize = tilesetTileSize = CGSizeMake(32,32);
     maxTileSize = CGSizeMake(48,48);    //iNethack2 increasing max zoom-in a little bit.
@@ -266,11 +266,13 @@
 
     versionLocation.x += borderRect.size.width - size.width;
 	versionLocation.y += borderRect.size.height;
+    
 	float versionStringColor[] = {0.8f,0.8f,0.8f,1.0f};
     UIColor *versionStringColorCol = [UIColor colorWithRed:versionStringColor[0] green:versionStringColor[1] blue:versionStringColor[2] alpha:versionStringColor[3]];
-
-    [bundleVersionString drawAtPoint:versionLocation withAttributes:@ { NSFontAttributeName: statusFont, NSForegroundColorAttributeName: versionStringColorCol}];
-
+    [bundleVersionString drawAtPoint:versionLocation withAttributes:@ { NSFontAttributeName: statusFont,
+        NSBackgroundColorAttributeName: [UIColor clearColor],
+        NSForegroundColorAttributeName: versionStringColorCol}];
+    
     for (int j = 0; j < m.height; ++j) {
 		for (int i = 0; i < m.width; ++i) {
 			int glyph = [m glyphAtX:i y:j];
@@ -373,8 +375,8 @@
 }
 
 - (CGSize) drawStrings:(NSArray *)strings withSize:(CGSize)size atPoint:(CGPoint)p {
-	CGContextRef ctx = UIGraphicsGetCurrentContext();
-	
+    //ios15 don't need ctx here anymore, commented out below.
+	//CGContextRef ctx = UIGraphicsGetCurrentContext();
 	CGSize total = CGSizeMake(size.width, 0);
 	CGRect backgroundRect = CGRectMake(p.x, p.y, size.width, size.height);
     NSShadow *shadow = [NSShadow new];
@@ -387,15 +389,12 @@
     
     for (NSString *s in strings) {
 		UIFont *font = [self fontAndSize:&backgroundRect.size forString:s withFont:statusFont];
-
-        CGRect backgroundRect = CGRectMake(p.x, p.y, backgroundRect.size.width, backgroundRect.size.height);
-		CGContextFillRect(ctx, backgroundRect);
+        //ios15 commenting out below, it just causes grey boxes to show up.
+//      CGRect backgroundRect = CGRectMake(p.x, p.y, backgroundRect.size.width, backgroundRect.size.height);
+//		CGContextFillRect(ctx, backgroundRect);
         CGSize tmp = [s sizeWithAttributes:@{NSFontAttributeName:font}];
         //iNethack2: some users reported missing status bars. Couldn't reproduce, but using below as it worked for the messages...
-        [s drawAtPoint:p withAttributes:@{ NSFontAttributeName:font, NSForegroundColorAttributeName: [UIColor whiteColor], NSShadowAttributeName: shadow}];
-        //iNethack2: old drawAtPoint below
-        //   [s drawAtPoint:p withAttributes: @ {NSFontAttributeName:font, NSForegroundColorAttributeName: [UIColor whiteColor],NSShadowAttributeName: shadow,
-        // NSBackgroundColorAttributeName: [UIColor clearColor]}]; //iNethack2: fix for drawAtPoint
+        [s drawAtPoint:p withAttributes:@{ NSFontAttributeName:font, NSBackgroundColorAttributeName: [UIColor clearColor], NSForegroundColorAttributeName: [UIColor whiteColor], NSShadowAttributeName: shadow}];
 
         p.y += tmp.height;
 		total.height += tmp.height;
@@ -428,7 +427,8 @@
             CGSize size = [m sizeWithAttributes:@{NSFontAttributeName:statusFont}];
 			center.x -= size.width/2;
 			center.y -= size.height/2;
-            [m drawAtPoint:center withAttributes:@{NSFontAttributeName:statusFont, NSForegroundColorAttributeName: [UIColor whiteColor], NSShadowAttributeName: shadow}];
+            [m drawAtPoint:center withAttributes:@{NSFontAttributeName:statusFont, NSBackgroundColorAttributeName: [UIColor clearColor],
+                                                   NSForegroundColorAttributeName: [UIColor whiteColor], NSShadowAttributeName: shadow}];
         }
 	}
 	
@@ -444,7 +444,7 @@
 		if (strings.count > 0) {
             statusSize = [self drawStrings:[strings copy] withSize:CGSizeMake([MainView screenSize].width, 18) atPoint:p];
 		}
-	}
+    }
 	if (message) {
 		[moreButton removeFromSuperview];
         CGSize avgLineSize = [@"O" sizeWithAttributes: @{ NSFontAttributeName: statusFont} ];
@@ -475,7 +475,8 @@
 				}
 				if (p.x + size.width < bounds.width) {
                     size = [s sizeWithAttributes: @ { NSFontAttributeName: statusFont}];
-                    [s drawAtPoint:p withAttributes:@{ NSFontAttributeName:statusFont, NSForegroundColorAttributeName: [UIColor whiteColor], NSShadowAttributeName: shadow}];
+                    [s drawAtPoint:p withAttributes:@{ NSFontAttributeName:statusFont, NSBackgroundColorAttributeName: [UIColor clearColor],
+                                                       NSForegroundColorAttributeName: [UIColor whiteColor], NSShadowAttributeName: shadow}];
 					p.x += size.width + 4;
 				} else {
 					if (p.x != 0) {
@@ -484,7 +485,8 @@
 					p.x = 0;
 					UIFont *font = [self fontAndSize:&size forString:s withFont:statusFont];
                     size = [s sizeWithAttributes: @ { NSFontAttributeName: font}];
-                    [s drawAtPoint:p withAttributes:@{ NSFontAttributeName:font, NSForegroundColorAttributeName: [UIColor whiteColor], NSShadowAttributeName: shadow}];
+                    [s drawAtPoint:p withAttributes:@{ NSFontAttributeName:font, NSBackgroundColorAttributeName: [UIColor clearColor], 
+                                                       NSForegroundColorAttributeName: [UIColor whiteColor], NSShadowAttributeName: shadow}];
 					p.x += size.width;
 				}
 			}

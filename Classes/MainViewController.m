@@ -95,7 +95,6 @@ static MainViewController *instance;
 	lastSingleTapDelta = [[TilePosition alloc] init];
 	clip = [[TilePosition alloc] init];
 	dmath = [[DMath alloc] init];
-	
 	// read options
 	doubleTapSensitivity = [[NSUserDefaults standardUserDefaults] floatForKey:kOptionDoubleTapSensitivity];
 }
@@ -207,7 +206,13 @@ static MainViewController *instance;
 
 //iNethack2: call resetGlyphCache of MainView
 - (void) resetGlyphCache {
-    [(MainView *) self.view resetGlyphCache];
+    // ios15 prevent "[UIViewController view] must be used from main thread only" warning
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+        dispatch_async(dispatch_get_main_queue(), ^{
+            // Update UI in main thread.
+            [(MainView *) self.view resetGlyphCache];
+        });
+    });
 }
 
 - (void) pushViewControllerOnMainThread:(UIViewController *)viewController
@@ -511,7 +516,7 @@ static MainViewController *instance;
 				CGPoint p = [touch locationInView:self.view];
 				CGPoint delta = CGPointMake(p.x-ti.currentLocation.x, p.y-ti.currentLocation.y);
 				BOOL move = NO;
-				if (!ti.moved && (abs(delta.x)+abs(delta.y) > kMinimumPanDelta)) {
+                if (!ti.moved && (fabs(delta.x)+fabs(delta.y) > kMinimumPanDelta)) {
 					ti.moved = YES;
 					move = YES;
 				} else if (ti.moved) {
@@ -681,7 +686,14 @@ static MainViewController *instance;
 				mapBlocked = YES;
 			}
 		case NHW_MESSAGE:
-			[self.view performSelectorOnMainThread:@selector(setNeedsDisplay) withObject:nil waitUntilDone:YES];
+            // ios15 prevent "[UIViewController view] must be used from main thread only" warning
+            dispatch_async(dispatch_get_global_queue(0, 0), ^{
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    // Update UI in main thread.
+                    [self.view performSelectorOnMainThread:@selector(setNeedsDisplay) withObject:nil waitUntilDone:YES];
+                });
+            });
+            
 			if (mapBlocked) {
 				[self waitForUser];
 			}
@@ -856,7 +868,13 @@ static MainViewController *instance;
 - (char) getDirectionInput {
 	[self performSelectorOnMainThread:@selector(showDirectionInputView:) withObject:nil waitUntilDone:YES];
 	[self waitForCondition:uiCondition];
-	[directionInputViewController.view removeFromSuperview];
+    // ios15 use gcd to remove this view to prevent crash.
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+        dispatch_async(dispatch_get_main_queue(), ^{
+            // Update UI in main thread.
+            [directionInputViewController.view removeFromSuperview];
+        });
+    });
 	return directionInputViewController.direction;
 }
 
@@ -917,7 +935,14 @@ static MainViewController *instance;
 }
 
 - (void) updateScreen {
-	[self.view performSelectorOnMainThread:@selector(setNeedsDisplay) withObject:nil waitUntilDone:YES];
+    // ios15 prevent "[UIViewController view] must be used from main thread only" warning
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+        dispatch_async(dispatch_get_main_queue(), ^{
+            // Update UI in main thread.
+            [self.view performSelectorOnMainThread:@selector(setNeedsDisplay) withObject:nil waitUntilDone:YES];
+        });
+    });
+
 }
 
 - (void) showKeyboard:(BOOL)d {
