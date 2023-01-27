@@ -85,6 +85,7 @@ iphone_display_nhwindow,
 iphone_destroy_nhwindow,
 iphone_curs,
 iphone_putstr,
+genl_putmixed,
 iphone_display_file,
 iphone_start_menu,
 iphone_add_menu,
@@ -121,6 +122,13 @@ iphone_start_screen,
 iphone_end_screen,
 iphone_outrip,
 genl_preference_update,
+genl_getmsghistory,
+genl_putmsghistory,
+genl_status_init,
+genl_status_finish,
+genl_status_enablefield,
+genl_status_update,
+genl_can_suspend_no,
 };
 
 @interface WinIPhone : NSObject {}
@@ -219,7 +227,9 @@ void iphone_askname() {
 			[lossyName getBytes:plname length:PL_NSIZ-1];
 			plname[lossyName.length] = 0;
 		}
-		NSCAssert1(plname[0], @"Failed to init plname from name '%@'", name);
+		//NSCAssert1(plname[0], @"Failed to init plname from name '%@'", name);
+        // jrd inethack3
+        strcpy(plname, "mobile user");
 	} else {
 		strcpy(plname, "wizard");
 	}
@@ -540,9 +550,9 @@ void iphone_outrip(winid wid, int how) {
 void iphone_init_options() {
 	[WinIPhone triggerInitialize];
 	iflags.use_color = TRUE;
-	iflags.runmode = RUN_STEP;
+	flags.runmode = RUN_STEP;
 	flags.verbose = TRUE;
-	flags.toptenwin = TRUE;
+	iflags.toptenwin = TRUE;
 	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     //iNethack2: custom boulder symbol
     NSString *boulderSym = [defaults objectForKey:kOptionBoulderSym];
@@ -557,7 +567,7 @@ void iphone_init_options() {
     iflags.bouldersym = (uchar) bould[0];
     
     //iNethack2: pickup_thrown setting
-    iflags.pickup_thrown = [defaults boolForKey:kOptionPickupThrown];
+    flags.pickup_thrown = [defaults boolForKey:kOptionPickupThrown];
     
     flags.pickup = [defaults boolForKey:kOptionAutopickup];
 	NSString *pickupTypes = [defaults objectForKey:kOptionPickupTypes];
@@ -572,7 +582,7 @@ void iphone_init_options() {
 		[tmp getCString:flags.pickup_types maxLength:MAXOCLASSES encoding:NSASCIIStringEncoding];
 	}
 #if TARGET_IPHONE_SIMULATOR
-	wizard = YES; //iNethack2 YES for sim usually..
+	wizard = NO; //iNethack2 YES for sim usually..
 #else
 	wizard = [defaults boolForKey:kOptionWizard];
 #endif
@@ -728,8 +738,8 @@ boolean complain;
                (version_data->feature_set & ~IGNORED_FEATURES) !=
                (VERSION_FEATURES & ~IGNORED_FEATURES) ||
 #endif
-               version_data->entity_count != VERSION_SANITY1 ||
-               version_data->struct_sizes != sanity2) {
+               version_data->entity_count != VERSION_SANITY1 /*||
+               version_data->struct_sizes != sanity2*/) {
         if (complain)
             pline("Configuration incompatibility for file \"%s\".",
                   filename);
@@ -863,21 +873,22 @@ void iphone_main() {
 			    //compress(fq_save);
 			}
 		}
-		flags.move = 0;
+		//jrd flags.move = 0;
 	} else {
 	not_recovered:
 		player_selection();
 		newgame();
 		//wd_message();
 		
-		flags.move = 0;
-		set_wear();
+		//jrdflags.move = 0;
+        set_wear(0);
 		(void) pickup(1);
 	}
 	
 	iphone_override_options();
 	[[MainViewController instance] setGameInProgress:YES];
-	moveloop();
+	//jrdmoveloop();
+    moveloop(false);
 	[[MainViewController instance] setGameInProgress:NO];
 	exit(EXIT_SUCCESS);
 }

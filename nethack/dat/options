@@ -1,18 +1,17 @@
 
-    NetHack version 3.4.3
+    NetHack version 3.6.2 [beta]
 
 Options compiled into this edition:
 
-    color, data file compression, debug mode, Elbereth,
-    experience points on status line,
-    insurance files for recovering from crashes, Keystone Kops, log file,
-    mail daemon, news file, redo command, rogue level, saddles and riding,
-    screen clipping, seduction, shell command, sinks, suspend command,
-    terminal info library, tourists, walled mazes,
-    save and bones files accepted from versions 3.4.0 through 3.4.3,
-    basic NetHack features.
+    color, data file compression, data librarian, insurance files for
+    recovering from crashes, log file, extended log file, errors and
+    warnings log file, news file, pattern matching via :PATMATCH:, shell
+    command, traditional status display, status via windowport with
+    highlighting, suspend command, terminal info library, timed wait for
+    display effects, save and bones files accepted from versions 3.6.0
+    through 3.6.2, and basic NetHack features.
 
-Supported windowing systems:
+Supported windowing system:
 
-    with a default of tty.
+    X11.
 
