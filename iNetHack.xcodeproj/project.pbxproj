@@ -315,7 +315,8 @@
 		FB33C48B1A7F774A0020F638 /* dawnhack32.png in Resources */ = {isa = PBXBuildFile; fileRef = FB33C48A1A7F774A0020F638 /* dawnhack32.png */; };
 		FB4307201A72A0D7003B7010 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FB43071F1A72A0D6003B7010 /* Images.xcassets */; };
 		FB64D9551A785ED80035BA74 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = FB64D9541A785ED80035BA74 /* Icon.png */; };
-		FB7EFBDC202D080900D66201 /* dawnhack32new.png in Resources */ = {isa = PBXBuildFile; fileRef = FB7EFBDB202D080900D66201 /* dawnhack32new.png */; };
+		FB65443F298457F7002F4737 /* posixregex.c in Sources */ = {isa = PBXBuildFile; fileRef = FB65443E298457F7002F4737 /* posixregex.c */; };
+		FB65444129845A03002F4737 /* sys.c in Sources */ = {isa = PBXBuildFile; fileRef = FB65444029845A03002F4737 /* sys.c */; };
 		FBA6C9DA1B47442C006C88B5 /* nevanda32.png in Resources */ = {isa = PBXBuildFile; fileRef = FBA6C9D81B47442C006C88B5 /* nevanda32.png */; };
 		FBA6C9DB1B47442C006C88B5 /* nevanda32black.png in Resources */ = {isa = PBXBuildFile; fileRef = FBA6C9D91B47442C006C88B5 /* nevanda32black.png */; };
 		FBA6D35E1D52410A006B4238 /* TextInputView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FBA6D35D1D52410A006B4238 /* TextInputView.xib */; };
@@ -762,7 +763,13 @@
 		FB33C48A1A7F774A0020F638 /* dawnhack32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dawnhack32.png; sourceTree = "<group>"; };
 		FB43071F1A72A0D6003B7010 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = iNetHack2/Images.xcassets; sourceTree = "<group>"; };
 		FB64D9541A785ED80035BA74 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
-		FB7EFBDB202D080900D66201 /* dawnhack32new.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dawnhack32new.png; sourceTree = "<group>"; };
+		FB6544352984542F002F4737 /* sys.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = sys.h; sourceTree = "<group>"; };
+		FB65443629845430002F4737 /* context.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = context.h; sourceTree = "<group>"; };
+		FB65443729845430002F4737 /* botl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = botl.h; sourceTree = "<group>"; };
+		FB65443829845431002F4737 /* lint.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = lint.h; sourceTree = "<group>"; };
+		FB65443929845431002F4737 /* mextra.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = mextra.h; sourceTree = "<group>"; };
+		FB65443E298457F7002F4737 /* posixregex.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = posixregex.c; path = nethack/sys/share/posixregex.c; sourceTree = "<group>"; };
+		FB65444029845A03002F4737 /* sys.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = sys.c; path = nethack/src/sys.c; sourceTree = "<group>"; };
 		FBA6C9D81B47442C006C88B5 /* nevanda32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nevanda32.png; sourceTree = "<group>"; };
 		FBA6C9D91B47442C006C88B5 /* nevanda32black.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nevanda32black.png; sourceTree = "<group>"; };
 		FBA6D35D1D52410A006B4238 /* TextInputView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TextInputView.xib; sourceTree = "<group>"; };
@@ -868,6 +875,7 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				FB65443E298457F7002F4737 /* posixregex.c */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				43C0DCFC0FE79D9C00B63ED3 /* nethack */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
@@ -929,7 +937,6 @@
 		4394EB9510394C5F0053C8C2 /* Tilesets */ = {
 			isa = PBXGroup;
 			children = (
-				FB7EFBDB202D080900D66201 /* dawnhack32new.png */,
 				FBA6C9D81B47442C006C88B5 /* nevanda32.png */,
 				FBA6C9D91B47442C006C88B5 /* nevanda32black.png */,
 				FB33C48A1A7F774A0020F638 /* dawnhack32.png */,
@@ -1046,6 +1053,7 @@
 				43C0DD560FE79DFE00B63ED3 /* spell.c */,
 				43C0DD570FE79DFE00B63ED3 /* steal.c */,
 				43C0DD580FE79DFE00B63ED3 /* steed.c */,
+				FB65444029845A03002F4737 /* sys.c */,
 				43C0DD590FE79DFE00B63ED3 /* teleport.c */,
 				43C0DD5A0FE79DFE00B63ED3 /* timeout.c */,
 				43C0DD5B0FE79DFE00B63ED3 /* topten.c */,
@@ -1076,6 +1084,11 @@
 				43C0DDDB0FE79E3C00B63ED3 /* align.h */,
 				43C0DDDC0FE79E3C00B63ED3 /* amiconf.h */,
 				43C0DDDD0FE79E3C00B63ED3 /* artifact.h */,
+				FB65443729845430002F4737 /* botl.h */,
+				FB65443629845430002F4737 /* context.h */,
+				FB65443829845431002F4737 /* lint.h */,
+				FB65443929845431002F4737 /* mextra.h */,
+				FB6544352984542F002F4737 /* sys.h */,
 				43C0DDDE0FE79E3C00B63ED3 /* artilist.h */,
 				43C0DDDF0FE79E3C00B63ED3 /* attrib.h */,
 				43C0DDE00FE79E3C00B63ED3 /* beconf.h */,
@@ -1507,7 +1520,6 @@
 				43DD0B3D0FF4E0FC00580249 /* soko2-1.lev in Resources */,
 				43DD0B3E0FF4E0FC00580249 /* soko2-2.lev in Resources */,
 				43DD0B3F0FF4E0FC00580249 /* soko3-1.lev in Resources */,
-				FB7EFBDC202D080900D66201 /* dawnhack32new.png in Resources */,
 				43DD0B400FF4E0FC00580249 /* soko3-2.lev in Resources */,
 				43DD0B410FF4E0FC00580249 /* soko4-1.lev in Resources */,
 				43DD0B420FF4E0FC00580249 /* soko4-2.lev in Resources */,
@@ -1568,6 +1580,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FB65443F298457F7002F4737 /* posixregex.c in Sources */,
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
 				1D3623260D0F684500981E51 /* iNethackAppDelegate.m in Sources */,
 				43C0DD6C0FE79DFE00B63ED3 /* allmain.c in Sources */,
@@ -1684,6 +1697,7 @@
 				43C103D10FF8D54100DBD0EF /* MenuViewController.m in Sources */,
 				43C103FB0FF8DCD800DBD0EF /* MenuItem.m in Sources */,
 				43C104910FF91C9E00DBD0EF /* NethackMenuItem.m in Sources */,
+				FB65444129845A03002F4737 /* sys.c in Sources */,
 				43C5AD890FFA75F7004F67ED /* NethackMenuViewController.m in Sources */,
 				43C5F77F0FFB965800FAC706 /* NethackYnFunction.m in Sources */,
 				43AE49080FFDE32B0010A6F5 /* TextInputViewController.m in Sources */,
