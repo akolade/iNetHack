@@ -57,7 +57,7 @@
 	bundleVersionString = [[NSString alloc] initWithFormat:@"%@",
 						   [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"]];
 	statusFont = [UIFont systemFontOfSize:16];
-    
+	
 	// tileSize
 	maxTileSize = tilesetTileSize = CGSizeMake(32,32);
     maxTileSize = CGSizeMake(48,48);    //iNethack2 increasing max zoom-in a little bit.
@@ -102,6 +102,12 @@
             if (tileSize.width > 30) {
                 tileSize = CGSizeMake(30,30);
             }
+        } else if ([tilesetName isEqualToString:@"nethackmodern"]) {
+            tilesetTileSize = CGSizeMake(32,32);
+            maxTileSize = CGSizeMake(32,32);
+            if (tileSize.width > 32) {
+                tileSize = CGSizeMake(32,32);
+            }
         }
         NSString *imgName = [NSString stringWithFormat:@"%@.png", tilesetName];
 		UIImage *tilesetImage = [UIImage imageNamed:imgName];
@@ -124,7 +130,6 @@
 
 	// reuse the more button
 	moreButton = [[UIButton buttonWithType:UIButtonTypeDetailDisclosure] retain];
-
 }
 
 - (CGPoint) subViewedCenter {
@@ -266,13 +271,11 @@
 
     versionLocation.x += borderRect.size.width - size.width;
 	versionLocation.y += borderRect.size.height;
-    
 	float versionStringColor[] = {0.8f,0.8f,0.8f,1.0f};
     UIColor *versionStringColorCol = [UIColor colorWithRed:versionStringColor[0] green:versionStringColor[1] blue:versionStringColor[2] alpha:versionStringColor[3]];
-    [bundleVersionString drawAtPoint:versionLocation withAttributes:@ { NSFontAttributeName: statusFont,
-        NSBackgroundColorAttributeName: [UIColor clearColor],
-        NSForegroundColorAttributeName: versionStringColorCol}];
-    
+
+    [bundleVersionString drawAtPoint:versionLocation withAttributes:@ { NSFontAttributeName: statusFont, NSForegroundColorAttributeName: versionStringColorCol}];
+
     for (int j = 0; j < m.height; ++j) {
 		for (int i = 0; i < m.width; ++i) {
 			int glyph = [m glyphAtX:i y:j];
@@ -375,8 +378,8 @@
 }
 
 - (CGSize) drawStrings:(NSArray *)strings withSize:(CGSize)size atPoint:(CGPoint)p {
-    //ios15 don't need ctx here anymore, commented out below.
-	//CGContextRef ctx = UIGraphicsGetCurrentContext();
+	CGContextRef ctx = UIGraphicsGetCurrentContext();
+	
 	CGSize total = CGSizeMake(size.width, 0);
 	CGRect backgroundRect = CGRectMake(p.x, p.y, size.width, size.height);
     NSShadow *shadow = [NSShadow new];
@@ -389,12 +392,15 @@
     
     for (NSString *s in strings) {
 		UIFont *font = [self fontAndSize:&backgroundRect.size forString:s withFont:statusFont];
-        //ios15 commenting out below, it just causes grey boxes to show up.
-//      CGRect backgroundRect = CGRectMake(p.x, p.y, backgroundRect.size.width, backgroundRect.size.height);
-//		CGContextFillRect(ctx, backgroundRect);
+
+        CGRect backgroundRect = CGRectMake(p.x, p.y, backgroundRect.size.width, backgroundRect.size.height);
+		CGContextFillRect(ctx, backgroundRect);
         CGSize tmp = [s sizeWithAttributes:@{NSFontAttributeName:font}];
         //iNethack2: some users reported missing status bars. Couldn't reproduce, but using below as it worked for the messages...
-        [s drawAtPoint:p withAttributes:@{ NSFontAttributeName:font, NSBackgroundColorAttributeName: [UIColor clearColor], NSForegroundColorAttributeName: [UIColor whiteColor], NSShadowAttributeName: shadow}];
+        [s drawAtPoint:p withAttributes:@{ NSFontAttributeName:font, NSForegroundColorAttributeName: [UIColor whiteColor], NSShadowAttributeName: shadow}];
+        //iNethack2: old drawAtPoint below
+        //   [s drawAtPoint:p withAttributes: @ {NSFontAttributeName:font, NSForegroundColorAttributeName: [UIColor whiteColor],NSShadowAttributeName: shadow,
+        // NSBackgroundColorAttributeName: [UIColor clearColor]}]; //iNethack2: fix for drawAtPoint
 
         p.y += tmp.height;
 		total.height += tmp.height;
@@ -427,8 +433,7 @@
             CGSize size = [m sizeWithAttributes:@{NSFontAttributeName:statusFont}];
 			center.x -= size.width/2;
 			center.y -= size.height/2;
-            [m drawAtPoint:center withAttributes:@{NSFontAttributeName:statusFont, NSBackgroundColorAttributeName: [UIColor clearColor],
-                                                   NSForegroundColorAttributeName: [UIColor whiteColor], NSShadowAttributeName: shadow}];
+            [m drawAtPoint:center withAttributes:@{NSFontAttributeName:statusFont, NSForegroundColorAttributeName: [UIColor whiteColor], NSShadowAttributeName: shadow}];
         }
 	}
 	
@@ -444,7 +449,7 @@
 		if (strings.count > 0) {
             statusSize = [self drawStrings:[strings copy] withSize:CGSizeMake([MainView screenSize].width, 18) atPoint:p];
 		}
-    }
+	}
 	if (message) {
 		[moreButton removeFromSuperview];
         CGSize avgLineSize = [@"O" sizeWithAttributes: @{ NSFontAttributeName: statusFont} ];
@@ -475,8 +480,7 @@
 				}
 				if (p.x + size.width < bounds.width) {
                     size = [s sizeWithAttributes: @ { NSFontAttributeName: statusFont}];
-                    [s drawAtPoint:p withAttributes:@{ NSFontAttributeName:statusFont, NSBackgroundColorAttributeName: [UIColor clearColor],
-                                                       NSForegroundColorAttributeName: [UIColor whiteColor], NSShadowAttributeName: shadow}];
+                    [s drawAtPoint:p withAttributes:@{ NSFontAttributeName:statusFont, NSForegroundColorAttributeName: [UIColor whiteColor], NSShadowAttributeName: shadow}];
 					p.x += size.width + 4;
 				} else {
 					if (p.x != 0) {
@@ -485,8 +489,7 @@
 					p.x = 0;
 					UIFont *font = [self fontAndSize:&size forString:s withFont:statusFont];
                     size = [s sizeWithAttributes: @ { NSFontAttributeName: font}];
-                    [s drawAtPoint:p withAttributes:@{ NSFontAttributeName:font, NSBackgroundColorAttributeName: [UIColor clearColor], 
-                                                       NSForegroundColorAttributeName: [UIColor whiteColor], NSShadowAttributeName: shadow}];
+                    [s drawAtPoint:p withAttributes:@{ NSFontAttributeName:font, NSForegroundColorAttributeName: [UIColor whiteColor], NSShadowAttributeName: shadow}];
 					p.x += size.width;
 				}
 			}
@@ -559,8 +562,8 @@
 
 - (void) resetOffset {
 	offset = CGPointMake(0,0);
-    //offset.x+=[MainView screenXOffset];
-    //offset.y+=[MainView screenYOffset];
+    offset.x+=[MainView screenXOffset];
+    offset.y+=[MainView screenYOffset];
 }
 
 - (void) zoom:(CGFloat)d {

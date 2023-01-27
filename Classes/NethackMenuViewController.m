@@ -90,7 +90,7 @@ extern short glyph2tile[];
 		if (menuWindow.acceptMoney) {
 			any.a_int = '$';
             //--iNethack2 : casted gold to an int to prevent warning
-			NSString *title = [NSString stringWithFormat:@"%d %s ($)", (int) u.ugold, currency(u.ugold)];
+			NSString *title = [NSString stringWithFormat:@"%d %s ($)", (int) u.umoney0, currency(u.umoney0)];
 			NethackMenuItem *mi = [[NethackMenuItem alloc] initWithId:&any title:[title cStringUsingEncoding:NSASCIIStringEncoding]
 																glyph:kNoGlyph isMeta:YES preselected:NO];
 			mi.gold = YES;
