@@ -1,5 +1,6 @@
-/* NetHack 3.6	config.h	$NHDT-Date: 1447728911 2015/11/17 02:55:11 $  $NHDT-Branch: master $:$NHDT-Revision: 1.91 $ */
+/* NetHack 3.6	config.h	$NHDT-Date: 1575245033 2019/12/02 00:03:53 $  $NHDT-Branch: NetHack-3.6 $:$NHDT-Revision: 1.126 $ */
 /* Copyright (c) Stichting Mathematisch Centrum, Amsterdam, 1985. */
+/*-Copyright (c) Robert Patrick Rankin, 2016. */
 /* NetHack may be freely redistributed.  See license for details. */
 
 #ifndef CONFIG_H /* make sure the compiler does not see the typedefs twice */
@@ -41,20 +42,25 @@
  * Define all of those you want supported in your binary.
  * Some combinations make no sense.  See the installation document.
  */
+/* #define X11_GRAPHICS */   /* X11 interface */
+/* #define QT_GRAPHICS */    /* Qt interface */
+/* #define GNOME_GRAPHICS */ /* Gnome interface */
+/* #define MSWIN_GRAPHICS */ /* Windows NT, CE, Graphics */
 /* #define TTY_GRAPHICS	*/ /* good old tty based graphics */
 /* #define X11_GRAPHICS */	/* X11 interface */
 /* #define QT_GRAPHICS */	/* Qt interface */
 /* #define GNOME_GRAPHICS */	/* Gnome interface */
 /* #define MSWIN_GRAPHICS */	/* Windows NT, CE, Graphics */
 #define IPHONE_GRAPHICS
-
+ 
 #define TARGET_OS_IPHONE 1
+
 
 /*
  * Define the default window system.  This should be one that is compiled
  * into your system (see defines above).  Known window systems are:
  *
- *	tty, X11, mac, amii, BeOS, Qt, Gem, Gnome, iphone
+ *      tty, X11, mac, amii, BeOS, Qt, Gem, Gnome, iphone
  */
 
 /* MAC also means MAC windows */
@@ -116,6 +122,12 @@
 
 #ifndef DEFAULT_WINDOW_SYS
 #define DEFAULT_WINDOW_SYS "tty"
+#endif
+
+#ifdef CURSES_GRAPHICS
+#ifndef DEFAULT_WINDOW_SYS
+#define DEFAULT_WINDOW_SYS "curses"
+#endif
 #endif
 
 #ifdef X11_GRAPHICS
@@ -480,7 +492,7 @@ typedef unsigned char uchar;
  * Only available with POSIX_TYPES or GNU C */
 /* #define MSGHANDLER */
 
-/*#define STATUS_HILITES */        /* support hilites of status fields */
+#define STATUS_HILITES        /* support hilites of status fields */
 
 /* #define WINCHAIN */              /* stacked window systems */
 
@@ -496,9 +508,25 @@ typedef unsigned char uchar;
    but it isn't necessary for successful operation of the program */
 #define FREE_ALL_MEMORY             /* free all memory at exit */
 
-/* EDIT_GETLIN makes the string input in TTY, Qt4, and X11
-   so some prompts will remember the previously input text
-   (within the same session) */
+/* EXTRA_SANITY_CHECKS adds extra impossible calls,
+ * probably not useful for normal play */
+/* #define EXTRA_SANITY_CHECKS */
+
+/* BREADCRUMBS employs the use of predefined compiler macros
+ * __FUNCTION__ and __LINE__ to store some caller breadcrumbs
+ * for use during heavy debugging sessions. Only define if your
+ * compiler supports those predefined macros and you are debugging */
+/* #define BREADCRUMBS */
+
+/* EDIT_GETLIN makes the string input in TTY, curses, Qt4, and X11
+   for some prompts be pre-loaded with previously input text (from
+   a previous instance of the same prompt) as the default response.
+   In some cases, the previous instance can only be within the same
+   session; in others, such as #annotate, the previous input can be
+   from any session because the response is saved and restored with
+   the map.  The 'edit' capability is just <delete> or <backspace>
+   to strip off characters at the end, or <escape> to discard the
+   whole thing, then type a new end for the text. */
 /* #define EDIT_GETLIN */
 
 /* #define DUMPLOG */  /* End-of-game dump logs */
@@ -512,7 +540,7 @@ typedef unsigned char uchar;
 #define DUMPLOG_FILE        "/tmp/nethack.%n.%d.log"
 /* DUMPLOG_FILE allows following placeholders:
    %% literal '%'
-   %v version (eg. "3.6.2-0")
+   %v version (eg. "3.6.3-0")
    %u game UID
    %t game start time, UNIX timestamp format
    %T current time, UNIX timestamp format
@@ -526,6 +554,7 @@ typedef unsigned char uchar;
 
 #endif
 
+#define USE_ISAAC64 /* Use cross-plattform, bundled RNG */
 
 /* End of Section 4 */
 

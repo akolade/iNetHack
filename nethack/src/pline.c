@@ -1,15 +1,19 @@
-/* NetHack 3.6	pline.c	$NHDT-Date: 1520964541 2018/03/13 18:09:01 $  $NHDT-Branch: NetHack-3.6.0 $:$NHDT-Revision: 1.66 $ */
+/* NetHack 3.6	pline.c	$NHDT-Date: 1549327495 2019/02/05 00:44:55 $  $NHDT-Branch: NetHack-3.6.2-beta01 $:$NHDT-Revision: 1.73 $ */
 /* Copyright (c) Stichting Mathematisch Centrum, Amsterdam, 1985. */
 /*-Copyright (c) Robert Patrick Rankin, 2018. */
 /* NetHack may be freely redistributed.  See license for details. */
 
-#define NEED_VARARGS /* Uses ... */ /* comment line for pre-compiled headers \
-                                       */
+#define NEED_VARARGS /* Uses ... */ /* comment line for pre-compiled headers */
 #include "hack.h"
+
+#define BIGBUFSZ (5 * BUFSZ) /* big enough to format a 4*BUFSZ string (from
+                              * config file parsing) with modest decoration;
+                              * result will then be truncated to BUFSZ-1 */
 
 static unsigned pline_flags = 0;
 static char prevmsg[BUFSZ];
 
+static void FDECL(putmesg, (const char *));
 static char *FDECL(You_buf, (int));
 #if defined(MSGHANDLER) && (defined(POSIX_TYPES) || defined(__GNUC__))
 static void FDECL(execplinehandler, (const char *));
@@ -62,7 +66,23 @@ dumplogfreemessages()
 }
 #endif
 
-/*VARARGS1*/
+/* keeps windowprocs usage out of pline() */
+static void
+putmesg(line)
+const char *line;
+{
+    int attr = ATR_NONE;
+
+    if ((pline_flags & URGENT_MESSAGE) != 0
+        && (windowprocs.wincap2 & WC2_URGENT_MESG) != 0)
+        attr |= ATR_URGENT;
+    if ((pline_flags & SUPPRESS_HISTORY) != 0
+        && (windowprocs.wincap2 & WC2_SUPPRESS_HIST) != 0)
+        attr |= ATR_NOHISTORY;
+
+    putstr(WIN_MESSAGE, attr, line);
+}
+
 /* Note that these declarations rely on knowledge of the internals
  * of the variable argument handling stuff in "tradstdc.h"
  */
@@ -70,7 +90,9 @@ dumplogfreemessages()
 #if defined(USE_STDARG) || defined(USE_VARARGS)
 static void FDECL(vpline, (const char *, va_list));
 
-void pline
+/*VARARGS1*/
+void
+pline
 VA_DECL(const char *, line)
 {
     VA_START(line);
@@ -93,14 +115,19 @@ va_list the_args;
 
 # define vpline pline
 
-void pline
+/*VARARGS1*/
+void
+pline
 VA_DECL(const char *, line)
 #endif /* USE_STDARG | USE_VARARG */
 {       /* start of vpline() or of nested block in USE_OLDARG's pline() */
     static int in_pline = 0;
-    char pbuf[3 * BUFSZ];
+    char pbuf[BIGBUFSZ]; /* will get chopped down to BUFSZ-1 if longer */
     int ln;
     int msgtyp;
+#if !defined(NO_VSNPRINTF)
+    int vlen = 0;
+#endif
     boolean no_repeat;
     /* Do NOT use VA_START and VA_END in here... see above */
 
@@ -114,7 +141,16 @@ VA_DECL(const char *, line)
         return;
 
     if (index(line, '%')) {
+#if !defined(NO_VSNPRINTF)
+        vlen = vsnprintf(pbuf, sizeof pbuf, line, VA_ARGS);
+#if (NH_DEVEL_STATUS != NH_STATUS_RELEASED) && defined(DEBUG)
+        if (vlen >= (int) sizeof pbuf)
+            panic("%s: truncation of buffer at %zu of %d bytes",
+                  "pline", sizeof pbuf, vlen);
+#endif
+#else
         Vsprintf(pbuf, line, VA_ARGS);
+#endif
         line = pbuf;
     }
     if ((ln = (int) strlen(line)) > BUFSZ - 1) {
@@ -154,8 +190,9 @@ VA_DECL(const char *, line)
     no_repeat = (pline_flags & PLINE_NOREPEAT) ? TRUE : FALSE;
     if ((pline_flags & OVERRIDE_MSGTYPE) == 0) {
         msgtyp = msgtype_type(line, no_repeat);
-        if (msgtyp == MSGTYP_NOSHOW
-            || (msgtyp == MSGTYP_NOREP && !strcmp(line, prevmsg)))
+        if ((pline_flags & URGENT_MESSAGE) == 0
+            && (msgtyp == MSGTYP_NOSHOW
+                || (msgtyp == MSGTYP_NOREP && !strcmp(line, prevmsg))))
             /* FIXME: we need a way to tell our caller that this message
              * was suppressed so that caller doesn't set iflags.last_msg
              * for something that hasn't been shown, otherwise a subsequent
@@ -171,7 +208,7 @@ VA_DECL(const char *, line)
     if (u.ux)
         flush_screen(1); /* %% */
 
-    putstr(WIN_MESSAGE, 0, line);
+    putmesg(line);
 
 #if defined(MSGHANDLER) && (defined(POSIX_TYPES) || defined(__GNUC__))
     execplinehandler(line);
@@ -260,6 +297,7 @@ void You
 VA_DECL(const char *, line)
 {
     char *tmp;
+
     VA_START(line);
     VA_INIT(line, const char *);
     vpline(YouMessage(tmp, "You ", line), VA_ARGS);
@@ -271,6 +309,7 @@ void Your
 VA_DECL(const char *, line)
 {
     char *tmp;
+
     VA_START(line);
     VA_INIT(line, const char *);
     vpline(YouMessage(tmp, "Your ", line), VA_ARGS);
@@ -282,6 +321,7 @@ void You_feel
 VA_DECL(const char *, line)
 {
     char *tmp;
+
     VA_START(line);
     VA_INIT(line, const char *);
     if (Unaware)
@@ -297,6 +337,7 @@ void You_cant
 VA_DECL(const char *, line)
 {
     char *tmp;
+
     VA_START(line);
     VA_INIT(line, const char *);
     vpline(YouMessage(tmp, "You can't ", line), VA_ARGS);
@@ -308,6 +349,7 @@ void pline_The
 VA_DECL(const char *, line)
 {
     char *tmp;
+
     VA_START(line);
     VA_INIT(line, const char *);
     vpline(YouMessage(tmp, "The ", line), VA_ARGS);
@@ -319,6 +361,7 @@ void There
 VA_DECL(const char *, line)
 {
     char *tmp;
+
     VA_START(line);
     VA_INIT(line, const char *);
     vpline(YouMessage(tmp, "There ", line), VA_ARGS);
@@ -340,7 +383,7 @@ VA_DECL(const char *, line)
     else if (Unaware)
         YouPrefix(tmp, "You dream that you hear ", line);
     else
-        YouPrefix(tmp, "You hear ", line);
+        YouPrefix(tmp, "You hear ", line);  /* Deaf-aware */
     vpline(strcat(tmp, line), VA_ARGS);
     VA_END();
 }
@@ -416,15 +459,18 @@ void raw_printf
 VA_DECL(const char *, line)
 #endif
 {
-    char pbuf[3 * BUFSZ];
-    int ln;
+    char pbuf[BIGBUFSZ]; /* will be chopped down to BUFSZ-1 if longer */
     /* Do NOT use VA_START and VA_END in here... see above */
 
     if (index(line, '%')) {
+#if !defined(NO_VSNPRINTF)
+        (void) vsnprintf(pbuf, sizeof pbuf, line, VA_ARGS);
+#else
         Vsprintf(pbuf, line, VA_ARGS);
+#endif
         line = pbuf;
     }
-    if ((ln = (int) strlen(line)) > BUFSZ - 1) {
+    if ((int) strlen(line) > BUFSZ - 1) {
         if (line != pbuf)
             line = strncpy(pbuf, line, BUFSZ - 1);
         /* unlike pline, we don't futz around to keep last few chars */
@@ -443,25 +489,37 @@ VA_DECL(const char *, line)
 void impossible
 VA_DECL(const char *, s)
 {
-    char pbuf[2 * BUFSZ];
+    char pbuf[BIGBUFSZ]; /* will be chopped down to BUFSZ-1 if longer */
+
     VA_START(s);
     VA_INIT(s, const char *);
     if (program_state.in_impossible)
         panic("impossible called impossible");
 
     program_state.in_impossible = 1;
+#if !defined(NO_VSNPRINTF)
+    (void) vsnprintf(pbuf, sizeof pbuf, s, VA_ARGS);
+#else
     Vsprintf(pbuf, s, VA_ARGS);
+#endif
     pbuf[BUFSZ - 1] = '\0'; /* sanity */
     paniclog("impossible", pbuf);
+    if (iflags.debug_fuzzer)
+        panic("%s", pbuf);
     pline("%s", VA_PASS1(pbuf));
-    pline(VA_PASS1(
-       "Program in disorder!  (Saving and reloading may fix this problem.)"));
+    /* reuse pbuf[] */
+    Strcpy(pbuf, "Program in disorder!");
+    if (program_state.something_worth_saving)
+        Strcat(pbuf, "  (Saving and reloading may fix this problem.)");
+    pline("%s", VA_PASS1(pbuf));
+
     program_state.in_impossible = 0;
     VA_END();
 }
 
 #if defined(MSGHANDLER) && (defined(POSIX_TYPES) || defined(__GNUC__))
 static boolean use_pline_handler = TRUE;
+
 static void
 execplinehandler(line)
 const char *line;
@@ -499,6 +557,64 @@ const char *line;
         pline("%s", VA_PASS1("Fork to message handler failed."));
     }
 }
-#endif /* defined(POSIX_TYPES) || defined(__GNUC__) */
+#endif /* MSGHANDLER && (POSIX_TYPES || __GNUC__) */
+
+/*
+ * varargs handling for files.c
+ */
+#if defined(USE_STDARG) || defined(USE_VARARGS)
+static void FDECL(vconfig_error_add, (const char *, va_list));
+
+/*VARARGS1*/
+void
+config_error_add
+VA_DECL(const char *, str)
+{
+    VA_START(str);
+    VA_INIT(str, char *);
+    vconfig_error_add(str, VA_ARGS);
+    VA_END();
+}
+
+# ifdef USE_STDARG
+static void
+vconfig_error_add(const char *str, va_list the_args)
+# else
+static void
+vconfig_error_add(str, the_args)
+const char *str;
+va_list the_args;
+# endif
+
+#else /* !(USE_STDARG || USE_VARARG) => USE_OLDARGS */
+
+/*VARARGS1*/
+void
+config_error_add
+VA_DECL(const char *, str)
+#endif /* ?(USE_STDARG || USE_VARARG) */
+{       /* start of vconf...() or of nested block in USE_OLDARG's conf...() */
+#if !defined(NO_VSNPRINTF)
+    int vlen = 0;
+#endif
+    char buf[BIGBUFSZ]; /* will be chopped down to BUFSZ-1 if longer */
+
+#if !defined(NO_VSNPRINTF)
+    vlen = vsnprintf(buf, sizeof buf, str, VA_ARGS);
+#if (NH_DEVEL_STATUS != NH_STATUS_RELEASED) && defined(DEBUG)
+    if (vlen >= (int) sizeof buf)
+        panic("%s: truncation of buffer at %zu of %d bytes",
+              "config_error_add", sizeof buf, vlen);
+#endif
+#else
+    Vsprintf(buf, str, VA_ARGS);
+#endif
+    buf[BUFSZ - 1] = '\0';
+    config_erradd(buf);
+
+#if !(defined(USE_STDARG) || defined(USE_VARARGS))
+    VA_END(); /* (see pline/vpline -- ends nested block for USE_OLDARGS) */
+#endif
+}
 
 /*pline.c*/

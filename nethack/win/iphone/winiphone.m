@@ -72,6 +72,7 @@ WC_ASCII_MAP|WC_TILED_MAP|
 WC_FONT_MAP|WC_TILE_FILE|WC_TILE_WIDTH|WC_TILE_HEIGHT|
 WC_PLAYER_SELECTION|WC_SPLASH_SCREEN,
 0L,
+{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
 iphone_init_nhwindows,
 iphone_player_selection,
 iphone_askname,
@@ -796,6 +797,40 @@ int fd;
     bufon(fd);
     return;
 }
+
+// iNetack added function copied from sys/unix/unixmain.c
+unsigned long
+sys_random_seed()
+{
+    unsigned long seed = 0L;
+    unsigned long pid = (unsigned long) getpid();
+    boolean no_seed = TRUE;
+#ifdef DEV_RANDOM
+    FILE *fptr;
+
+    fptr = fopen(DEV_RANDOM, "r");
+    if (fptr) {
+        fread(&seed, sizeof (long), 1, fptr);
+        has_strong_rngseed = TRUE;  /* decl.c */
+        no_seed = FALSE;
+        (void) fclose(fptr);
+    } else {
+        /* leaves clue, doesn't exit */
+        paniclog("sys_random_seed", "falling back to weak seed");
+    }
+#endif
+    if (no_seed) {
+        seed = (unsigned long) getnow(); /* time((TIME_type) 0) */
+        /* Quick dirty band-aid to prevent PRNG prediction */
+        if (pid) {
+            if (!(pid & 3L))
+                pid -= 1L;
+            seed *= pid;
+        }
+    }
+    return seed;
+}
+
 
 void iphone_main() {
 	int argc = 0;

@@ -62,7 +62,6 @@ struct toptenentry {
 
 STATIC_DCL void FDECL(topten_print, (const char *));
 STATIC_DCL void FDECL(topten_print_bold, (const char *));
-STATIC_DCL xchar FDECL(observable_depth, (d_level *));
 STATIC_DCL void NDECL(outheader);
 STATIC_DCL void FDECL(outentry, (int, struct toptenentry *, BOOLEAN_P));
 STATIC_DCL void FDECL(discardexcess, (FILE *));
@@ -130,7 +129,9 @@ boolean incl_helpless;
      */
     while (--siz > 0) {
         c = *kname++;
-        if (c == ',')
+        if (!c)
+            break;
+        else if (c == ',')
             c = ';';
         /* 'xlogfile' doesn't really need protection for '=', but
            fixrecord.awk for corrupted 3.6.0 'record' does (only
@@ -176,7 +177,7 @@ const char *x;
         putstr(toptenwin, ATR_BOLD, x);
 }
 
-STATIC_OVL xchar
+int
 observable_depth(lev)
 d_level *lev;
 {
@@ -999,6 +1000,7 @@ int uid;
  * print selected parts of score list.
  * argc >= 2, with argv[0] untrustworthy (directory names, et al.),
  * and argv[1] starting with "-s".
+ * caveat: some shells might allow argv elements to be arbitrarily long.
  */
 void
 prscore(argc, argv)

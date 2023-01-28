@@ -1,10 +1,13 @@
-/* NetHack 3.6	windows.c	$NHDT-Date: 1495232365 2017/05/19 22:19:25 $  $NHDT-Branch: NetHack-3.6.0 $:$NHDT-Revision: 1.41 $ */
+/* NetHack 3.6	windows.c	$NHDT-Date: 1575245096 2019/12/02 00:04:56 $  $NHDT-Branch: NetHack-3.6 $:$NHDT-Revision: 1.60 $ */
 /* Copyright (c) D. Cohrs, 1993. */
 /* NetHack may be freely redistributed.  See license for details. */
 
 #include "hack.h"
 #ifdef TTY_GRAPHICS
 #include "wintty.h"
+#endif
+#ifdef CURSES_GRAPHICS
+extern struct window_procs curses_procs;
 #endif
 #ifdef X11_GRAPHICS
 /* Cannot just blindly include winX.h without including all of X11 stuff
@@ -59,6 +62,7 @@ extern void *FDECL(trace_procs_chain, (int, int, void *, void *, void *));
 #endif
 
 STATIC_DCL void FDECL(def_raw_print, (const char *s));
+STATIC_DCL void NDECL(def_wait_synch);
 
 #ifdef DUMPLOG
 STATIC_DCL winid FDECL(dump_create_nhwindow, (int));
@@ -66,7 +70,8 @@ STATIC_DCL void FDECL(dump_clear_nhwindow, (winid));
 STATIC_DCL void FDECL(dump_display_nhwindow, (winid, BOOLEAN_P));
 STATIC_DCL void FDECL(dump_destroy_nhwindow, (winid));
 STATIC_DCL void FDECL(dump_start_menu, (winid));
-STATIC_DCL void FDECL(dump_add_menu, (winid, int, const ANY_P *, CHAR_P, CHAR_P, int, const char *, BOOLEAN_P));
+STATIC_DCL void FDECL(dump_add_menu, (winid, int, const ANY_P *, CHAR_P,
+                                      CHAR_P, int, const char *, BOOLEAN_P));
 STATIC_DCL void FDECL(dump_end_menu, (winid, const char *));
 STATIC_DCL int FDECL(dump_select_menu, (winid, int, MENU_ITEM_P **));
 STATIC_DCL void FDECL(dump_putstr, (winid, int, const char *));
@@ -92,6 +97,9 @@ static struct win_choices {
 } winchoices[] = {
 #ifdef TTY_GRAPHICS
     { &tty_procs, win_tty_init CHAINR(0) },
+#endif
+#ifdef CURSES_GRAPHICS
+    { &curses_procs, 0 },
 #endif
 #ifdef X11_GRAPHICS
     { &X11_procs, win_X11_init CHAINR(0) },
@@ -150,14 +158,22 @@ static struct winlink *chain = 0;
 static struct winlink *
 wl_new()
 {
-    return calloc(1, sizeof(struct winlink));
+    struct winlink *wl = (struct winlink *) alloc(sizeof *wl);
+
+    wl->nextlink = 0;
+    wl->wincp = 0;
+    wl->linkdata = 0;
+
+    return wl;
 }
+
 static void
 wl_addhead(struct winlink *wl)
 {
     wl->nextlink = chain;
     chain = wl;
 }
+
 static void
 wl_addtail(struct winlink *wl)
 {
@@ -197,6 +213,22 @@ const char *s;
     puts(s);
 }
 
+STATIC_OVL
+void
+def_wait_synch(VOID_ARGS)
+{
+    /* Config file error handling routines
+     * call wait_sync() without checking to
+     * see if it actually has a value,
+     * leading to spectacular violations
+     * when you try to execute address zero.
+     * The existence of this allows early
+     * processing to have something to execute
+     * even though it essentially does nothing
+     */
+     return;
+}
+
 #ifdef WINCHAIN
 static struct win_choices *
 win_choices_find(s)
@@ -217,7 +249,8 @@ void
 choose_windows(s)
 const char *s;
 {
-    register int i;
+    int i;
+    char *tmps = 0;
 
     for (i = 0; winchoices[i].procs; i++) {
         if ('+' == winchoices[i].procs->name[0])
@@ -238,30 +271,53 @@ const char *s;
 
     if (!windowprocs.win_raw_print)
         windowprocs.win_raw_print = def_raw_print;
+    if (!windowprocs.win_wait_synch)
+        /* early config file error processing routines call this */
+        windowprocs.win_wait_synch = def_wait_synch;
 
     if (!winchoices[0].procs) {
-        raw_printf("No window types?");
-        exit(EXIT_FAILURE);
+        raw_printf("No window types supported?");
+        nh_terminate(EXIT_FAILURE);
     }
+    /* 50: arbitrary, no real window_type names are anywhere near that long;
+       used to prevent potential raw_printf() overflow if user supplies a
+       very long string (on the order of 1200 chars) on the command line
+       (config file options can't get that big; they're truncated at 1023) */
+#define WINDOW_TYPE_MAXLEN 50
+    if (strlen(s) >= WINDOW_TYPE_MAXLEN) {
+        tmps = (char *) alloc(WINDOW_TYPE_MAXLEN);
+        (void) strncpy(tmps, s, WINDOW_TYPE_MAXLEN - 1);
+        tmps[WINDOW_TYPE_MAXLEN - 1] = '\0';
+        s = tmps;
+    }
+#undef WINDOW_TYPE_MAXLEN
+
     if (!winchoices[1].procs) {
-        config_error_add("Window type %s not recognized.  The only choice is: %s",
-                   s, winchoices[0].procs->name);
+        config_error_add(
+                     "Window type %s not recognized.  The only choice is: %s",
+                         s, winchoices[0].procs->name);
     } else {
         char buf[BUFSZ];
         boolean first = TRUE;
+
         buf[0] = '\0';
         for (i = 0; winchoices[i].procs; i++) {
             if ('+' == winchoices[i].procs->name[0])
                 continue;
             if ('-' == winchoices[i].procs->name[0])
                 continue;
-            Sprintf(eos(buf), "%s%s", first ? "" : ",", winchoices[i].procs->name);
+            Sprintf(eos(buf), "%s%s",
+                    first ? "" : ", ", winchoices[i].procs->name);
             first = FALSE;
         }
-        config_error_add("Window type %s not recognized.  Choices are: %s", s, buf);
+        config_error_add("Window type %s not recognized.  Choices are:  %s",
+                         s, buf);
     }
+    if (tmps)
+        free((genericptr_t) tmps) /*, tmps = 0*/ ;
 
-    if (windowprocs.win_raw_print == def_raw_print)
+    if (windowprocs.win_raw_print == def_raw_print
+            || WINDOWPORT("safe-startup"))
         nh_terminate(EXIT_SUCCESS);
 }
 
@@ -277,6 +333,7 @@ const char *s;
             continue;
         if (!strcmpi(s, winchoices[i].procs->name)) {
             struct winlink *p = wl_new();
+
             p->wincp = &winchoices[i];
             wl_addtail(p);
             /* NB: The ini_routine() will be called during commit. */
@@ -293,7 +350,7 @@ const char *s;
         raw_printf("        %s", winchoices[i].procs->name);
     }
 
-    exit(EXIT_FAILURE);
+    nh_terminate(EXIT_FAILURE);
 }
 
 void
@@ -480,7 +537,8 @@ static short FDECL(hup_set_font_name, (winid, char *));
 #endif
 static char *NDECL(hup_get_color_string);
 #endif /* CHANGE_COLOR */
-static void FDECL(hup_status_update, (int, genericptr_t, int, int, int, unsigned long *));
+static void FDECL(hup_status_update, (int, genericptr_t, int, int, int,
+                                      unsigned long *));
 
 static int NDECL(hup_int_ndecl);
 static void NDECL(hup_void_ndecl);
@@ -489,7 +547,9 @@ static void FDECL(hup_void_fdecl_winid, (winid));
 static void FDECL(hup_void_fdecl_constchar_p, (const char *));
 
 static struct window_procs hup_procs = {
-    "hup", 0L, 0L, hup_init_nhwindows,
+    "hup", 0L, 0L,
+    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    hup_init_nhwindows,
     hup_void_ndecl,                                    /* player_selection */
     hup_void_ndecl,                                    /* askname */
     hup_void_ndecl,                                    /* get_nh_event */
@@ -824,7 +884,6 @@ const char *status_fieldnm[MAXBLSTATS];
 const char *status_fieldfmt[MAXBLSTATS];
 char *status_vals[MAXBLSTATS];
 boolean status_activefields[MAXBLSTATS];
-NEARDATA winid WIN_STATUS;
 
 void
 genl_status_init()
@@ -916,7 +975,7 @@ unsigned long *colormasks UNUSED;
        is buffered so final BL_FLUSH is needed to produce output) */
     windowprocs.wincap2 |= WC2_FLUSH_STATUS;
 
-    if (idx != BL_FLUSH) {
+    if (idx >= 0) {
         if (!status_activefields[idx])
             return;
         switch (idx) {
@@ -958,11 +1017,20 @@ unsigned long *colormasks UNUSED;
             break;
         }
         return; /* processed one field other than BL_FLUSH */
-    } /* (idx != BL_FLUSH) */
+    } /* (idx >= 0, thus not BL_FLUSH, BL_RESET, BL_CHARACTERISTICS) */
+
+    /* does BL_RESET require any specific code to ensure all fields ? */
+
+    if (!(idx == BL_FLUSH || idx == BL_RESET))
+        return;
 
     /* We've received BL_FLUSH; time to output the gathered data */
     nb = newbot1;
     *nb = '\0';
+    /* BL_FLUSH is the only pseudo-index value we need to check for
+       in the loop below because it is the only entry used to pad the
+       end of the fieldorder array. We could stop on any
+       negative (illegal) index, but this should be fine */
     for (i = 0; (idx1 = fieldorder[0][i]) != BL_FLUSH; ++i) {
         if (status_activefields[idx1])
             Strcpy(nb = eos(nb), status_vals[idx1]);
@@ -1046,12 +1114,13 @@ STATIC_VAR FILE *dumplog_file;
 #ifdef DUMPLOG
 STATIC_VAR time_t dumplog_now;
 
-STATIC_DCL char *FDECL(dump_fmtstr, (const char *, char *));
-
-STATIC_OVL char *
-dump_fmtstr(fmt, buf)
+char *
+dump_fmtstr(fmt, buf, fullsubs)
 const char *fmt;
 char *buf;
+boolean fullsubs; /* True -> full substitution for file name, False ->
+                   * partial substitution for '--showpaths' feedback
+                   * where there's no game in progress when executed */
 {
     const char *fp = fmt;
     char *bp = buf;
@@ -1074,7 +1143,7 @@ char *buf;
      * may or may not interfere with that usage.]
      */
 
-    while (fp && *fp && len < BUFSZ-1) {
+    while (fp && *fp && len < BUFSZ - 1) {
         if (*fp == '%') {
             fp++;
             switch (*fp) {
@@ -1085,38 +1154,68 @@ char *buf;
                 Sprintf(tmpbuf, "%%");
                 break;
             case 't': /* game start, timestamp */
-                Sprintf(tmpbuf, "%lu", (unsigned long) ubirthday);
+                if (fullsubs)
+                    Sprintf(tmpbuf, "%lu", (unsigned long) ubirthday);
+                else
+                    Strcpy(tmpbuf, "{game start cookie}");
                 break;
             case 'T': /* current time, timestamp */
-                Sprintf(tmpbuf, "%lu", (unsigned long) now);
+                if (fullsubs)
+                    Sprintf(tmpbuf, "%lu", (unsigned long) now);
+                else
+                    Strcpy(tmpbuf, "{current time cookie}");
                 break;
             case 'd': /* game start, YYYYMMDDhhmmss */
-                Sprintf(tmpbuf, "%08ld%06ld",
-                        yyyymmdd(ubirthday), hhmmss(ubirthday));
+                if (fullsubs)
+                    Sprintf(tmpbuf, "%08ld%06ld",
+                            yyyymmdd(ubirthday), hhmmss(ubirthday));
+                else
+                    Strcpy(tmpbuf, "{game start date+time}");
                 break;
             case 'D': /* current time, YYYYMMDDhhmmss */
-                Sprintf(tmpbuf, "%08ld%06ld", yyyymmdd(now), hhmmss(now));
+                if (fullsubs)
+                    Sprintf(tmpbuf, "%08ld%06ld", yyyymmdd(now), hhmmss(now));
+                else
+                    Strcpy(tmpbuf, "{current date+time}");
                 break;
-            case 'v': /* version, eg. "3.6.2-0" */
+            case 'v': /* version, eg. "3.6.5-0" */
                 Sprintf(tmpbuf, "%s", version_string(verbuf));
                 break;
             case 'u': /* UID */
                 Sprintf(tmpbuf, "%ld", uid);
                 break;
             case 'n': /* player name */
-                Sprintf(tmpbuf, "%s", *plname ? plname : "unknown");
+                if (fullsubs)
+                    Sprintf(tmpbuf, "%s", *plname ? plname : "unknown");
+                else
+                    Strcpy(tmpbuf, "{hero name}");
                 break;
             case 'N': /* first character of player name */
-                Sprintf(tmpbuf, "%c", *plname ? *plname : 'u');
+                if (fullsubs)
+                    Sprintf(tmpbuf, "%c", *plname ? *plname : 'u');
+                else
+                    Strcpy(tmpbuf, "{hero initial}");
                 break;
             }
+            if (fullsubs) {
+                /* replace potentially troublesome characters (including
+                   <space> even though it might be an acceptable file name
+                   character); user shouldn't be able to get ' ' or '/'
+                   or '\\' into plname[] but play things safe */
+                (void) strNsubst(tmpbuf, " ", "_", 0);
+                (void) strNsubst(tmpbuf, "/", "_", 0);
+                (void) strNsubst(tmpbuf, "\\", "_", 0);
+                /* note: replacements are only done on field substitutions,
+                   not on the template (from sysconf or DUMPLOG_FILE) */
+            }
 
-            slen = strlen(tmpbuf);
-            if (len + slen < BUFSZ-1) {
+            slen = (int) strlen(tmpbuf);
+            if (len + slen < BUFSZ - 1) {
                 len += slen;
                 Sprintf(bp, "%s", tmpbuf);
                 bp += slen;
-                if (*fp) fp++;
+                if (*fp)
+                    fp++;
             } else
                 break;
         } else {
@@ -1144,9 +1243,9 @@ time_t now;
 #ifdef SYSCF
     if (!sysopt.dumplogfile)
         return;
-    fname = dump_fmtstr(sysopt.dumplogfile, buf);
+    fname = dump_fmtstr(sysopt.dumplogfile, buf, TRUE);
 #else
-    fname = dump_fmtstr(DUMPLOG_FILE, buf);
+    fname = dump_fmtstr(DUMPLOG_FILE, buf, TRUE);
 #endif
     dumplog_file = fopen(fname, "w");
     dumplog_windowprocs_backup = windowprocs;
@@ -1233,7 +1332,7 @@ winid win UNUSED;
 STATIC_OVL void
 dump_add_menu(win, glyph, identifier, ch, gch, attr, str, preselected)
 winid win UNUSED;
-int glyph UNUSED;
+int glyph;
 const anything *identifier UNUSED;
 char ch;
 char gch UNUSED;
@@ -1295,6 +1394,30 @@ boolean onoff_flag;
     } else {
         iflags.in_dumplog = FALSE;
     }
+}
+
+#ifdef TTY_GRAPHICS
+#ifdef TEXTCOLOR
+#ifdef TOS
+extern const char *hilites[CLR_MAX];
+#else
+extern NEARDATA char *hilites[CLR_MAX];
+#endif
+#endif
+#endif
+
+int
+has_color(color)
+int color;
+{
+    return (iflags.use_color && windowprocs.name
+            && (windowprocs.wincap & WC_COLOR) && windowprocs.has_color[color]
+#ifdef TTY_GRAPHICS
+#if defined(TEXTCOLOR) && defined(TERMLIB) && !defined(NO_TERMS)
+             && (hilites[color] != 0)
+#endif
+#endif
+    );
 }
 
 /*windows.c*/

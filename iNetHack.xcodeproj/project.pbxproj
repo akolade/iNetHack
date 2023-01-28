@@ -39,7 +39,6 @@
 		43ACB5D80FFF4A9F005DB589 /* DirectionInputView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 43ACB5D70FFF4A9F005DB589 /* DirectionInputView.xib */; };
 		43AE49080FFDE32B0010A6F5 /* TextInputViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 43AE49070FFDE32B0010A6F5 /* TextInputViewController.m */; };
 		43AECC03100A03EE008B7BE6 /* TileSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 43AECC02100A03EE008B7BE6 /* TileSet.m */; };
-		43AECC7D100A0DB0008B7BE6 /* tile.c in Sources */ = {isa = PBXBuildFile; fileRef = 43AECC7C100A0DB0008B7BE6 /* tile.c */; };
 		43AFFBE0103FDF4B00DCC8C1 /* NSString+NetHack.m in Sources */ = {isa = PBXBuildFile; fileRef = 43AFFBDF103FDF4B00DCC8C1 /* NSString+NetHack.m */; };
 		43AFFC21103FE53500DCC8C1 /* ItemAmountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 43AFFC1F103FE53500DCC8C1 /* ItemAmountViewController.m */; };
 		43AFFC22103FE53500DCC8C1 /* ItemAmountView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 43AFFC20103FE53500DCC8C1 /* ItemAmountView.xib */; };
@@ -164,7 +163,6 @@
 		43DC336A1070CD1C00FBCE71 /* MainMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 43DC33681070CD1C00FBCE71 /* MainMenuViewController.m */; };
 		43DC336B1070CD1C00FBCE71 /* MainMenuView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 43DC33691070CD1C00FBCE71 /* MainMenuView.xib */; };
 		43DD07060FF4BC3900580249 /* winiphone.m in Sources */ = {isa = PBXBuildFile; fileRef = 43DD07050FF4BC3900580249 /* winiphone.m */; };
-		43DD076E0FF4C3E900580249 /* monstr.c in Sources */ = {isa = PBXBuildFile; fileRef = 43DD076D0FF4C3E900580249 /* monstr.c */; };
 		43DD07AB0FF4C60400580249 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 43DD07AA0FF4C60400580249 /* MainViewController.m */; };
 		43DD07AE0FF4C60E00580249 /* MainView.m in Sources */ = {isa = PBXBuildFile; fileRef = 43DD07AD0FF4C60E00580249 /* MainView.m */; };
 		43DD07B20FF4C64100580249 /* MainView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 43DD07B10FF4C64100580249 /* MainView.xib */; };
@@ -317,6 +315,8 @@
 		FB64D9551A785ED80035BA74 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = FB64D9541A785ED80035BA74 /* Icon.png */; };
 		FB65443F298457F7002F4737 /* posixregex.c in Sources */ = {isa = PBXBuildFile; fileRef = FB65443E298457F7002F4737 /* posixregex.c */; };
 		FB65444129845A03002F4737 /* sys.c in Sources */ = {isa = PBXBuildFile; fileRef = FB65444029845A03002F4737 /* sys.c */; };
+		FB6544472986429A002F4737 /* tile.c in Sources */ = {isa = PBXBuildFile; fileRef = FB6544462986429A002F4737 /* tile.c */; };
+		FB65444B29864943002F4737 /* isaac64.c in Sources */ = {isa = PBXBuildFile; fileRef = FB65444A29864942002F4737 /* isaac64.c */; };
 		FBA6C9DA1B47442C006C88B5 /* nevanda32.png in Resources */ = {isa = PBXBuildFile; fileRef = FBA6C9D81B47442C006C88B5 /* nevanda32.png */; };
 		FBA6C9DB1B47442C006C88B5 /* nevanda32black.png in Resources */ = {isa = PBXBuildFile; fileRef = FBA6C9D91B47442C006C88B5 /* nevanda32black.png */; };
 		FBA6D35E1D52410A006B4238 /* TextInputView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FBA6D35D1D52410A006B4238 /* TextInputView.xib */; };
@@ -374,7 +374,6 @@
 		43AE49070FFDE32B0010A6F5 /* TextInputViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextInputViewController.m; sourceTree = "<group>"; tabWidth = 4; };
 		43AECC01100A03EE008B7BE6 /* TileSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TileSet.h; sourceTree = "<group>"; };
 		43AECC02100A03EE008B7BE6 /* TileSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TileSet.m; sourceTree = "<group>"; };
-		43AECC7C100A0DB0008B7BE6 /* tile.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = tile.c; path = nethack/src/tile.c; sourceTree = "<group>"; };
 		43AFFBDE103FDF4B00DCC8C1 /* NSString+NetHack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+NetHack.h"; sourceTree = "<group>"; };
 		43AFFBDF103FDF4B00DCC8C1 /* NSString+NetHack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+NetHack.m"; sourceTree = "<group>"; };
 		43AFFC1E103FE53500DCC8C1 /* ItemAmountViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemAmountViewController.h; sourceTree = "<group>"; };
@@ -606,7 +605,6 @@
 		43DD05D70FF4BAD900580249 /* date.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = date.h; sourceTree = "<group>"; };
 		43DD07040FF4BC3900580249 /* winiphone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = winiphone.h; sourceTree = "<group>"; };
 		43DD07050FF4BC3900580249 /* winiphone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = winiphone.m; sourceTree = "<group>"; };
-		43DD076D0FF4C3E900580249 /* monstr.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = monstr.c; path = nethack/src/monstr.c; sourceTree = "<group>"; };
 		43DD07A90FF4C60400580249 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		43DD07AA0FF4C60400580249 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		43DD07AC0FF4C60E00580249 /* MainView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainView.h; sourceTree = "<group>"; };
@@ -770,6 +768,11 @@
 		FB65443929845431002F4737 /* mextra.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = mextra.h; sourceTree = "<group>"; };
 		FB65443E298457F7002F4737 /* posixregex.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = posixregex.c; path = nethack/sys/share/posixregex.c; sourceTree = "<group>"; };
 		FB65444029845A03002F4737 /* sys.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = sys.c; path = nethack/src/sys.c; sourceTree = "<group>"; };
+		FB6544422986419C002F4737 /* isaac64.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = isaac64.h; sourceTree = "<group>"; };
+		FB654443298641BB002F4737 /* integer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = integer.h; sourceTree = "<group>"; };
+		FB6544462986429A002F4737 /* tile.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = tile.c; path = nethack/src/tile.c; sourceTree = "<group>"; };
+		FB65444A29864942002F4737 /* isaac64.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = isaac64.c; path = nethack/src/isaac64.c; sourceTree = "<group>"; };
+		FB65444C29873B84002F4737 /* onames.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = onames.h; sourceTree = "<group>"; };
 		FBA6C9D81B47442C006C88B5 /* nevanda32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nevanda32.png; sourceTree = "<group>"; };
 		FBA6C9D91B47442C006C88B5 /* nevanda32black.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nevanda32black.png; sourceTree = "<group>"; };
 		FBA6D35D1D52410A006B4238 /* TextInputView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TextInputView.xib; sourceTree = "<group>"; };
@@ -875,7 +878,6 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
-				FB65443E298457F7002F4737 /* posixregex.c */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				43C0DCFC0FE79D9C00B63ED3 /* nethack */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
@@ -964,8 +966,8 @@
 		43C0DCFF0FE79DE000B63ED3 /* src */ = {
 			isa = PBXGroup;
 			children = (
-				43DD076D0FF4C3E900580249 /* monstr.c */,
-				43AECC7C100A0DB0008B7BE6 /* tile.c */,
+				FB65444A29864942002F4737 /* isaac64.c */,
+				FB65443E298457F7002F4737 /* posixregex.c */,
 				43C0DD020FE79DFE00B63ED3 /* allmain.c */,
 				43C0DD030FE79DFE00B63ED3 /* alloc.c */,
 				43C0DD040FE79DFE00B63ED3 /* apply.c */,
@@ -1057,6 +1059,7 @@
 				43C0DD590FE79DFE00B63ED3 /* teleport.c */,
 				43C0DD5A0FE79DFE00B63ED3 /* timeout.c */,
 				43C0DD5B0FE79DFE00B63ED3 /* topten.c */,
+				FB6544462986429A002F4737 /* tile.c */,
 				43C0DD5C0FE79DFE00B63ED3 /* track.c */,
 				43C0DD5D0FE79DFE00B63ED3 /* trap.c */,
 				43C0DD5E0FE79DFE00B63ED3 /* u_init.c */,
@@ -1114,6 +1117,8 @@
 				43C0DDF40FE79E3C00B63ED3 /* gem_rsc.h */,
 				43C0DDF50FE79E3C00B63ED3 /* global.h */,
 				43C0DDF60FE79E3C00B63ED3 /* hack.h */,
+				FB654443298641BB002F4737 /* integer.h */,
+				FB6544422986419C002F4737 /* isaac64.h */,
 				43C0DDF70FE79E3C00B63ED3 /* lev.h */,
 				43C0DDF80FE79E3C00B63ED3 /* load_img.h */,
 				43C0DDF90FE79E3C00B63ED3 /* mac-carbon.h */,
@@ -1138,6 +1143,7 @@
 				43C0DE0C0FE79E3C00B63ED3 /* obj.h */,
 				43C0DE0D0FE79E3C00B63ED3 /* objclass.h */,
 				43C0DE0E0FE79E3C00B63ED3 /* os2conf.h */,
+				FB65444C29873B84002F4737 /* onames.h */,
 				43C0DE0F0FE79E3C00B63ED3 /* patchlevel.h */,
 				43C0DE100FE79E3C00B63ED3 /* pcconf.h */,
 				43C0DE110FE79E3C00B63ED3 /* permonst.h */,
@@ -1375,7 +1381,7 @@
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0920;
+				LastUpgradeCheck = 1420;
 				TargetAttributes = {
 					1D6058900D05DD3D006BFB54 = {
 						DevelopmentTeam = JV43X8XJFX;
@@ -1384,11 +1390,11 @@
 			};
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "iNetHack" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 1;
 			knownRegions = (
-				English,
 				en,
+				Base,
 			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
 			projectDirPath = "";
@@ -1619,6 +1625,7 @@
 				43C0DD8D0FE79DFE00B63ED3 /* hacklib.c in Sources */,
 				43C0DD8E0FE79DFE00B63ED3 /* invent.c in Sources */,
 				43C0DD8F0FE79DFE00B63ED3 /* light.c in Sources */,
+				FB6544472986429A002F4737 /* tile.c in Sources */,
 				43C0DD900FE79DFE00B63ED3 /* lock.c in Sources */,
 				43C0DD910FE79DFE00B63ED3 /* mail.c in Sources */,
 				43C0DD920FE79DFE00B63ED3 /* makemon.c in Sources */,
@@ -1689,8 +1696,8 @@
 				43C0DDD30FE79DFE00B63ED3 /* worn.c in Sources */,
 				43C0DDD40FE79DFE00B63ED3 /* write.c in Sources */,
 				43C0DDD50FE79DFE00B63ED3 /* zap.c in Sources */,
+				FB65444B29864943002F4737 /* isaac64.c in Sources */,
 				43DD07060FF4BC3900580249 /* winiphone.m in Sources */,
-				43DD076E0FF4C3E900580249 /* monstr.c in Sources */,
 				43DD07AB0FF4C60400580249 /* MainViewController.m in Sources */,
 				43DD07AE0FF4C60E00580249 /* MainView.m in Sources */,
 				43DD0C430FF4ECEB00580249 /* Window.m in Sources */,
@@ -1709,7 +1716,6 @@
 				43D113CF1007491700082C8D /* TextDisplayViewController.m in Sources */,
 				43D1149410075A0A00082C8D /* TilePosition.m in Sources */,
 				43AECC03100A03EE008B7BE6 /* TileSet.m in Sources */,
-				43AECC7D100A0DB0008B7BE6 /* tile.c in Sources */,
 				43A1879D100C9129001BDB88 /* Shortcut.m in Sources */,
 				43A187A8100C92DC001BDB88 /* ShortcutView.m in Sources */,
 				43B0812B102ABE0B00D08BED /* TouchInfo.m in Sources */,
@@ -1736,6 +1742,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 32;
@@ -1744,7 +1751,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = iNetHack_Prefix.pch;
 				INFOPLIST_FILE = Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MARKETING_VERSION = 2.0.8;
 				PRODUCT_BUNDLE_IDENTIFIER = com.futureshocksoftware.inethack2;
 				PRODUCT_NAME = iNetHack2;
@@ -1758,13 +1765,14 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				CURRENT_PROJECT_VERSION = 32;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = iNetHack_Prefix.pch;
 				INFOPLIST_FILE = Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MARKETING_VERSION = 2.0.8;
 				PRODUCT_BUNDLE_IDENTIFIER = com.futureshocksoftware.inethack2;
 				PRODUCT_NAME = iNetHack2;
@@ -1775,17 +1783,21 @@
 		431296211010C5310072866C /* Distribution */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ENABLE_MODULES = NO;
 				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -1802,8 +1814,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				PREBINDING = NO;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "6E06132B-5A72-4984-AB28-86AB1CECD2DF";
 				SDKROOT = iphoneos;
 			};
@@ -1815,6 +1826,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COPY_PHASE_STRIP = YES;
@@ -1822,7 +1834,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = iNetHack_Prefix.pch;
 				INFOPLIST_FILE = Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MARKETING_VERSION = 2.0.8;
 				PRODUCT_BUNDLE_IDENTIFIER = com.futureshocksoftware.inethack2;
 				PRODUCT_NAME = iNetHack2;
@@ -1834,17 +1846,21 @@
 		C01FCF4F08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ENABLE_MODULES = NO;
 				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -1861,9 +1877,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				ONLY_ACTIVE_ARCH = YES;
-				PREBINDING = NO;
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -1871,17 +1886,21 @@
 		C01FCF5008A954540054247B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ENABLE_MODULES = NO;
 				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -1897,8 +1916,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				PREBINDING = NO;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				SDKROOT = iphoneos;
 			};
 			name = Release;

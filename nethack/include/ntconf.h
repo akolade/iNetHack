@@ -5,9 +5,8 @@
 #ifndef NTCONF_H
 #define NTCONF_H
 
-/* #define SHELL	/* nt use of pcsys routines caused a hang */
+/* #define SHELL */	/* nt use of pcsys routines caused a hang */
 
-#define RANDOM    /* have Berkeley random(3) */
 #define TEXTCOLOR /* Color text */
 
 #define EXEPATH              /* Allow .exe location to be used as HACKDIR */
@@ -25,8 +24,7 @@
                         game */
 
 #define SYSCF                /* Use a global configuration */
-#define SYSCF_FILE "sysconf" /* Use a file to hold the SYSCF configuration \
-                                */
+#define SYSCF_FILE "sysconf" /* Use a file to hold the SYSCF configuration */
 
 #define DUMPLOG      /* Enable dumplog files */
 /*#define DUMPLOG_FILE "nethack-%n-%d.log"*/
@@ -35,16 +33,19 @@
 #define USER_SOUNDS
 
 /*#define CHANGE_COLOR*/ /* allow palette changes */
-#define SELECTSAVED /* Provide menu of saved games to choose from at start \
-                       */
+#define SELECTSAVED /* Provide menu of saved games to choose from at start */
+
+/* #define QWERTZ_SUPPORT */ /* when swap_yz is True, numpad 7 is 'z' not 'y' */
 
 /*
  * -----------------------------------------------------------------
  *  The remaining code shouldn't need modification.
  * -----------------------------------------------------------------
  */
-/* #define SHORT_FILENAMES	/* All NT filesystems support long names now
+/* #define SHORT_FILENAMES */ /* All NT filesystems support long names now
  */
+
+#define VERSION_IN_DLB_FILENAME     /* Append version digits to nhdat */
 
 #ifdef MICRO
 #undef MICRO /* never define this! */
@@ -81,6 +82,12 @@
                      * objects being thrown when the hangup occurs.    \
                      */
 
+#define CONFIG_FILE ".nethackrc"
+#define CONFIG_TEMPLATE ".nethackrc.template"
+#define SYSCF_TEMPLATE "sysconf.template"
+#define SYMBOLS_TEMPLATE "symbols.template"
+#define GUIDEBOOK_FILE "Guidebook.txt"
+
 /* Stuff to help the user with some common, yet significant errors */
 #define INTERJECT_PANIC 0
 #define INTERJECTION_TYPES (INTERJECT_PANIC + 1)
@@ -93,6 +100,17 @@ extern void FDECL(interject, (int));
  * Compiler-specific adjustments
  *===============================================
  */
+
+#ifdef __MINGW32__
+#ifdef strncasecmp
+#undef strncasecmp
+#endif
+#ifdef strcasecmp
+#undef strcasecmp
+#endif
+/* extern int NDECL(getlock); */
+#endif
+ 
 #ifdef _MSC_VER
 #if (_MSC_VER > 1000)
 /* Visual C 8 warning elimination */
@@ -121,6 +139,9 @@ extern void FDECL(interject, (int));
 /* suppress a warning in cppregex.cpp */
 #pragma warning(disable : 4101) /* unreferenced local variable */
 #endif
+#ifndef HAS_STDINT_H
+#define HAS_STDINT_H    /* force include of stdint.h in integer.h */
+#endif
 #endif /* _MSC_VER */
 
 /* The following is needed for prototypes of certain functions */
@@ -133,11 +154,13 @@ extern void FDECL(interject, (int));
 #define strncmpi(a, b, c) strnicmp(a, b, c)
 #endif
 
+#ifdef _MSC_VER
 /* Visual Studio defines this in their own headers, which we don't use */
 #ifndef snprintf
 #define snprintf _snprintf
 #pragma warning( \
     disable : 4996) /* deprecation warning suggesting snprintf_s */
+#endif
 #endif
 
 #include <sys/types.h>
@@ -168,10 +191,17 @@ extern void FDECL(interject, (int));
 #include <time.h>
 
 #define USE_STDARG
-#ifdef RANDOM
+
 /* Use the high quality random number routines. */
-#define Rand() random()
+#ifdef USE_ISAAC64
+#undef RANDOM
 #else
+#define RANDOM
+#define Rand() random()
+#endif
+
+/* Fall back to C's if nothing else, but this really isn't acceptable */
+#if !defined(USE_ISAAC64) && !defined(RANDOM)
 #define Rand() rand()
 #endif
 
@@ -227,7 +257,9 @@ open(const char _FAR *__path, int __access, ... /*unsigned mode*/);
 long _RTLENTRY _EXPFUNC lseek(int __handle, long __offset, int __fromwhere);
 int _RTLENTRY _EXPFUNC read(int __handle, void _FAR *__buf, unsigned __len);
 #endif
-#include <conio.h>
+#ifndef CURSES_GRAPHICS
+#include <conio.h>      /* conflicting definitions with curses.h */
+#endif
 #undef kbhit /* Use our special NT kbhit */
 #define kbhit (*nt_kbhit)
 
@@ -249,15 +281,17 @@ extern int FDECL(alternative_palette, (char *));
 #endif
 
 #ifdef NDEBUG
-#define ntassert(expression) ((void)0)
+#define nhassert(expression) ((void)0)
 #else
-extern void FDECL(ntassert_failed, (const char * exp, const char * file,
+extern void FDECL(nhassert_failed, (const char * exp, const char * file,
                                     int line));
 
-#define ntassert(expression) (void)((!!(expression)) || \
-        (ntassert_failed(#expression, __FILE__, __LINE__), 0))
+#define nhassert(expression) (void)((!!(expression)) || \
+        (nhassert_failed(#expression, __FILE__, __LINE__), 0))
 #endif
 
 #define nethack_enter(argc, argv) nethack_enter_winnt()
-
+extern void FDECL(nethack_exit, (int)) NORETURN;
+extern boolean FDECL(file_exists, (const char *));
+extern boolean FDECL(file_newer, (const char *, const char *));
 #endif /* NTCONF_H */

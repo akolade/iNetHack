@@ -121,7 +121,7 @@ static float _colorTable[][4] = {
 		UIFont *font = [UIFont systemFontOfSize:28];
 		int ochar, ocolor;
 		unsigned special;
-		mapglyph(g, &ochar, &ocolor, &special, x, y);
+		mapglyph(g, &ochar, &ocolor, &special, x, y, 0); //ako2023 added ,0
 		//NSLog(@"glyph %d, tile %d %c", g, tile, ochar);
 		NSString *s = [NSString stringWithFormat:@"%c", ochar];
         CGSize size = [s sizeWithAttributes:@{NSFontAttributeName:font}];

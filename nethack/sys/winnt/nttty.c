@@ -1,4 +1,4 @@
-/* NetHack 3.6	nttty.c	$NHDT-Date: 1524931557 2018/04/28 16:05:57 $  $NHDT-Branch: NetHack-3.6.0 $:$NHDT-Revision: 1.71 $ */
+/* NetHack 3.6	nttty.c	$NHDT-Date: 1554215932 2019/04/02 14:38:52 $  $NHDT-Branch: NetHack-3.6.2-beta01 $:$NHDT-Revision: 1.99 $ */
 /* Copyright (c) NetHack PC Development Team 1993    */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -15,12 +15,17 @@
 
 #ifdef WIN32
 #define NEED_VARARGS /* Uses ... */
+#include "win32api.h"
+#include "winos.h"
 #include "hack.h"
 #include "wintty.h"
 #include <sys\types.h>
 #include <sys\stat.h>
-#include "win32api.h"
 
+extern boolean getreturn_enabled; /* from sys/share/pcsys.c */
+extern int redirect_stdout;
+
+#ifdef TTY_GRAPHICS
 /*
  * Console Buffer Flipping Support
  *
@@ -77,15 +82,14 @@ static void NDECL(check_and_set_font);
 static boolean NDECL(check_font_widths);
 static void NDECL(set_known_good_console_font);
 static void NDECL(restore_original_console_font);
+extern void NDECL(safe_routines);
 
 /* Win32 Screen buffer,coordinate,console I/O information */
 COORD ntcoord;
 INPUT_RECORD ir;
+static boolean orig_QuickEdit;
 
 /* Support for changing console font if existing glyph widths are too wide */
-
-extern boolean getreturn_enabled; /* from sys/share/pcsys.c */
-extern int redirect_stdout;
 
 /* Flag for whether NetHack was launched via the GUI, not the command line.
  * The reason we care at all, is so that we can get
@@ -239,8 +243,8 @@ static void back_buffer_flip()
 
 void buffer_fill_to_end(cell_t * buffer, cell_t * fill, int x, int y)
 {
-    ntassert(x >= 0 && x < console.width);
-    ntassert(y >= 0 && ((y < console.height) || (y == console.height && 
+    nhassert(x >= 0 && x < console.width);
+    nhassert(y >= 0 && ((y < console.height) || (y == console.height && 
                                                  x == 0)));
 
     cell_t * dst = buffer + console.width * y + x;
@@ -254,8 +258,8 @@ void buffer_fill_to_end(cell_t * buffer, cell_t * fill, int x, int y)
 
 static void buffer_clear_to_end_of_line(cell_t * buffer, int x, int y)
 {
-    ntassert(x >= 0 && x < console.width);
-    ntassert(y >= 0 && ((y < console.height) || (y == console.height && 
+    nhassert(x >= 0 && x < console.width);
+    nhassert(y >= 0 && ((y < console.height) || (y == console.height && 
                                                  x == 0)));
     cell_t * dst = buffer + console.width * y + x;
     cell_t *sentinel = buffer + console.width * (y + 1);
@@ -269,8 +273,8 @@ static void buffer_clear_to_end_of_line(cell_t * buffer, int x, int y)
 
 void buffer_write(cell_t * buffer, cell_t * cell, COORD pos)
 {
-    ntassert(pos.X >= 0 && pos.X < console.width);
-    ntassert(pos.Y >= 0 && pos.Y < console.height);
+    nhassert(pos.X >= 0 && pos.X < console.width);
+    nhassert(pos.Y >= 0 && pos.Y < console.height);
 
     cell_t * dst = buffer + (console.width * pos.Y) + pos.X;
     *dst = *cell;
@@ -308,8 +312,14 @@ const char *s;
     end_screen();
     if (s)
         raw_print(s);
-
     restore_original_console_font();
+    if (orig_QuickEdit) {
+        DWORD cmode;
+
+        GetConsoleMode(console.hConIn, &cmode);
+        cmode |= (ENABLE_QUICK_EDIT_MODE | ENABLE_EXTENDED_FLAGS);
+        SetConsoleMode(console.hConIn, cmode);
+    }
 }
 
 /* called by init_nhwindows() and resume_nhwindows() */
@@ -403,6 +413,13 @@ int mode; // unused
     really_move_cursor();
 }
 
+void
+nttty_exit()
+{
+    /* go back to using the safe routines */
+    safe_routines();
+}
+
 int
 process_keystroke(ir, valid, numberpad, portdebug)
 INPUT_RECORD *ir;
@@ -410,8 +427,17 @@ boolean *valid;
 boolean numberpad;
 int portdebug;
 {
-    int ch = keyboard_handler.pProcessKeystroke(
+    int ch;
+
+#ifdef QWERTZ_SUPPORT
+    if (Cmd.swap_yz)
+        numberpad |= 0x10;
+#endif
+    ch = keyboard_handler.pProcessKeystroke(
                     console.hConIn, ir, valid, numberpad, portdebug);
+#ifdef QWERTZ_SUPPORT
+    numberpad &= ~0x10;
+#endif
     /* check for override */
     if (ch && ch < MAX_OVERRIDES && key_overrides[ch])
         ch = key_overrides[ch];
@@ -430,11 +456,20 @@ tgetch()
     int mod;
     coord cc;
     DWORD count;
+    boolean numpad = iflags.num_pad;
+
     really_move_cursor();
+    if (iflags.debug_fuzzer)
+        return randomkey();
+#ifdef QWERTZ_SUPPORT
+    if (Cmd.swap_yz)
+        numpad |= 0x10;
+#endif
+
     return (program_state.done_hup)
                ? '\033'
                : keyboard_handler.pCheckInput(
-                   console.hConIn, &ir, &count, iflags.num_pad, 0, &mod, &cc);
+                   console.hConIn, &ir, &count, numpad, 0, &mod, &cc);
 }
 
 int
@@ -444,11 +479,22 @@ int *x, *y, *mod;
     int ch;
     coord cc;
     DWORD count;
+    boolean numpad = iflags.num_pad;
+
     really_move_cursor();
+    if (iflags.debug_fuzzer)
+        return randomkey();
+#ifdef QWERTZ_SUPPORT
+    if (Cmd.swap_yz)
+        numpad |= 0x10;
+#endif
     ch = (program_state.done_hup)
              ? '\033'
              : keyboard_handler.pCheckInput(
-                   console.hConIn, &ir, &count, iflags.num_pad, 1, mod, &cc);
+                   console.hConIn, &ir, &count, numpad, 1, mod, &cc);
+#ifdef QWERTZ_SUPPORT
+    numpad &= ~0x10;
+#endif
     if (!ch) {
         *x = cc.x;
         *y = cc.y;
@@ -458,8 +504,8 @@ int *x, *y, *mod;
 
 static void set_console_cursor(int x, int y)
 {
-    ntassert(x >= 0 && x < console.width);
-    ntassert(y >= 0 && y < console.height);
+    nhassert(x >= 0 && x < console.width);
+    nhassert(y >= 0 && y < console.height);
 
     console.cursor.X = max(0, min(console.width - 1, x));
     console.cursor.Y = max(0, min(console.height - 1, y));
@@ -508,12 +554,14 @@ int x, y;
     set_console_cursor(x, y);
 }
 
-void
+/* same signature as 'putchar()' with potential failure result ignored */
+int
 xputc(ch)
-char ch;
+int ch;
 {
     set_console_cursor(ttyDisplay->curx, ttyDisplay->cury);
-    xputc_core(ch);
+    xputc_core((char) ch);
+    return 0;
 }
 
 void
@@ -521,7 +569,7 @@ xputs(s)
 const char *s;
 {
     int k;
-    int slen = strlen(s);
+    int slen = (int) strlen(s);
 
     if (ttyDisplay)
         set_console_cursor(ttyDisplay->curx, ttyDisplay->cury);
@@ -540,8 +588,8 @@ void
 xputc_core(ch)
 char ch;
 {
-    ntassert(console.cursor.X >= 0 && console.cursor.X < console.width);
-    ntassert(console.cursor.Y >= 0 && console.cursor.Y < console.height);
+    nhassert(console.cursor.X >= 0 && console.cursor.X < console.width);
+    nhassert(console.cursor.Y >= 0 && console.cursor.Y < console.height);
 
     boolean inverse = FALSE;
     cell_t cell;
@@ -563,6 +611,7 @@ char ch;
         }
         break;
     default:
+
         inverse = (console.current_nhattr[ATR_INVERSE] && iflags.wc_inverse);
         console.attr = (inverse) ?
                         ttycolors_inv[console.current_nhcolor] :
@@ -586,50 +635,14 @@ char ch;
         }
     }
 
-    ntassert(console.cursor.X >= 0 && console.cursor.X < console.width);
-    ntassert(console.cursor.Y >= 0 && console.cursor.Y < console.height);
+    nhassert(console.cursor.X >= 0 && console.cursor.X < console.width);
+    nhassert(console.cursor.Y >= 0 && console.cursor.Y < console.height);
 }
 
 /*
  * Overrides wintty.c function of the same name
  * for win32. It is used for glyphs only, not text.
  */
-
-/* CP437 to Unicode mapping according to the Unicode Consortium */
-static const WCHAR cp437[] = {
-    0x0020, 0x263A, 0x263B, 0x2665, 0x2666, 0x2663, 0x2660, 0x2022,
-    0x25D8, 0x25CB, 0x25D9, 0x2642, 0x2640, 0x266A, 0x266B, 0x263C,
-    0x25BA, 0x25C4, 0x2195, 0x203C, 0x00B6, 0x00A7, 0x25AC, 0x21A8,
-    0x2191, 0x2193, 0x2192, 0x2190, 0x221F, 0x2194, 0x25B2, 0x25BC,
-    0x0020, 0x0021, 0x0022, 0x0023, 0x0024, 0x0025, 0x0026, 0x0027,
-    0x0028, 0x0029, 0x002a, 0x002b, 0x002c, 0x002d, 0x002e, 0x002f,
-    0x0030, 0x0031, 0x0032, 0x0033, 0x0034, 0x0035, 0x0036, 0x0037,
-    0x0038, 0x0039, 0x003a, 0x003b, 0x003c, 0x003d, 0x003e, 0x003f,
-    0x0040, 0x0041, 0x0042, 0x0043, 0x0044, 0x0045, 0x0046, 0x0047,
-    0x0048, 0x0049, 0x004a, 0x004b, 0x004c, 0x004d, 0x004e, 0x004f,
-    0x0050, 0x0051, 0x0052, 0x0053, 0x0054, 0x0055, 0x0056, 0x0057,
-    0x0058, 0x0059, 0x005a, 0x005b, 0x005c, 0x005d, 0x005e, 0x005f,
-    0x0060, 0x0061, 0x0062, 0x0063, 0x0064, 0x0065, 0x0066, 0x0067,
-    0x0068, 0x0069, 0x006a, 0x006b, 0x006c, 0x006d, 0x006e, 0x006f,
-    0x0070, 0x0071, 0x0072, 0x0073, 0x0074, 0x0075, 0x0076, 0x0077,
-    0x0078, 0x0079, 0x007a, 0x007b, 0x007c, 0x007d, 0x007e, 0x2302,
-    0x00c7, 0x00fc, 0x00e9, 0x00e2, 0x00e4, 0x00e0, 0x00e5, 0x00e7,
-    0x00ea, 0x00eb, 0x00e8, 0x00ef, 0x00ee, 0x00ec, 0x00c4, 0x00c5,
-    0x00c9, 0x00e6, 0x00c6, 0x00f4, 0x00f6, 0x00f2, 0x00fb, 0x00f9,
-    0x00ff, 0x00d6, 0x00dc, 0x00a2, 0x00a3, 0x00a5, 0x20a7, 0x0192,
-    0x00e1, 0x00ed, 0x00f3, 0x00fa, 0x00f1, 0x00d1, 0x00aa, 0x00ba,
-    0x00bf, 0x2310, 0x00ac, 0x00bd, 0x00bc, 0x00a1, 0x00ab, 0x00bb,
-    0x2591, 0x2592, 0x2593, 0x2502, 0x2524, 0x2561, 0x2562, 0x2556,
-    0x2555, 0x2563, 0x2551, 0x2557, 0x255d, 0x255c, 0x255b, 0x2510,
-    0x2514, 0x2534, 0x252c, 0x251c, 0x2500, 0x253c, 0x255e, 0x255f,
-    0x255a, 0x2554, 0x2569, 0x2566, 0x2560, 0x2550, 0x256c, 0x2567,
-    0x2568, 0x2564, 0x2565, 0x2559, 0x2558, 0x2552, 0x2553, 0x256b,
-    0x256a, 0x2518, 0x250c, 0x2588, 0x2584, 0x258c, 0x2590, 0x2580,
-    0x03b1, 0x00df, 0x0393, 0x03c0, 0x03a3, 0x03c3, 0x00b5, 0x03c4,
-    0x03a6, 0x0398, 0x03a9, 0x03b4, 0x221e, 0x03c6, 0x03b5, 0x2229,
-    0x2261, 0x00b1, 0x2265, 0x2264, 0x2320, 0x2321, 0x00f7, 0x2248,
-    0x00b0, 0x2219, 0x00b7, 0x221a, 0x207f, 0x00b2, 0x25a0, 0x00a0
-};
 
 void
 g_putch(in_ch)
@@ -667,13 +680,37 @@ cl_end()
 void
 raw_clear_screen()
 {
-    buffer_fill_to_end(console.back_buffer, &clear_cell, 0, 0);
+    if (WINDOWPORT("tty")) {
+        cell_t * back = console.back_buffer;
+        cell_t * front = console.front_buffer;
+        COORD pos;
+        DWORD unused;
+
+        for (pos.Y = 0; pos.Y < console.height; pos.Y++) {
+            for (pos.X = 0; pos.X < console.width; pos.X++) {
+                 WriteConsoleOutputAttribute(console.hConOut, &back->attribute,
+                                             1, pos, &unused);
+                 front->attribute = back->attribute;
+                 if (console.has_unicode) {
+                     WriteConsoleOutputCharacterW(console.hConOut,
+                             &back->character, 1, pos, &unused);
+                 } else {
+                     char ch = (char)back->character;
+                     WriteConsoleOutputCharacterA(console.hConOut, &ch, 1, pos,
+                                                         &unused);
+                 }
+                 *front = *back;
+                 back++;
+                 front++;
+            }
+        }
+    }
 }
 
 void
 clear_screen()
 {
-    raw_clear_screen();
+    buffer_fill_to_end(console.back_buffer, &clear_cell, 0, 0);    
     home();
 }
 
@@ -702,7 +739,7 @@ cl_eos()
 void
 tty_nhbell()
 {
-    if (flags.silent)
+    if (flags.silent || iflags.debug_fuzzer)
         return;
     Beep(8000, 500);
 }
@@ -718,12 +755,14 @@ tty_delay_output()
 
     goal = 50 + clock();
     back_buffer_flip();
+    if (iflags.debug_fuzzer)
+        return;
+
     while (goal > clock()) {
         k = junk; /* Do nothing */
     }
 }
 
-#ifdef TEXTCOLOR
 /*
  * CLR_BLACK		0
  * CLR_RED		1
@@ -796,10 +835,10 @@ init_ttycolor()
 #endif
     init_ttycolor_completed = TRUE;
 }
-#endif /* TEXTCOLOR */
 
+#if 0
 int
-has_color(int color)
+has_color(int color)        /* this function is commented out */
 {
 #ifdef TEXTCOLOR
     if ((color >= 0) && (color < CLR_MAX))
@@ -810,6 +849,13 @@ has_color(int color)
 #endif
     else
         return 0;
+}
+#endif
+
+int
+term_attr_fixup(int attrmask)
+{
+    return attrmask;
 }
 
 void
@@ -889,12 +935,30 @@ standoutend()
 void
 toggle_mouse_support()
 {
+    static int qeinit = 0;
     DWORD cmode;
+
     GetConsoleMode(console.hConIn, &cmode);
-    if (iflags.wc_mouse_support)
-        cmode |= ENABLE_MOUSE_INPUT;
-    else
-        cmode &= ~ENABLE_MOUSE_INPUT;
+    if (!qeinit) {
+        qeinit = 1;
+        orig_QuickEdit = ((cmode & ENABLE_QUICK_EDIT_MODE) != 0);
+    }
+    switch(iflags.wc_mouse_support) {
+        case 2:
+                cmode |= ENABLE_MOUSE_INPUT;
+                break;
+        case 1:
+                cmode |= ENABLE_MOUSE_INPUT;
+                cmode &= ~ENABLE_QUICK_EDIT_MODE;
+                cmode |= ENABLE_EXTENDED_FLAGS;
+                break;
+        case 0:
+                /*FALLTHRU*/
+        default:
+                cmode &= ~ENABLE_MOUSE_INPUT;
+                if (orig_QuickEdit)
+                    cmode |= (ENABLE_QUICK_EDIT_MODE | ENABLE_EXTENDED_FLAGS);
+    }
     SetConsoleMode(console.hConIn, cmode);
 }
 #endif
@@ -1005,7 +1069,7 @@ register char *op;
 
 void unload_keyboard_handler()
 {
-    ntassert(keyboard_handler.hLibrary != NULL);
+    nhassert(keyboard_handler.hLibrary != NULL);
 
     FreeLibrary(keyboard_handler.hLibrary);
     memset(&keyboard_handler, 0, sizeof(keyboard_handler_t));
@@ -1078,40 +1142,6 @@ void set_altkeyhandler(const char * inName)
     return;
 }
 
-/* this is used as a printf() replacement when the window
- * system isn't initialized yet
- */
-void msmsg
-VA_DECL(const char *, fmt)
-{
-    char buf[ROWNO * COLNO]; /* worst case scenario */
-    VA_START(fmt);
-    VA_INIT(fmt, const char *);
-    Vsprintf(buf, fmt, VA_ARGS);
-    if (redirect_stdout)
-        fprintf(stdout, "%s", buf);
-    else {
-        if(!init_ttycolor_completed)
-            init_ttycolor();
-
-        /* if we have generated too many messages ... ask the user to
-         * confirm and then clear.
-         */
-        if (console.cursor.Y > console.height - 4) {
-            xputs("Hit <Enter> to continue.");
-            while (pgetchar() != '\n')
-                ;
-            raw_clear_screen();
-            set_console_cursor(1, 0);
-        }
-
-        xputs(buf);
-        if (ttyDisplay)
-            curs(BASE_WINDOW, console.cursor.X + 1, console.cursor.Y);
-    }
-    VA_END();
-    return;
-}
 
 /* fatal error */
 /*VARARGS1*/
@@ -1125,7 +1155,7 @@ VA_DECL(const char *, s)
     if (iflags.window_inited)
         end_screen();
     buf[0] = '\n';
-    (void) vsprintf(&buf[1], s, VA_ARGS);
+    (void) vsnprintf(&buf[1], sizeof buf - 1, s, VA_ARGS);
     msmsg(buf);
     really_move_cursor();
     VA_END();
@@ -1617,8 +1647,8 @@ check_font_widths()
     boolean used[256];
     memset(used, 0, sizeof(used));
     for (int i = 0; i < SYM_MAX; i++) {
-        used[l_syms[i]] = TRUE;
-        used[r_syms[i]] = TRUE;
+        used[primary_syms[i]] = TRUE;
+        used[rogue_syms[i]] = TRUE;
     }
 
     int wcUsedCount = 0;
@@ -1676,10 +1706,10 @@ set_known_good_console_font()
         L"Consolas");
 
     success = SetConsoleOutputCP(437);
-    ntassert(success);
+    nhassert(success);
 
     success = SetCurrentConsoleFontEx(console.hConOut, FALSE, &console_font_info);
-    ntassert(success);
+    nhassert(success);
 }
 
 /* restore_original_console_font will restore the console font and code page
@@ -1715,15 +1745,27 @@ void set_cp_map()
     if (console.has_unicode) {
         UINT codePage = GetConsoleOutputCP();
 
-        for (int i = 0; i < 256; i++) {
-            char c = (char)i;
-            int count = MultiByteToWideChar(codePage, 0, &c, 1,
-                                            &console.cpMap[i], 1);
-            ntassert(count == 1);
+        if (codePage == 437) {
+            memcpy(console.cpMap, cp437, sizeof(console.cpMap));
+        } else {
+            for (int i = 0; i < 256; i++) {
+                char c = (char)i;
+                int count = MultiByteToWideChar(codePage, 0, &c, 1,
+                                                &console.cpMap[i], 1);
+                nhassert(count == 1);
+
+                // If a character was mapped to unicode control codes,
+                // remap to the appropriate unicode character per our
+                // code page 437 mappings.
+                if (console.cpMap[i] < 32)
+                    console.cpMap[i] = cp437[console.cpMap[i]];
+            }        
         }
+
     }
 }
 
+#if 0
 /* early_raw_print() is used during early game intialization prior to the
  * setting up of the windowing system.  This allows early errors and panics
  * to have there messages displayed.
@@ -1737,8 +1779,8 @@ void early_raw_print(const char *s)
     if (console.hConOut == NULL)
         return;
 
-    ntassert(console.cursor.X >= 0 && console.cursor.X < console.width);
-    ntassert(console.cursor.Y >= 0 && console.cursor.Y < console.height);
+    nhassert(console.cursor.X >= 0 && console.cursor.X < console.width);
+    nhassert(console.cursor.Y >= 0 && console.cursor.Y < console.height);
 
     WORD attribute = FOREGROUND_GREEN | FOREGROUND_RED | FOREGROUND_BLUE;
     DWORD unused;
@@ -1777,14 +1819,16 @@ void early_raw_print(const char *s)
         s++;
     }
 
-    ntassert(console.cursor.X >= 0 && console.cursor.X < console.width);
-    ntassert(console.cursor.Y >= 0 && console.cursor.Y < console.height);
+    nhassert(console.cursor.X >= 0 && console.cursor.X < console.width);
+    nhassert(console.cursor.Y >= 0 && console.cursor.Y < console.height);
 
     SetConsoleCursorPosition(console.hConOut, console.cursor);
 
 }
+#endif
 
-/* nethack_enter_nttty() is the first thing that is called from main.
+/* nethack_enter_nttty() is the first thing that is called from main
+ * once the tty port is confirmed.
  *
  * We initialize all console state to support rendering to the console
  * through out flipping support at this time.  This allows us to support
@@ -1810,11 +1854,12 @@ void early_raw_print(const char *s)
 
 void nethack_enter_nttty()
 {
+#if 0
     /* set up state needed by early_raw_print() */
     windowprocs.win_raw_print = early_raw_print;
-
+#endif
     console.hConOut = GetStdHandle(STD_OUTPUT_HANDLE);
-    ntassert(console.hConOut != NULL); // NOTE: this assert will not print
+    nhassert(console.hConOut != NULL); // NOTE: this assert will not print
 
     GetConsoleScreenBufferInfo(console.hConOut, &console.origcsbi);
 
@@ -1855,7 +1900,7 @@ void nethack_enter_nttty()
     /* At this point early_raw_print will work */
 
     console.hConIn = GetStdHandle(STD_INPUT_HANDLE);
-    ntassert(console.hConIn  != NULL);
+    nhassert(console.hConIn  != NULL);
 
     /* grow the size of the console buffer if it is not wide enough */
     if (console.origcsbi.dwSize.X < console.width) {
@@ -1904,13 +1949,56 @@ void nethack_enter_nttty()
     HKL keyboard_layout = GetKeyboardLayout(0);
     DWORD primary_language = (UINT_PTR) keyboard_layout & 0x3f;
 
-    if (primary_language == LANG_ENGLISH) {
-        if (!load_keyboard_handler("nhdefkey"))
-            error("Unable to load nhdefkey.dll");
-    } else {
-        if (!load_keyboard_handler("nhraykey"))
-            error("Unable to load nhraykey.dll");
+    /* This was overriding the handler that had already
+       been loaded during options parsing. Needs to
+       check first */
+    if (!iflags.altkeyhandler[0]) {
+        if (primary_language == LANG_ENGLISH) {
+            if (!load_keyboard_handler("nhdefkey"))
+                error("Unable to load nhdefkey.dll");
+        } else {
+            if (!load_keyboard_handler("nhraykey"))
+                error("Unable to load nhraykey.dll");
+        }
     }
+}
+#endif /* TTY_GRAPHICS */
+
+/* this is used as a printf() replacement when the window
+ * system isn't initialized yet
+ */
+void msmsg
+VA_DECL(const char *, fmt)
+{
+    char buf[ROWNO * COLNO]; /* worst case scenario */
+    VA_START(fmt);
+    VA_INIT(fmt, const char *);
+    (void) vsnprintf(buf, sizeof buf, fmt, VA_ARGS);
+    if (redirect_stdout)
+        fprintf(stdout, "%s", buf);
+    else {
+#ifdef TTY_GRAPHICS
+        if(!init_ttycolor_completed)
+            init_ttycolor();
+        /* if we have generated too many messages ... ask the user to
+         * confirm and then clear.
+         */
+        if (console.cursor.Y > console.height - 4) {
+            xputs("Hit <Enter> to continue.");
+            while (pgetchar() != '\n')
+                ;
+            raw_clear_screen();
+            set_console_cursor(1, 0);
+        }
+        xputs(buf);
+        if (ttyDisplay)
+            curs(BASE_WINDOW, console.cursor.X + 1, console.cursor.Y);
+#else
+        fprintf(stdout, "%s", buf);
+#endif
+    }
+    VA_END();
+    return;
 }
 
 #endif /* WIN32 */
