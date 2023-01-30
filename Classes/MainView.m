@@ -84,31 +84,6 @@
 		asciiTileset = YES;
 		tileSet = [[AsciiTileSet alloc] initWithTileSize:tilesetTileSize];
 	} else {
-		if ([tilesetName isEqualToString:@"nhtiles"]) {
-			tilesetTileSize = CGSizeMake(16,16);
-			maxTileSize = CGSizeMake(32,32);
-			if (tileSize.width > 32) {
-				tileSize = CGSizeMake(32,32);
-			}
-		} else if ([tilesetName isEqualToString:@"tiles32"]) {
-			tilesetTileSize = CGSizeMake(32,32);
-			maxTileSize = tilesetTileSize;
-			if (tileSize.width > 32) {
-				tileSize = CGSizeMake(32,32);
-			}
-        } else if ([tilesetName isEqualToString:@"nextstep"]) {
-            tilesetTileSize = CGSizeMake(10,10);
-            maxTileSize = CGSizeMake(30,30);
-            if (tileSize.width > 30) {
-                tileSize = CGSizeMake(30,30);
-            }
-        } else if ([tilesetName isEqualToString:@"nethackmodern"]) {
-            tilesetTileSize = CGSizeMake(32,32);
-            maxTileSize = CGSizeMake(32,32);
-            if (tileSize.width > 32) {
-                tileSize = CGSizeMake(32,32);
-            }
-        }
         NSString *imgName = [NSString stringWithFormat:@"%@.png", tilesetName];
 		UIImage *tilesetImage = [UIImage imageNamed:imgName];
 		if (!tilesetImage) {

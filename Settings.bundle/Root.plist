@@ -130,18 +130,26 @@
 			<key>Titles</key>
 			<array>
 				<string>Nethack Modern</string>
+				<string>Chozo/Abigaba</string>
 				<string>DawnHack</string>
 				<string>Nevanda</string>
 				<string>Tiles32</string>
+				<string>Absurd</string>
+				<string>Pixelhack</string>
+				<string>Geoduck</string>
 				<string>ASCII</string>
 				<string>ASCII (monochrome)</string>
 			</array>
 			<key>Values</key>
 			<array>
 				<string>nethackmodern</string>
+				<string>chozo32b</string>
 				<string>dawnhack32</string>
 				<string>nevanda32</string>
 				<string>tiles32</string>
+				<string>absurd32</string>
+				<string>pixelhack32x32</string>
+				<string>geoduck25x15-2017</string>
 				<string>ascii</string>
 				<string>asciimono</string>
 			</array>

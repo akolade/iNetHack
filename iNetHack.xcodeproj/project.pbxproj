@@ -25,10 +25,6 @@
 		439F0DD51001FECB0050AED4 /* MenuViewLeaf.xib in Resources */ = {isa = PBXBuildFile; fileRef = 439F0DD41001FECB0050AED4 /* MenuViewLeaf.xib */; };
 		439F0ED2100210690050AED4 /* ExtendedCommandViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 439F0ED1100210690050AED4 /* ExtendedCommandViewController.m */; };
 		439F0ED4100210770050AED4 /* ExtendedCommandView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 439F0ED3100210770050AED4 /* ExtendedCommandView.xib */; };
-		43A103A810B5706E006DD634 /* absurd32.png in Resources */ = {isa = PBXBuildFile; fileRef = 43A103A310B5706E006DD634 /* absurd32.png */; };
-		43A103A910B5706E006DD634 /* chozo32.png in Resources */ = {isa = PBXBuildFile; fileRef = 43A103A410B5706E006DD634 /* chozo32.png */; };
-		43A103AA10B5706E006DD634 /* chozo32b.png in Resources */ = {isa = PBXBuildFile; fileRef = 43A103A510B5706E006DD634 /* chozo32b.png */; };
-		43A103AB10B5706E006DD634 /* nhtiles.png in Resources */ = {isa = PBXBuildFile; fileRef = 43A103A610B5706E006DD634 /* nhtiles.png */; };
 		43A103AC10B5706E006DD634 /* tiles32.png in Resources */ = {isa = PBXBuildFile; fileRef = 43A103A710B5706E006DD634 /* tiles32.png */; };
 		43A1879D100C9129001BDB88 /* Shortcut.m in Sources */ = {isa = PBXBuildFile; fileRef = 43A1879C100C9129001BDB88 /* Shortcut.m */; };
 		43A187A8100C92DC001BDB88 /* ShortcutView.m in Sources */ = {isa = PBXBuildFile; fileRef = 43A187A7100C92DC001BDB88 /* ShortcutView.m */; };
@@ -317,11 +313,13 @@
 		FB65444129845A03002F4737 /* sys.c in Sources */ = {isa = PBXBuildFile; fileRef = FB65444029845A03002F4737 /* sys.c */; };
 		FB6544472986429A002F4737 /* tile.c in Sources */ = {isa = PBXBuildFile; fileRef = FB6544462986429A002F4737 /* tile.c */; };
 		FB65444B29864943002F4737 /* isaac64.c in Sources */ = {isa = PBXBuildFile; fileRef = FB65444A29864942002F4737 /* isaac64.c */; };
+		FB65444E298849E1002F4737 /* absurd32.png in Resources */ = {isa = PBXBuildFile; fileRef = FB65444D298849E1002F4737 /* absurd32.png */; };
+		FB65445429884A03002F4737 /* nethackmodern.png in Resources */ = {isa = PBXBuildFile; fileRef = FB65445329884A03002F4737 /* nethackmodern.png */; };
+		FB65445629884A0E002F4737 /* pixelhack32x32.png in Resources */ = {isa = PBXBuildFile; fileRef = FB65445529884A0E002F4737 /* pixelhack32x32.png */; };
+		FB65445829884A98002F4737 /* chozo32b.png in Resources */ = {isa = PBXBuildFile; fileRef = FB65445729884A98002F4737 /* chozo32b.png */; };
 		FBA6C9DA1B47442C006C88B5 /* nevanda32.png in Resources */ = {isa = PBXBuildFile; fileRef = FBA6C9D81B47442C006C88B5 /* nevanda32.png */; };
-		FBA6C9DB1B47442C006C88B5 /* nevanda32black.png in Resources */ = {isa = PBXBuildFile; fileRef = FBA6C9D91B47442C006C88B5 /* nevanda32black.png */; };
 		FBA6D35E1D52410A006B4238 /* TextInputView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FBA6D35D1D52410A006B4238 /* TextInputView.xib */; };
 		FBB7FAA51A893650008F64AD /* Images-2.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FBB7FAA41A89364F008F64AD /* Images-2.xcassets */; };
-		FBB7FAA91A8C256D008F64AD /* nextstep.png in Resources */ = {isa = PBXBuildFile; fileRef = FBB7FAA81A8C256C008F64AD /* nextstep.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -353,10 +351,6 @@
 		439F0ED0100210690050AED4 /* ExtendedCommandViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExtendedCommandViewController.h; sourceTree = "<group>"; };
 		439F0ED1100210690050AED4 /* ExtendedCommandViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExtendedCommandViewController.m; sourceTree = "<group>"; };
 		439F0ED3100210770050AED4 /* ExtendedCommandView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ExtendedCommandView.xib; sourceTree = "<group>"; };
-		43A103A310B5706E006DD634 /* absurd32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = absurd32.png; sourceTree = "<group>"; };
-		43A103A410B5706E006DD634 /* chozo32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chozo32.png; sourceTree = "<group>"; };
-		43A103A510B5706E006DD634 /* chozo32b.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chozo32b.png; sourceTree = "<group>"; };
-		43A103A610B5706E006DD634 /* nhtiles.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nhtiles.png; sourceTree = "<group>"; };
 		43A103A710B5706E006DD634 /* tiles32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tiles32.png; sourceTree = "<group>"; };
 		43A1879B100C9129001BDB88 /* Shortcut.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Shortcut.h; sourceTree = "<group>"; };
 		43A1879C100C9129001BDB88 /* Shortcut.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Shortcut.m; sourceTree = "<group>"; };
@@ -773,11 +767,13 @@
 		FB6544462986429A002F4737 /* tile.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = tile.c; path = nethack/src/tile.c; sourceTree = "<group>"; };
 		FB65444A29864942002F4737 /* isaac64.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = isaac64.c; path = nethack/src/isaac64.c; sourceTree = "<group>"; };
 		FB65444C29873B84002F4737 /* onames.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = onames.h; sourceTree = "<group>"; };
+		FB65444D298849E1002F4737 /* absurd32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = absurd32.png; sourceTree = "<group>"; };
+		FB65445329884A03002F4737 /* nethackmodern.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nethackmodern.png; sourceTree = "<group>"; };
+		FB65445529884A0E002F4737 /* pixelhack32x32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pixelhack32x32.png; sourceTree = "<group>"; };
+		FB65445729884A98002F4737 /* chozo32b.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chozo32b.png; sourceTree = "<group>"; };
 		FBA6C9D81B47442C006C88B5 /* nevanda32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nevanda32.png; sourceTree = "<group>"; };
-		FBA6C9D91B47442C006C88B5 /* nevanda32black.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nevanda32black.png; sourceTree = "<group>"; };
 		FBA6D35D1D52410A006B4238 /* TextInputView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TextInputView.xib; sourceTree = "<group>"; };
 		FBB7FAA41A89364F008F64AD /* Images-2.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = "Images-2.xcassets"; path = "iNetHack2/Images-2.xcassets"; sourceTree = "<group>"; };
-		FBB7FAA81A8C256C008F64AD /* nextstep.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nextstep.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -939,14 +935,12 @@
 		4394EB9510394C5F0053C8C2 /* Tilesets */ = {
 			isa = PBXGroup;
 			children = (
+				FB65445329884A03002F4737 /* nethackmodern.png */,
+				FB65445529884A0E002F4737 /* pixelhack32x32.png */,
+				FB65445729884A98002F4737 /* chozo32b.png */,
+				FB65444D298849E1002F4737 /* absurd32.png */,
 				FBA6C9D81B47442C006C88B5 /* nevanda32.png */,
-				FBA6C9D91B47442C006C88B5 /* nevanda32black.png */,
 				FB33C48A1A7F774A0020F638 /* dawnhack32.png */,
-				43A103A310B5706E006DD634 /* absurd32.png */,
-				43A103A410B5706E006DD634 /* chozo32.png */,
-				43A103A510B5706E006DD634 /* chozo32b.png */,
-				FBB7FAA81A8C256C008F64AD /* nextstep.png */,
-				43A103A610B5706E006DD634 /* nhtiles.png */,
 				43A103A710B5706E006DD634 /* tiles32.png */,
 				43A7B1C9103046EA0083CE1B /* petmark.png */,
 			);
@@ -1416,7 +1410,6 @@
 				43DD0AC30FF4E0FC00580249 /* Arc-fila.lev in Resources */,
 				43DD0AC40FF4E0FC00580249 /* Arc-filb.lev in Resources */,
 				43DD0AC50FF4E0FC00580249 /* Arc-goal.lev in Resources */,
-				FBB7FAA91A8C256D008F64AD /* nextstep.png in Resources */,
 				43DD0AC60FF4E0FC00580249 /* Arc-loca.lev in Resources */,
 				43DD0AC70FF4E0FC00580249 /* Arc-strt.lev in Resources */,
 				43DD0AC90FF4E0FC00580249 /* asmodeus.lev in Resources */,
@@ -1446,6 +1439,7 @@
 				43DD0AE40FF4E0FC00580249 /* dungeon.def in Resources */,
 				43DD0AE50FF4E0FC00580249 /* dungeon.pdf in Resources */,
 				43DD0AE60FF4E0FC00580249 /* earth.lev in Resources */,
+				FB65445829884A98002F4737 /* chozo32b.png in Resources */,
 				43DD0AE80FF4E0FC00580249 /* fakewiz1.lev in Resources */,
 				43DD0AE90FF4E0FC00580249 /* fakewiz2.lev in Resources */,
 				43DD0AEA0FF4E0FC00580249 /* fire.lev in Resources */,
@@ -1489,6 +1483,7 @@
 				43DD0B160FF4E0FC00580249 /* options in Resources */,
 				43DD0B180FF4E0FC00580249 /* oracle.lev in Resources */,
 				FBA6C9DA1B47442C006C88B5 /* nevanda32.png in Resources */,
+				FB65445429884A03002F4737 /* nethackmodern.png in Resources */,
 				43DD0B190FF4E0FC00580249 /* oracles in Resources */,
 				43DD0B1A0FF4E0FC00580249 /* oracles.txt in Resources */,
 				43DD0B1B0FF4E0FC00580249 /* orcus.lev in Resources */,
@@ -1516,6 +1511,7 @@
 				43DD0B320FF4E0FC00580249 /* rumors.fal in Resources */,
 				43DD0B330FF4E0FC00580249 /* rumors.tru in Resources */,
 				43DD0B340FF4E0FC00580249 /* Sam-fila.lev in Resources */,
+				FB65444E298849E1002F4737 /* absurd32.png in Resources */,
 				43DD0B350FF4E0FC00580249 /* Sam-filb.lev in Resources */,
 				43DD0B360FF4E0FC00580249 /* Sam-goal.lev in Resources */,
 				43DD0B370FF4E0FC00580249 /* Sam-loca.lev in Resources */,
@@ -1533,7 +1529,6 @@
 				43DD0B450FF4E0FC00580249 /* Tou-fila.lev in Resources */,
 				43DD0B460FF4E0FC00580249 /* Tou-filb.lev in Resources */,
 				43DD0B470FF4E0FC00580249 /* Tou-goal.lev in Resources */,
-				FBA6C9DB1B47442C006C88B5 /* nevanda32black.png in Resources */,
 				43DD0B480FF4E0FC00580249 /* Tou-loca.lev in Resources */,
 				43DD0B490FF4E0FC00580249 /* Tou-strt.lev in Resources */,
 				43DD0B4C0FF4E0FC00580249 /* tower1.lev in Resources */,
@@ -1556,6 +1551,7 @@
 				43DD0B5D0FF4E0FC00580249 /* wizard1.lev in Resources */,
 				43DD0B5E0FF4E0FC00580249 /* wizard2.lev in Resources */,
 				43DD0B5F0FF4E0FC00580249 /* wizard3.lev in Resources */,
+				FB65445629884A0E002F4737 /* pixelhack32x32.png in Resources */,
 				FB33C48B1A7F774A0020F638 /* dawnhack32.png in Resources */,
 				43DD0B600FF4E0FC00580249 /* wizhelp in Resources */,
 				43C103D30FF8D59C00DBD0EF /* MenuView.xib in Resources */,
@@ -1571,10 +1567,6 @@
 				4325C35C1035FC3F00653E8A /* Entitlements.plist in Resources */,
 				43AFFC22103FE53500DCC8C1 /* ItemAmountView.xib in Resources */,
 				43DC336B1070CD1C00FBCE71 /* MainMenuView.xib in Resources */,
-				43A103A810B5706E006DD634 /* absurd32.png in Resources */,
-				43A103A910B5706E006DD634 /* chozo32.png in Resources */,
-				43A103AA10B5706E006DD634 /* chozo32b.png in Resources */,
-				43A103AB10B5706E006DD634 /* nhtiles.png in Resources */,
 				43A103AC10B5706E006DD634 /* tiles32.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
