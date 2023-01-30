@@ -2651,13 +2651,13 @@ long *out_cnt;
             *out_cnt = -1L; /* select all */
         return ret;
     }
-
+#endif
     sortflags = (flags.sortloot == 'f') ? SORTLOOT_LOOT : SORTLOOT_INVLET;
     if (flags.sortpack)
         sortflags |= SORTLOOT_PACK;
     sortedinvent = sortloot(&invent, sortflags, FALSE,
                             (boolean FDECL((*), (OBJ_P))) 0);
-#endif
+
     start_menu(win);
     any = zeroany;
     if (wizard && iflags.override_ID) {

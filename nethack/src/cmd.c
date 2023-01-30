@@ -4931,8 +4931,12 @@ register char *cmd;
         while ((c = *cmd++) != '\0')
             Strcat(expcmd, visctrl(c)); /* add 1..4 chars plus terminator */
 
-        if (!prefix_seen || !help_dir(c1, spkey, "Invalid direction key!"))
-            Norep("Unknown command '%s'.", expcmd);
+        if (!prefix_seen || !help_dir(c1, spkey, "Invalid direction key!")) {
+            // iNethack dont print this message if you touched player
+            if (cmd[0] != '\0') {
+                Norep("Unknown command! '%s'.", expcmd);
+            }
+        }
     }
     /* didn't move */
     context.move = FALSE;
@@ -5639,6 +5643,10 @@ int x, y, mod;
             } else if (OBJ_AT(u.ux, u.uy)) {
                 cmd[0] = cmd_from_func(Is_container(level.objects[u.ux][u.uy])
                                        ? doloot : dopickup);
+                // iNethack: allow touching on self for looting. convert l to the meta command.
+                if(cmd[0] == 'l') {
+                    cmd[0] = M('l');
+                }
                 return cmd;
             } else {
                 cmd[0] = cmd_from_func(donull); /* just rest */
