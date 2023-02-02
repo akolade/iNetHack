@@ -194,13 +194,18 @@ static MainViewController *instance;
 	textInputViewController.action = @selector(nethackSearchCountEntered:);
 	textInputViewController.prompt = @"Enter search count";
 	textInputViewController.text = @"20";
-    self.navigationController.view.frame = [[UIScreen mainScreen] applicationFrame]; //iNethack2 - fix for width on iphone6
+    self.navigationController.view.frame = [[UIScreen mainScreen] bounds]; //iNethack2 - fix for width on iphone6
 	[self.navigationController pushViewController:textInputViewController animated:YES];
 }
 
 - (void) nethackKeyboard:(id)i {
 	[self.navigationController popToRootViewControllerAnimated:NO];
 	UITextField *tf = ((MainView *) self.view).dummyTextField;
+
+    /* Disable word suggestions above onscreen keyboard */
+    tf.autocorrectionType = UITextAutocorrectionTypeNo;
+    tf.spellCheckingType = UITextSpellCheckingTypeNo;
+
 	[tf becomeFirstResponder];
 }
 

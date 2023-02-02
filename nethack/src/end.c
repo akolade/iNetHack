@@ -1266,7 +1266,7 @@ int how;
     bones_ok = (how < GENOCIDED) && can_make_bones();
     
       //iNethack2: for debugging and forcing bone creation, uncomment this section.
-//     if (depth(&u.uz) > 3)  //no bones for 1-3!
+//    if (depth(&u.uz) > 3)  //no bones for 1-3!
 //             bones_ok=TRUE;//forcing bones creation
 
     if (bones_ok && launch_in_progress())
