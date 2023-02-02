@@ -888,7 +888,7 @@ static MainViewController *instance;
 - (void) showExtendedCommandMenu:(id)obj {
 	extendedCommandViewController.title = @"Extended Command";
 	[self.navigationController setNavigationBarHidden:NO animated:YES];
-    self.navigationController.view.frame = [[UIScreen mainScreen] applicationFrame]; //iNethack2 - fix for width on iphone6
+    self.navigationController.view.frame = [[UIScreen mainScreen] bounds]; //iNethack2 - fix for width on iphone6
     [self.navigationController pushViewController:extendedCommandViewController animated:YES];
 }
 

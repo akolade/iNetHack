@@ -5,6 +5,10 @@
 
 #include "hack.h"
 
+#if TARGET_OS_IPHONE
+extern volatile boolean winiphone_clickable_tiles;
+#endif
+
 STATIC_DCL char *NDECL(nextmbuf);
 STATIC_DCL void FDECL(getpos_help, (BOOLEAN_P, const char *));
 STATIC_DCL int FDECL(CFDECLSPEC cmp_coord_distu, (const void *, const void *));
@@ -691,6 +695,9 @@ const char *goal;
     lock_mouse_cursor(TRUE);
 #endif
     for (;;) {
+#if TARGET_OS_IPHONE
+        winiphone_clickable_tiles = TRUE;
+#endif
         if (show_goal_msg) {
             pline("Move cursor to %s:", goal);
             curs(WIN_MAP, cx, cy);
@@ -701,6 +708,9 @@ const char *goal;
         }
 
         c = nh_poskey(&tx, &ty, &sidx);
+#if TARGET_OS_IPHONE
+        winiphone_clickable_tiles = FALSE;
+#endif
 
         if (hilite_state) {
             (*getpos_hilitefunc)(2);

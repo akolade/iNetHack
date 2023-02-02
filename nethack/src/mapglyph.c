@@ -56,7 +56,10 @@ static const int explcolors[] = {
 
 #define is_objpile(x,y) (!Hallucination && level.objects[(x)][(y)] \
                          && level.objects[(x)][(y)]->nexthere)
-
+#if TARGET_OS_IPHONE
+#define ROGUE_COLOR
+#define HAS_ROGUE_IBM_GRAPHICS (Is_rogue_level(&u.uz))
+#endif
 /*ARGSUSED*/
 int
 mapglyph(glyph, ochar, ocolor, ospecial, x, y, mgflags)
@@ -222,7 +225,22 @@ unsigned mgflags;
 #endif
         }
     }
-
+#if TARGET_OS_IPHONE // leave color in on iphone
+#ifdef TEXTCOLOR
+    /* Turn off color if no color defined, or rogue level w/o PC graphics. */
+# ifdef REINCARNATION
+#  ifdef ASCIIGRAPH
+    if (!has_color(color) || (Is_rogue_level(&u.uz) && !HAS_ROGUE_IBM_GRAPHICS))
+#  else
+        //printf("has_color(color) %d Is_rogue_level(&u.uz) %d\n", has_color(color), Is_rogue_level(&u.uz));
+    if (!has_color(color) || Is_rogue_level(&u.uz))
+#  endif
+# else
+    if (!has_color(color))
+# endif
+        color = color;// NO_COLOR; //iNethack2: not sure why this was setting it to "NO_COLOR". Was making rogue level all red.
+#endif
+#endif // TARGET_OS_IPHONE
     /* These were requested by a blind player to enhance screen reader use */
     if (sysopt.accessibility == 1 && !(mgflags & MG_FLAG_NOOVERRIDE)) {
         int ovidx;

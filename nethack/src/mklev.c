@@ -4,7 +4,9 @@
 /* NetHack may be freely redistributed.  See license for details. */
 
 #include "hack.h"
-
+#if TARGET_OS_IPHONE
+#include "winiphone.h"
+#endif
 /* for UNIX, Rand #def'd to (long)lrand48() or (long)random() */
 /* croom->lx etc are schar (width <= int), so % arith ensures that */
 /* conversion of result to int is reasonable */
@@ -989,6 +991,10 @@ mklev()
 {
     struct mkroom *croom;
     int ridx;
+
+#if TARGET_OS_IPHONE
+    iphone_reset_glyph_cache(); //iNethack2: new room, so reset the glyph cache
+#endif
 
     reseed_random(rn2);
     reseed_random(rn2_on_display_rng);

@@ -170,6 +170,10 @@ struct monst {
 
     int meating;           /* monster is eating timeout */
     struct mextra *mextra; /* point to mextra struct */
+#if TARGET_OS_IPHONE
+    int _winiphone_magic; /* change footprint for hearse, both for target and build platform (for makedefs) */
+#endif
+
 };
 
 #define newmonst() (struct monst *) alloc(sizeof (struct monst))

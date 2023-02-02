@@ -549,12 +549,12 @@ void iphone_outrip(winid wid, int how) {
 #pragma mark options
 
 void iphone_init_options() {
-	[WinIPhone triggerInitialize];
-	iflags.use_color = TRUE;
-	flags.runmode = RUN_STEP;
-	flags.verbose = TRUE;
-	iflags.toptenwin = TRUE;
-	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [WinIPhone triggerInitialize];
+    iflags.use_color = TRUE;
+    flags.runmode = RUN_STEP;
+    flags.verbose = TRUE;
+    iflags.toptenwin = TRUE;
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     //iNethack2: custom boulder symbol
     NSString *boulderSym = [defaults objectForKey:kOptionBoulderSym];
     if (boulderSym==NULL)
@@ -571,29 +571,29 @@ void iphone_init_options() {
     flags.pickup_thrown = [defaults boolForKey:kOptionPickupThrown];
     
     flags.pickup = [defaults boolForKey:kOptionAutopickup];
-	NSString *pickupTypes = [defaults objectForKey:kOptionPickupTypes];
-	if (flags.pickup && pickupTypes) {
-		NSMutableString *tmp = [NSMutableString string];
-		for (int i = 0; i < pickupTypes.length; ++i) {
-			int oc_sym = def_char_to_objclass([pickupTypes characterAtIndex:i]);
-			if (![tmp containsChar:oc_sym]) {
-				[tmp appendFormat:@"%c", oc_sym];
-			}
-		}
-		[tmp getCString:flags.pickup_types maxLength:MAXOCLASSES encoding:NSASCIIStringEncoding];
-	}
+    NSString *pickupTypes = [defaults objectForKey:kOptionPickupTypes];
+    if (flags.pickup && pickupTypes) {
+        NSMutableString *tmp = [NSMutableString string];
+        for (int i = 0; i < pickupTypes.length; ++i) {
+            int oc_sym = def_char_to_objclass([pickupTypes characterAtIndex:i]);
+            if (![tmp containsChar:oc_sym]) {
+                [tmp appendFormat:@"%c", oc_sym];
+            }
+        }
+        [tmp getCString:flags.pickup_types maxLength:MAXOCLASSES encoding:NSASCIIStringEncoding];
+    }
 #if TARGET_IPHONE_SIMULATOR
-	wizard = NO; //iNethack2 YES for sim usually..
+    wizard = NO; //iNethack2 YES for sim usually..
 #else
-	wizard = [defaults boolForKey:kOptionWizard];
+    wizard = [defaults boolForKey:kOptionWizard];
 #endif
-	winiphone_autokick = [defaults boolForKey:kOptionAutokick];
+    winiphone_autokick = [defaults boolForKey:kOptionAutokick];
     //iNethack2: travel setting. not the travelcmd setting as that would prevent clickable tiles from working.
     winiphone_travel = [defaults boolForKey:kOptionTravel];
-   
-	flags.showexp = [defaults boolForKey:kOptionShowExp];
-	flags.time = [defaults boolForKey:kOptionTime];
-	flags.autodig = [defaults boolForKey:kOptionAutoDig];
+    flags.showexp = [defaults boolForKey:kOptionShowExp];
+    flags.time = [defaults boolForKey:kOptionTime];
+    flags.autodig = [defaults boolForKey:kOptionAutoDig];
+    NSLog(@"Wizard is %d", wizard);
 }
 
 void iphone_override_options() {

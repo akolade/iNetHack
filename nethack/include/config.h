@@ -319,7 +319,9 @@
                                     of current time when creating date.h */
 
 #if TARGET_OS_IPHONE                                                                                                    
-#define SELF_RECOVER           /* Allow the game itself to recover from an aborted game */                     
+#define SELF_RECOVER           /* Allow the game itself to recover from an aborted game */
+#define WIZARD /* enable wizard mode */
+#define WIZARDS "*"
 #endif
 /*
  *      Defining INSURANCE slows down level changes, but allows games that

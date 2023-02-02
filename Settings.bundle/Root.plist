@@ -120,7 +120,7 @@
 		</dict>
 		<dict>
 			<key>DefaultValue</key>
-			<string>tiles32</string>
+			<string>chozo32b</string>
 			<key>Type</key>
 			<string>PSMultiValueSpecifier</string>
 			<key>Title</key>
@@ -136,7 +136,6 @@
 				<string>Tiles32</string>
 				<string>Absurd</string>
 				<string>Pixelhack</string>
-				<string>Geoduck</string>
 				<string>ASCII</string>
 				<string>ASCII (monochrome)</string>
 			</array>
@@ -149,7 +148,6 @@
 				<string>tiles32</string>
 				<string>absurd32</string>
 				<string>pixelhack32x32</string>
-				<string>geoduck25x15-2017</string>
 				<string>ascii</string>
 				<string>asciimono</string>
 			</array>

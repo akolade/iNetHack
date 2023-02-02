@@ -1362,7 +1362,12 @@ wiz_smell(VOID_ARGS)
     pline("You can move the cursor to a monster that you want to smell.");
     do {
         pline("Pick a monster to smell.");
+#if TARGET_OS_IPHONE
+        /* make it easier to exit out of this mode on iphone */
+        ans = getpos(&cc, FALSE, "a monster");
+#else
         ans = getpos(&cc, TRUE, "a monster");
+#endif
         if (ans < 0 || cc.x < 0) {
             return 0; /* done */
         }
@@ -4932,10 +4937,14 @@ register char *cmd;
             Strcat(expcmd, visctrl(c)); /* add 1..4 chars plus terminator */
 
         if (!prefix_seen || !help_dir(c1, spkey, "Invalid direction key!")) {
+#if TARGET_OS_IPHONE
             // iNethack dont print this message if you touched player
             if (cmd[0] != '\0') {
                 Norep("Unknown command! '%s'.", expcmd);
             }
+#else
+            Norep("Unknown command! '%s'.", expcmd);
+#endif
         }
     }
     /* didn't move */
@@ -5632,14 +5641,51 @@ int x, y, mod;
                        || (u.ux == sstairs.sx && u.uy == sstairs.sy
                            && sstairs.up)
                        || (u.ux == xupladder && u.uy == yupladder)) {
+#ifdef TARGET_OS_IPHONE
+                if (OBJ_AT(u.ux, u.uy)) {
+                    int r = yn_function("There are objects here. Still climb?", "yq,", 'y');
+                    if (r == 'y') {
+                        cmd[0] = cmd_from_func(doup);
+                        return cmd;
+                    } else if (r == 'q') {
+                        cmd[0] = 0;
+                        return cmd;
+                    } else {
+                        return ",";
+                    }
+                } else {
+                    cmd[0] = cmd_from_func(doup);
+                    return cmd;
+                }
+
+#else
                 cmd[0] = cmd_from_func(doup);
                 return cmd;
+#endif
             } else if ((u.ux == xdnstair && u.uy == ydnstair)
                        || (u.ux == sstairs.sx && u.uy == sstairs.sy
                            && !sstairs.up)
                        || (u.ux == xdnladder && u.uy == ydnladder)) {
+#ifdef TARGET_OS_IPHONE
+                if (OBJ_AT(u.ux, u.uy)) {
+                    int r = yn_function("There are objects here. Still climb?", "yq,", 'y');
+                    if (r == 'y') {
+                        cmd[0] = cmd_from_func(dodown);
+                        return cmd;
+                    } else if (r == 'q') {
+                        cmd[0] = 0;
+                        return cmd;
+                    } else {
+                        return ",";
+                    }
+                } else {
+                    cmd[0] = cmd_from_func(dodown);
+                    return cmd;
+                }
+#else
                 cmd[0] = cmd_from_func(dodown);
                 return cmd;
+#endif
             } else if (OBJ_AT(u.ux, u.uy)) {
                 cmd[0] = cmd_from_func(Is_container(level.objects[u.ux][u.uy])
                                        ? doloot : dopickup);
@@ -5672,6 +5718,23 @@ int x, y, mod;
             if (IS_DOOR(levl[u.ux + x][u.uy + y].typ)) {
                 /* slight assistance to the player: choose kick/open for them
                  */
+#if TARGET_OS_IPHONE
+                if (levl[u.ux+x][u.uy+y].doormask & D_LOCKED && winiphone_autokick) {
+                    int r = yn_function("Door is closed. Kick?", "yn", 'y');
+                    if (r == 'y') {
+                        cmd[0] = cmd_from_func(dokick);
+                        return cmd;
+                    } else if (r == 'n') {
+                        cmd[0] = 0;
+                        return cmd;
+                    }
+                }
+                if ((levl[u.ux+x][u.uy+y].doormask & D_CLOSED) ||
+                    (levl[u.ux+x][u.uy+y].doormask & D_LOCKED && !winiphone_autokick)) {
+                    cmd[0] = cmd_from_func(doopen);
+                    return cmd;
+                }
+#else
                 if (levl[u.ux + x][u.uy + y].doormask & D_LOCKED) {
                     cmd[0] = cmd_from_func(dokick);
                     return cmd;
@@ -5680,11 +5743,18 @@ int x, y, mod;
                     cmd[0] = cmd_from_func(doopen);
                     return cmd;
                 }
+#endif
             }
             if (levl[u.ux + x][u.uy + y].typ <= SCORR) {
+#if TARGET_OS_IPHONE
+                // do nothing
+                cmd[0] = 0;
+                return cmd;
+#else
                 cmd[0] = cmd_from_func(dosearch);
                 cmd[1] = 0;
                 return cmd;
+#endif
             }
         }
     } else {

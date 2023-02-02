@@ -5,7 +5,9 @@
 
 #include "hack.h"
 #include "lev.h"
-
+#if TARGET_OS_IPHONE
+#include "winiphone.h"
+#endif
 extern char bones[]; /* from files.c */
 #ifdef MFLOPPY
 extern long bytes_counted;
@@ -595,7 +597,9 @@ getbones()
     fd = open_bonesfile(&u.uz, &bonesid);
     if (fd < 0)
         return 0;
-
+#if TARGET_OS_IPHONE
+    iphone_will_load_bones(bonesid);
+#endif
     if (validate(fd, bones) != 0) {
         if (!wizard)
             pline("Discarding unusable bones; no need to panic...");
@@ -606,6 +610,9 @@ getbones()
             if (yn("Get bones?") == 'n') {
                 (void) nhclose(fd);
                 compress_bonesfile();
+#if TARGET_OS_IPHONE
+                iphone_finished_bones(bonesid);
+#endif
                 return 0;
             }
         }
@@ -661,7 +668,9 @@ getbones()
     (void) nhclose(fd);
     sanitize_engravings();
     u.uroleplay.numbones++;
-
+#if TARGET_OS_IPHONE
+    iphone_finished_bones(bonesid);
+#endif
     if (wizard) {
         if (yn("Unlink bones?") == 'n') {
             compress_bonesfile();

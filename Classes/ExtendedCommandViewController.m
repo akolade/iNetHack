@@ -27,7 +27,7 @@
 
 @implementation ExtendedCommandViewController
 
-@synthesize result;
+@synthesize result, filteredExtCmd, filteredExtCmdIndex;
 
 
 // Override to allow orientations other than the default portrait orientation.
@@ -98,7 +98,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	int row = (int) [indexPath row];
-	result = row;
+    result = [(NSNumber *) [filteredExtCmdIndex objectAtIndex: row] intValue];
 	[[MainViewController instance] broadcastUIEvent];
 	[self.navigationController popToRootViewControllerAnimated:NO];
 }
@@ -111,13 +111,59 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 	struct ext_func_tab *f = extcmdlist;
-	int c = 0;
+    filteredExtCmd = [[NSMutableArray alloc] init];
+    filteredExtCmdIndex = [[NSMutableArray alloc] init];
+    int filtered = 0;
+    int row = 0;
 	while (f++->ef_txt) {
-		c++;
+        filtered++;
+        if (![self showExtCmd:row]) {
+            // Filter out items that shouldn't be displayed: wizard mode, regular commands, etc.
+            filtered--;
+        } else {
+            NSValue *value = [NSValue valueWithBytes:&extcmdlist[row] objCType:@encode(struct ext_func_tab)];
+            [filteredExtCmd addObject:value];
+            [filteredExtCmdIndex addObject:[NSNumber numberWithInt: row]];
+        }
+        row++;
 	}
-	return c;
+    return filtered;
 }
 
+/* should we display this extended command? */
+- (Boolean) showExtCmd:(int) row {
+    struct ext_func_tab *efp = &extcmdlist[row];
+
+    if (!efp->ef_txt)
+        return false;
+
+    int wizc;
+    /* skip wizard mode commands if not in wizard mode */
+    wizc = (efp->flags & WIZMODECMD) != 0;
+    if (wizc && !wizard)
+        return false;
+
+    uchar original = ((char) (0x7F & (efp->key)));
+    if (original == efp->key && (!wizard && wizc)) {
+        switch (original) {
+            /* show a few special case commands */
+            case 'X': /* twoweapon */
+            case 'N': /* name */
+            case 'n':
+                break;
+            default: return false;
+        }
+    }
+
+    if (original == '?')
+        return false; // don't bother showing #?
+    if ((efp->flags & CMD_NOT_AVAILABLE) != 0)
+        return false;
+    /* if hiding non-autocomplete commands, skip such */
+    if ((efp->flags & AUTOCOMPLETE) == 0)
+        return false;
+    return true;
+}
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 	static NSString *cellId = @"extendedCommandViewControllerCellId";
 	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
@@ -127,7 +173,11 @@
 		cell.textLabel.textColor = [UIColor whiteColor];
 	}
 	int row = (int) [indexPath row];
-	cell.textLabel.text = [[NSString stringWithCString:extcmdlist[row].ef_txt encoding:NSASCIIStringEncoding] capitalizedString];
+
+    struct ext_func_tab structValue;
+    NSValue *value = [filteredExtCmd objectAtIndex:row];
+    [value getValue:&structValue];
+    cell.textLabel.text = [[NSString stringWithCString:structValue.ef_txt encoding:NSASCIIStringEncoding] capitalizedString];
 	cell.accessoryType = UITableViewCellAccessoryNone;
 	return cell;
 }

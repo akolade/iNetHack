@@ -63,8 +63,6 @@
     maxTileSize = CGSizeMake(48,48);    //iNethack2 increasing max zoom-in a little bit.
 	minTileSize = CGSizeMake(8,8);
 	offset = CGPointMake(0,0);
-    offset.x+=[MainView screenXOffset];
-    offset.y+=[MainView screenYOffset];
 	float ts = [[NSUserDefaults standardUserDefaults] floatForKey:kKeyTileSize];
 	tileSize = CGSizeMake(ts,ts);
 	if (tileSize.width > maxTileSize.width) {
@@ -123,11 +121,11 @@
     frame.origin.x = ([MainView screenSize].width-s.width)/2;
     frame.origin.x+=[MainView screenXOffset];
     frame.origin.y = [MainView screenSize].height-s.height;
-    
+
     frame.size.width = s.width;
 	frame.size.height = s.height;
     shortcutView.frame = frame;
-	
+
 	// subviews like direction input
 	for (UIView *v in self.subviews) {
 		if (v != shortcutView && v != moreButton) {
@@ -173,7 +171,7 @@
             hasInsets = YES;
         }
         if (hasInsets) {
-            //NSLog(@"%f, %f - %f,%f" , safeRect.left, safeRect.top, safeRect.right, safeRect.bottom);
+            // NSLog(@"Y: %f, %f - %f,%f" , safeRect.left, safeRect.top, safeRect.right, safeRect.bottom);
             if (safeRect.top > 0.0)
                 offset+=safeRect.top;
             else
@@ -192,7 +190,7 @@
             hasInsets = YES;
         }
         if (hasInsets) {
-            NSLog(@"%f, %f - %f,%f" , safeRect.left, safeRect.top, safeRect.right, safeRect.bottom);
+            // NSLog(@"X: %f, %f - %f,%f" , safeRect.left, safeRect.top, safeRect.right, safeRect.bottom);
             if (safeRect.left > 0.0)
                 offset+=safeRect.left;
             else
@@ -209,11 +207,10 @@
 	CGPoint center = self.subViewedCenter;
 	center.x -= tileSize.width/2;
 	center.y -= tileSize.height/2;
-	
-	start = CGPointMake(-mainViewController.clip.x*tileSize.width + center.x + offset.x,
-						-mainViewController.clip.y*tileSize.height + center.y + offset.y);
 
-	// indicate level boundaries
+    start = CGPointMake(-mainViewController.clip.x*tileSize.width + center.x + offset.x,
+						-mainViewController.clip.y*tileSize.height + center.y + offset.y);
+    // indicate level boundaries
 	float bgColor[] = {0.1f,0.1f,0.f,1.0f};
 	float levelBgColor[] = {0.0f,0.0f,0.0f,1.0f};
     CGColorRef   bgColorRef = [[UIColor colorWithRed:bgColor[0] green:bgColor[1] blue:bgColor[2] alpha:bgColor[3]] CGColor];
@@ -391,7 +388,8 @@
 	self.status = mainViewController.statusWindow;
 	self.message = mainViewController.messageWindow;
 	
-	CGPoint center = self.subViewedCenter;
+    CGPoint center = self.subViewedCenter;
+
     NSShadow *shadow = [NSShadow new];
     [shadow setShadowColor: [UIColor colorWithWhite:0.0f alpha:1.0f]];
     [shadow setShadowOffset: CGSizeMake(1.0f, 1.0f)];
@@ -537,8 +535,9 @@
 
 - (void) resetOffset {
 	offset = CGPointMake(0,0);
-    offset.x+=[MainView screenXOffset];
-    offset.y+=[MainView screenYOffset];
+    //iNethack: i guess we no longer set it to an offset?
+   // offset.x+=[MainView screenXOffset];
+   // offset.y+=[MainView screenYOffset];
 }
 
 - (void) zoom:(CGFloat)d {

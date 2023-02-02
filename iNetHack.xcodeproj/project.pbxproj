@@ -319,6 +319,45 @@
 		FB65445829884A98002F4737 /* chozo32b.png in Resources */ = {isa = PBXBuildFile; fileRef = FB65445729884A98002F4737 /* chozo32b.png */; };
 		FBA6C9DA1B47442C006C88B5 /* nevanda32.png in Resources */ = {isa = PBXBuildFile; fileRef = FBA6C9D81B47442C006C88B5 /* nevanda32.png */; };
 		FBA6D35E1D52410A006B4238 /* TextInputView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FBA6D35D1D52410A006B4238 /* TextInputView.xib */; };
+		FBAC441C298C379500CCFA26 /* mines.des in Resources */ = {isa = PBXBuildFile; fileRef = FBAC436C298C378A00CCFA26 /* mines.des */; };
+		FBAC441D298C379500CCFA26 /* bigrm-10.lev in Resources */ = {isa = PBXBuildFile; fileRef = FBAC4375298C378A00CCFA26 /* bigrm-10.lev */; };
+		FBAC441E298C379500CCFA26 /* Arch.des in Resources */ = {isa = PBXBuildFile; fileRef = FBAC4376298C378A00CCFA26 /* Arch.des */; };
+		FBAC441F298C379500CCFA26 /* endgame.des in Resources */ = {isa = PBXBuildFile; fileRef = FBAC4379298C378B00CCFA26 /* endgame.des */; };
+		FBAC4420298C379500CCFA26 /* bigrm-7.lev in Resources */ = {isa = PBXBuildFile; fileRef = FBAC437D298C378B00CCFA26 /* bigrm-7.lev */; };
+		FBAC4421298C379500CCFA26 /* engrave in Resources */ = {isa = PBXBuildFile; fileRef = FBAC4382298C378B00CCFA26 /* engrave */; };
+		FBAC4422298C379500CCFA26 /* Barb.des in Resources */ = {isa = PBXBuildFile; fileRef = FBAC4385298C378B00CCFA26 /* Barb.des */; };
+		FBAC4423298C379500CCFA26 /* Knight.des in Resources */ = {isa = PBXBuildFile; fileRef = FBAC4397298C378D00CCFA26 /* Knight.des */; };
+		FBAC4424298C379500CCFA26 /* Priest.des in Resources */ = {isa = PBXBuildFile; fileRef = FBAC4398298C378D00CCFA26 /* Priest.des */; };
+		FBAC4425298C379500CCFA26 /* symbols in Resources */ = {isa = PBXBuildFile; fileRef = FBAC4399298C378D00CCFA26 /* symbols */; };
+		FBAC4426298C379500CCFA26 /* Healer.des in Resources */ = {isa = PBXBuildFile; fileRef = FBAC439E298C378D00CCFA26 /* Healer.des */; };
+		FBAC4427298C379500CCFA26 /* yendor.des in Resources */ = {isa = PBXBuildFile; fileRef = FBAC43A4298C378E00CCFA26 /* yendor.des */; };
+		FBAC4428298C379500CCFA26 /* bigrm-9.lev in Resources */ = {isa = PBXBuildFile; fileRef = FBAC43B1298C378E00CCFA26 /* bigrm-9.lev */; };
+		FBAC4429298C379500CCFA26 /* Monk.des in Resources */ = {isa = PBXBuildFile; fileRef = FBAC43B3298C378E00CCFA26 /* Monk.des */; };
+		FBAC442A298C379500CCFA26 /* sokoban.des in Resources */ = {isa = PBXBuildFile; fileRef = FBAC43B4298C378F00CCFA26 /* sokoban.des */; };
+		FBAC442B298C379500CCFA26 /* Valkyrie.des in Resources */ = {isa = PBXBuildFile; fileRef = FBAC43B6298C378F00CCFA26 /* Valkyrie.des */; };
+		FBAC442C298C379500CCFA26 /* Ranger.des in Resources */ = {isa = PBXBuildFile; fileRef = FBAC43BC298C378F00CCFA26 /* Ranger.des */; };
+		FBAC442D298C379500CCFA26 /* bogusmon.txt in Resources */ = {isa = PBXBuildFile; fileRef = FBAC43C2298C378F00CCFA26 /* bogusmon.txt */; };
+		FBAC442E298C379500CCFA26 /* bogusmon in Resources */ = {isa = PBXBuildFile; fileRef = FBAC43C3298C379000CCFA26 /* bogusmon */; };
+		FBAC442F298C379500CCFA26 /* Caveman.des in Resources */ = {isa = PBXBuildFile; fileRef = FBAC43C5298C379000CCFA26 /* Caveman.des */; };
+		FBAC4430298C379500CCFA26 /* keyhelp in Resources */ = {isa = PBXBuildFile; fileRef = FBAC43C8298C379000CCFA26 /* keyhelp */; };
+		FBAC4431298C379500CCFA26 /* Rogue.des in Resources */ = {isa = PBXBuildFile; fileRef = FBAC43D1298C379000CCFA26 /* Rogue.des */; };
+		FBAC4432298C379500CCFA26 /* tribute in Resources */ = {isa = PBXBuildFile; fileRef = FBAC43D8298C379100CCFA26 /* tribute */; };
+		FBAC4433298C379500CCFA26 /* tower.des in Resources */ = {isa = PBXBuildFile; fileRef = FBAC43DC298C379100CCFA26 /* tower.des */; };
+		FBAC4434298C379500CCFA26 /* epitaph in Resources */ = {isa = PBXBuildFile; fileRef = FBAC43E5298C379200CCFA26 /* epitaph */; };
+		FBAC4435298C379500CCFA26 /* bigrm-8.lev in Resources */ = {isa = PBXBuildFile; fileRef = FBAC43EB298C379200CCFA26 /* bigrm-8.lev */; };
+		FBAC4436298C379500CCFA26 /* engrave.txt in Resources */ = {isa = PBXBuildFile; fileRef = FBAC43EC298C379200CCFA26 /* engrave.txt */; };
+		FBAC4437298C379500CCFA26 /* nhdat in Resources */ = {isa = PBXBuildFile; fileRef = FBAC43EE298C379200CCFA26 /* nhdat */; };
+		FBAC4438298C379500CCFA26 /* oracle.des in Resources */ = {isa = PBXBuildFile; fileRef = FBAC43EF298C379200CCFA26 /* oracle.des */; };
+		FBAC4439298C379500CCFA26 /* medusa.des in Resources */ = {isa = PBXBuildFile; fileRef = FBAC43F2298C379200CCFA26 /* medusa.des */; };
+		FBAC443A298C379500CCFA26 /* bigrm-6.lev in Resources */ = {isa = PBXBuildFile; fileRef = FBAC43F7298C379300CCFA26 /* bigrm-6.lev */; };
+		FBAC443B298C379500CCFA26 /* medusa-3.lev in Resources */ = {isa = PBXBuildFile; fileRef = FBAC43F8298C379300CCFA26 /* medusa-3.lev */; };
+		FBAC443C298C379500CCFA26 /* epitaph.txt in Resources */ = {isa = PBXBuildFile; fileRef = FBAC43F9298C379300CCFA26 /* epitaph.txt */; };
+		FBAC443D298C379500CCFA26 /* Makefile in Resources */ = {isa = PBXBuildFile; fileRef = FBAC43FC298C379300CCFA26 /* Makefile */; };
+		FBAC443E298C379500CCFA26 /* castle.des in Resources */ = {isa = PBXBuildFile; fileRef = FBAC43FD298C379300CCFA26 /* castle.des */; };
+		FBAC443F298C379600CCFA26 /* knox.des in Resources */ = {isa = PBXBuildFile; fileRef = FBAC4407298C379400CCFA26 /* knox.des */; };
+		FBAC4440298C379600CCFA26 /* Samurai.des in Resources */ = {isa = PBXBuildFile; fileRef = FBAC4411298C379400CCFA26 /* Samurai.des */; };
+		FBAC4441298C379600CCFA26 /* Tourist.des in Resources */ = {isa = PBXBuildFile; fileRef = FBAC4414298C379400CCFA26 /* Tourist.des */; };
+		FBAC4442298C379600CCFA26 /* medusa-4.lev in Resources */ = {isa = PBXBuildFile; fileRef = FBAC4415298C379500CCFA26 /* medusa-4.lev */; };
 		FBB7FAA51A893650008F64AD /* Images-2.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FBB7FAA41A89364F008F64AD /* Images-2.xcassets */; };
 /* End PBXBuildFile section */
 
@@ -326,7 +365,7 @@
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D3623240D0F684500981E51 /* iNethackAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iNethackAppDelegate.h; sourceTree = "<group>"; };
 		1D3623250D0F684500981E51 /* iNethackAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iNethackAppDelegate.m; sourceTree = "<group>"; };
-		1D6058910D05DD3D006BFB54 /* iNetHack2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iNetHack2.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1D6058910D05DD3D006BFB54 /* iNetHack2test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iNetHack2test.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		288765FC0DF74451002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		28AD733E0D9D9553002E5188 /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
@@ -773,6 +812,184 @@
 		FB65445729884A98002F4737 /* chozo32b.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chozo32b.png; sourceTree = "<group>"; };
 		FBA6C9D81B47442C006C88B5 /* nevanda32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nevanda32.png; sourceTree = "<group>"; };
 		FBA6D35D1D52410A006B4238 /* TextInputView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TextInputView.xib; sourceTree = "<group>"; };
+		FBAC436A298C378A00CCFA26 /* medusa-1.lev */ = {isa = PBXFileReference; lastKnownFileType = file; name = "medusa-1.lev"; path = "nethack/dat/medusa-1.lev"; sourceTree = "<group>"; };
+		FBAC436B298C378A00CCFA26 /* quest_levs */ = {isa = PBXFileReference; lastKnownFileType = text; name = quest_levs; path = nethack/dat/quest_levs; sourceTree = "<group>"; };
+		FBAC436C298C378A00CCFA26 /* mines.des */ = {isa = PBXFileReference; lastKnownFileType = text; name = mines.des; path = nethack/dat/mines.des; sourceTree = "<group>"; };
+		FBAC436D298C378A00CCFA26 /* Mon-filb.lev */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Mon-filb.lev"; path = "nethack/dat/Mon-filb.lev"; sourceTree = "<group>"; };
+		FBAC436E298C378A00CCFA26 /* Cav-fila.lev */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Cav-fila.lev"; path = "nethack/dat/Cav-fila.lev"; sourceTree = "<group>"; };
+		FBAC436F298C378A00CCFA26 /* minefill.lev */ = {isa = PBXFileReference; lastKnownFileType = file; name = minefill.lev; path = nethack/dat/minefill.lev; sourceTree = "<group>"; };
+		FBAC4370298C378A00CCFA26 /* oracle.lev */ = {isa = PBXFileReference; lastKnownFileType = file; name = oracle.lev; path = nethack/dat/oracle.lev; sourceTree = "<group>"; };
+		FBAC4371298C378A00CCFA26 /* Pri-filb.lev */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Pri-filb.lev"; path = "nethack/dat/Pri-filb.lev"; sourceTree = "<group>"; };
+		FBAC4372298C378A00CCFA26 /* Sam-fila.lev */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Sam-fila.lev"; path = "nethack/dat/Sam-fila.lev"; sourceTree = "<group>"; };
+		FBAC4373298C378A00CCFA26 /* tower1.lev */ = {isa = PBXFileReference; lastKnownFileType = file; name = tower1.lev; path = nethack/dat/tower1.lev; sourceTree = "<group>"; };
+		FBAC4374298C378A00CCFA26 /* Ran-loca.lev */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Ran-loca.lev"; path = "nethack/dat/Ran-loca.lev"; sourceTree = "<group>"; };
+		FBAC4375298C378A00CCFA26 /* bigrm-10.lev */ = {isa = PBXFileReference; lastKnownFileType = file; name = "bigrm-10.lev"; path = "nethack/dat/bigrm-10.lev"; sourceTree = "<group>"; };
+		FBAC4376298C378A00CCFA26 /* Arch.des */ = {isa = PBXFileReference; lastKnownFileType = text; name = Arch.des; path = nethack/dat/Arch.des; sourceTree = "<group>"; };
+		FBAC4377298C378A00CCFA26 /* Rog-filb.lev */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Rog-filb.lev"; path = "nethack/dat/Rog-filb.lev"; sourceTree = "<group>"; };
+		FBAC4378298C378A00CCFA26 /* fakewiz2.lev */ = {isa = PBXFileReference; lastKnownFileType = file; name = fakewiz2.lev; path = nethack/dat/fakewiz2.lev; sourceTree = "<group>"; };
+		FBAC4379298C378B00CCFA26 /* endgame.des */ = {isa = PBXFileReference; lastKnownFileType = text; name = endgame.des; path = nethack/dat/endgame.des; sourceTree = "<group>"; };
+		FBAC437A298C378B00CCFA26 /* Tou-loca.lev */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Tou-loca.lev"; path = "nethack/dat/Tou-loca.lev"; sourceTree = "<group>"; };
+		FBAC437B298C378B00CCFA26 /* Arc-filb.lev */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Arc-filb.lev"; path = "nethack/dat/Arc-filb.lev"; sourceTree = "<group>"; };
+		FBAC437C298C378B00CCFA26 /* Wiz-filb.lev */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Wiz-filb.lev"; path = "nethack/dat/Wiz-filb.lev"; sourceTree = "<group>"; };
+		FBAC437D298C378B00CCFA26 /* bigrm-7.lev */ = {isa = PBXFileReference; lastKnownFileType = file; name = "bigrm-7.lev"; path = "nethack/dat/bigrm-7.lev"; sourceTree = "<group>"; };
+		FBAC437E298C378B00CCFA26 /* cmdhelp */ = {isa = PBXFileReference; lastKnownFileType = text; name = cmdhelp; path = nethack/dat/cmdhelp; sourceTree = "<group>"; };
+		FBAC437F298C378B00CCFA26 /* Hea-fila.lev */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Hea-fila.lev"; path = "nethack/dat/Hea-fila.lev"; sourceTree = "<group>"; };
+		FBAC4380298C378B00CCFA26 /* Cav-loca.lev */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Cav-loca.lev"; path = "nethack/dat/Cav-loca.lev"; sourceTree = "<group>"; };
+		FBAC4381298C378B00CCFA26 /* wizard1.lev */ = {isa = PBXFileReference; lastKnownFileType = file; name = wizard1.lev; path = nethack/dat/wizard1.lev; sourceTree = "<group>"; };
+		FBAC4382298C378B00CCFA26 /* engrave */ = {isa = PBXFileReference; lastKnownFileType = text; name = engrave; path = nethack/dat/engrave; sourceTree = "<group>"; };
+		FBAC4383298C378B00CCFA26 /* minetn-5.lev */ = {isa = PBXFileReference; lastKnownFileType = file; name = "minetn-5.lev"; path = "nethack/dat/minetn-5.lev"; sourceTree = "<group>"; };
+		FBAC4384298C378B00CCFA26 /* minend-2.lev */ = {isa = PBXFileReference; lastKnownFileType = file; name = "minend-2.lev"; path = "nethack/dat/minend-2.lev"; sourceTree = "<group>"; };
+		FBAC4385298C378B00CCFA26 /* Barb.des */ = {isa = PBXFileReference; lastKnownFileType = text; name = Barb.des; path = nethack/dat/Barb.des; sourceTree = "<group>"; };
+		FBAC4386298C378B00CCFA26 /* minetn-6.lev */ = {isa = PBXFileReference; lastKnownFileType = file; name = "minetn-6.lev"; path = "nethack/dat/minetn-6.lev"; sourceTree = "<group>"; };
+		FBAC4387298C378C00CCFA26 /* Bar-filb.lev */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Bar-filb.lev"; path = "nethack/dat/Bar-filb.lev"; sourceTree = "<group>"; };
+		FBAC4388298C378C00CCFA26 /* soko3-2.lev */ = {isa = PBXFileReference; lastKnownFileType = file; name = "soko3-2.lev"; path = "nethack/dat/soko3-2.lev"; sourceTree = "<group>"; };
+		FBAC4389298C378C00CCFA26 /* Wiz-fila.lev */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Wiz-fila.lev"; path = "nethack/dat/Wiz-fila.lev"; sourceTree = "<group>"; };
+		FBAC438A298C378C00CCFA26 /* earth.lev */ = {isa = PBXFileReference; lastKnownFileType = file; name = earth.lev; path = nethack/dat/earth.lev; sourceTree = "<group>"; };
+		FBAC438B298C378C00CCFA26 /* Kni-goal.lev */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Kni-goal.lev"; path = "nethack/dat/Kni-goal.lev"; sourceTree = "<group>"; };
+		FBAC438C298C378C00CCFA26 /* gehennom.des */ = {isa = PBXFileReference; lastKnownFileType = text; name = gehennom.des; path = nethack/dat/gehennom.des; sourceTree = "<group>"; };
+		FBAC438D298C378C00CCFA26 /* Kni-strt.lev */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Kni-strt.lev"; path = "nethack/dat/Kni-strt.lev"; sourceTree = "<group>"; };
+		FBAC438E298C378C00CCFA26 /* fakewiz1.lev */ = {isa = PBXFileReference; lastKnownFileType = file; name = fakewiz1.lev; path = nethack/dat/fakewiz1.lev; sourceTree = "<group>"; };
+		FBAC438F298C378C00CCFA26 /* minetn-2.lev */ = {isa = PBXFileReference; lastKnownFileType = file; name = "minetn-2.lev"; path = "nethack/dat/minetn-2.lev"; sourceTree = "<group>"; };
+		FBAC4390298C378C00CCFA26 /* castle.lev */ = {isa = PBXFileReference; lastKnownFileType = file; name = castle.lev; path = nethack/dat/castle.lev; sourceTree = "<group>"; };
+		FBAC4391298C378C00CCFA26 /* wizard2.lev */ = {isa = PBXFileReference; lastKnownFileType = file; name = wizard2.lev; path = nethack/dat/wizard2.lev; sourceTree = "<group>"; };
+		FBAC4392298C378C00CCFA26 /* Val-goal.lev */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Val-goal.lev"; path = "nethack/dat/Val-goal.lev"; sourceTree = "<group>"; };
+		FBAC4393298C378C00CCFA26 /* Mon-strt.lev */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Mon-strt.lev"; path = "nethack/dat/Mon-strt.lev"; sourceTree = "<group>"; };
+		FBAC4394298C378C00CCFA26 /* Sam-goal.lev */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Sam-goal.lev"; path = "nethack/dat/Sam-goal.lev"; sourceTree = "<group>"; };
+		FBAC4395298C378D00CCFA26 /* Tou-goal.lev */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Tou-goal.lev"; path = "nethack/dat/Tou-goal.lev"; sourceTree = "<group>"; };
+		FBAC4396298C378D00CCFA26 /* spec_levs */ = {isa = PBXFileReference; lastKnownFileType = text; name = spec_levs; path = nethack/dat/spec_levs; sourceTree = "<group>"; };
+		FBAC4397298C378D00CCFA26 /* Knight.des */ = {isa = PBXFileReference; lastKnownFileType = text; name = Knight.des; path = nethack/dat/Knight.des; sourceTree = "<group>"; };
+		FBAC4398298C378D00CCFA26 /* Priest.des */ = {isa = PBXFileReference; lastKnownFileType = text; name = Priest.des; path = nethack/dat/Priest.des; sourceTree = "<group>"; };
+		FBAC4399298C378D00CCFA26 /* symbols */ = {isa = PBXFileReference; lastKnownFileType = text; name = symbols; path = nethack/dat/symbols; sourceTree = "<group>"; };
+		FBAC439A298C378D00CCFA26 /* soko4-1.lev */ = {isa = PBXFileReference; lastKnownFileType = file; name = "soko4-1.lev"; path = "nethack/dat/soko4-1.lev"; sourceTree = "<group>"; };
+		FBAC439B298C378D00CCFA26 /* Kni-filb.lev */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Kni-filb.lev"; path = "nethack/dat/Kni-filb.lev"; sourceTree = "<group>"; };
+		FBAC439C298C378D00CCFA26 /* Val-fila.lev */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Val-fila.lev"; path = "nethack/dat/Val-fila.lev"; sourceTree = "<group>"; };
+		FBAC439D298C378D00CCFA26 /* Cav-goal.lev */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Cav-goal.lev"; path = "nethack/dat/Cav-goal.lev"; sourceTree = "<group>"; };
+		FBAC439E298C378D00CCFA26 /* Healer.des */ = {isa = PBXFileReference; lastKnownFileType = text; name = Healer.des; path = nethack/dat/Healer.des; sourceTree = "<group>"; };
+		FBAC439F298C378D00CCFA26 /* news */ = {isa = PBXFileReference; lastKnownFileType = text; name = news; path = nethack/dat/news; sourceTree = "<group>"; };
+		FBAC43A0298C378D00CCFA26 /* Rog-loca.lev */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Rog-loca.lev"; path = "nethack/dat/Rog-loca.lev"; sourceTree = "<group>"; };
+		FBAC43A1298C378D00CCFA26 /* fire.lev */ = {isa = PBXFileReference; lastKnownFileType = file; name = fire.lev; path = nethack/dat/fire.lev; sourceTree = "<group>"; };
+		FBAC43A2298C378D00CCFA26 /* Pri-strt.lev */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Pri-strt.lev"; path = "nethack/dat/Pri-strt.lev"; sourceTree = "<group>"; };
+		FBAC43A3298C378D00CCFA26 /* quest.txt */ = {isa = PBXFileReference; lastKnownFileType = text; name = quest.txt; path = nethack/dat/quest.txt; sourceTree = "<group>"; };
+		FBAC43A4298C378E00CCFA26 /* yendor.des */ = {isa = PBXFileReference; lastKnownFileType = text; name = yendor.des; path = nethack/dat/yendor.des; sourceTree = "<group>"; };
+		FBAC43A5298C378E00CCFA26 /* history */ = {isa = PBXFileReference; lastKnownFileType = text; name = history; path = nethack/dat/history; sourceTree = "<group>"; };
+		FBAC43A6298C378E00CCFA26 /* Pri-fila.lev */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Pri-fila.lev"; path = "nethack/dat/Pri-fila.lev"; sourceTree = "<group>"; };
+		FBAC43A7298C378E00CCFA26 /* quest.dat */ = {isa = PBXFileReference; lastKnownFileType = file; name = quest.dat; path = nethack/dat/quest.dat; sourceTree = "<group>"; };
+		FBAC43A8298C378E00CCFA26 /* tower2.lev */ = {isa = PBXFileReference; lastKnownFileType = file; name = tower2.lev; path = nethack/dat/tower2.lev; sourceTree = "<group>"; };
+		FBAC43A9298C378E00CCFA26 /* Ran-strt.lev */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Ran-strt.lev"; path = "nethack/dat/Ran-strt.lev"; sourceTree = "<group>"; };
+		FBAC43AA298C378E00CCFA26 /* data */ = {isa = PBXFileReference; lastKnownFileType = text; name = data; path = nethack/dat/data; sourceTree = "<group>"; };
+		FBAC43AB298C378E00CCFA26 /* license */ = {isa = PBXFileReference; lastKnownFileType = text; name = license; path = nethack/dat/license; sourceTree = "<group>"; };
+		FBAC43AC298C378E00CCFA26 /* bigrm-4.lev */ = {isa = PBXFileReference; lastKnownFileType = file; name = "bigrm-4.lev"; path = "nethack/dat/bigrm-4.lev"; sourceTree = "<group>"; };
+		FBAC43AD298C378E00CCFA26 /* soko2-1.lev */ = {isa = PBXFileReference; lastKnownFileType = file; name = "soko2-1.lev"; path = "nethack/dat/soko2-1.lev"; sourceTree = "<group>"; };
+		FBAC43AE298C378E00CCFA26 /* Pri-goal.lev */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Pri-goal.lev"; path = "nethack/dat/Pri-goal.lev"; sourceTree = "<group>"; };
+		FBAC43AF298C378E00CCFA26 /* oracles.txt */ = {isa = PBXFileReference; lastKnownFileType = text; name = oracles.txt; path = nethack/dat/oracles.txt; sourceTree = "<group>"; };
+		FBAC43B0298C378E00CCFA26 /* soko2-2.lev */ = {isa = PBXFileReference; lastKnownFileType = file; name = "soko2-2.lev"; path = "nethack/dat/soko2-2.lev"; sourceTree = "<group>"; };
+		FBAC43B1298C378E00CCFA26 /* bigrm-9.lev */ = {isa = PBXFileReference; lastKnownFileType = file; name = "bigrm-9.lev"; path = "nethack/dat/bigrm-9.lev"; sourceTree = "<group>"; };
+		FBAC43B2298C378E00CCFA26 /* Ran-goal.lev */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Ran-goal.lev"; path = "nethack/dat/Ran-goal.lev"; sourceTree = "<group>"; };
+		FBAC43B3298C378E00CCFA26 /* Monk.des */ = {isa = PBXFileReference; lastKnownFileType = text; name = Monk.des; path = nethack/dat/Monk.des; sourceTree = "<group>"; };
+		FBAC43B4298C378F00CCFA26 /* sokoban.des */ = {isa = PBXFileReference; lastKnownFileType = text; name = sokoban.des; path = nethack/dat/sokoban.des; sourceTree = "<group>"; };
+		FBAC43B5298C378F00CCFA26 /* Hea-loca.lev */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Hea-loca.lev"; path = "nethack/dat/Hea-loca.lev"; sourceTree = "<group>"; };
+		FBAC43B6298C378F00CCFA26 /* Valkyrie.des */ = {isa = PBXFileReference; lastKnownFileType = text; name = Valkyrie.des; path = nethack/dat/Valkyrie.des; sourceTree = "<group>"; };
+		FBAC43B7298C378F00CCFA26 /* Bar-loca.lev */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Bar-loca.lev"; path = "nethack/dat/Bar-loca.lev"; sourceTree = "<group>"; };
+		FBAC43B8298C378F00CCFA26 /* minetn-3.lev */ = {isa = PBXFileReference; lastKnownFileType = file; name = "minetn-3.lev"; path = "nethack/dat/minetn-3.lev"; sourceTree = "<group>"; };
+		FBAC43B9298C378F00CCFA26 /* medusa-2.lev */ = {isa = PBXFileReference; lastKnownFileType = file; name = "medusa-2.lev"; path = "nethack/dat/medusa-2.lev"; sourceTree = "<group>"; };
+		FBAC43BA298C378F00CCFA26 /* Tou-filb.lev */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Tou-filb.lev"; path = "nethack/dat/Tou-filb.lev"; sourceTree = "<group>"; };
+		FBAC43BB298C378F00CCFA26 /* astral.lev */ = {isa = PBXFileReference; lastKnownFileType = file; name = astral.lev; path = nethack/dat/astral.lev; sourceTree = "<group>"; };
+		FBAC43BC298C378F00CCFA26 /* Ranger.des */ = {isa = PBXFileReference; lastKnownFileType = text; name = Ranger.des; path = nethack/dat/Ranger.des; sourceTree = "<group>"; };
+		FBAC43BD298C378F00CCFA26 /* oracles */ = {isa = PBXFileReference; lastKnownFileType = text; name = oracles; path = nethack/dat/oracles; sourceTree = "<group>"; };
+		FBAC43BE298C378F00CCFA26 /* dungeon.def */ = {isa = PBXFileReference; lastKnownFileType = text; name = dungeon.def; path = nethack/dat/dungeon.def; sourceTree = "<group>"; };
+		FBAC43BF298C378F00CCFA26 /* dungeon */ = {isa = PBXFileReference; lastKnownFileType = file; name = dungeon; path = nethack/dat/dungeon; sourceTree = "<group>"; };
+		FBAC43C0298C378F00CCFA26 /* rumors.fal */ = {isa = PBXFileReference; lastKnownFileType = text; name = rumors.fal; path = nethack/dat/rumors.fal; sourceTree = "<group>"; };
+		FBAC43C1298C378F00CCFA26 /* dungeon.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = dungeon.pdf; path = nethack/dat/dungeon.pdf; sourceTree = "<group>"; };
+		FBAC43C2298C378F00CCFA26 /* bogusmon.txt */ = {isa = PBXFileReference; lastKnownFileType = text; name = bogusmon.txt; path = nethack/dat/bogusmon.txt; sourceTree = "<group>"; };
+		FBAC43C3298C379000CCFA26 /* bogusmon */ = {isa = PBXFileReference; lastKnownFileType = text; name = bogusmon; path = nethack/dat/bogusmon; sourceTree = "<group>"; };
+		FBAC43C4298C379000CCFA26 /* Val-loca.lev */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Val-loca.lev"; path = "nethack/dat/Val-loca.lev"; sourceTree = "<group>"; };
+		FBAC43C5298C379000CCFA26 /* Caveman.des */ = {isa = PBXFileReference; lastKnownFileType = text; name = Caveman.des; path = nethack/dat/Caveman.des; sourceTree = "<group>"; };
+		FBAC43C6298C379000CCFA26 /* Arc-fila.lev */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Arc-fila.lev"; path = "nethack/dat/Arc-fila.lev"; sourceTree = "<group>"; };
+		FBAC43C7298C379000CCFA26 /* Bar-goal.lev */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Bar-goal.lev"; path = "nethack/dat/Bar-goal.lev"; sourceTree = "<group>"; };
+		FBAC43C8298C379000CCFA26 /* keyhelp */ = {isa = PBXFileReference; lastKnownFileType = text; name = keyhelp; path = nethack/dat/keyhelp; sourceTree = "<group>"; };
+		FBAC43C9298C379000CCFA26 /* help */ = {isa = PBXFileReference; lastKnownFileType = text; name = help; path = nethack/dat/help; sourceTree = "<group>"; };
+		FBAC43CA298C379000CCFA26 /* Kni-fila.lev */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Kni-fila.lev"; path = "nethack/dat/Kni-fila.lev"; sourceTree = "<group>"; };
+		FBAC43CB298C379000CCFA26 /* orcus.lev */ = {isa = PBXFileReference; lastKnownFileType = file; name = orcus.lev; path = nethack/dat/orcus.lev; sourceTree = "<group>"; };
+		FBAC43CC298C379000CCFA26 /* Val-strt.lev */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Val-strt.lev"; path = "nethack/dat/Val-strt.lev"; sourceTree = "<group>"; };
+		FBAC43CD298C379000CCFA26 /* Mon-loca.lev */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Mon-loca.lev"; path = "nethack/dat/Mon-loca.lev"; sourceTree = "<group>"; };
+		FBAC43CE298C379000CCFA26 /* Kni-loca.lev */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Kni-loca.lev"; path = "nethack/dat/Kni-loca.lev"; sourceTree = "<group>"; };
+		FBAC43CF298C379000CCFA26 /* Arc-loca.lev */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Arc-loca.lev"; path = "nethack/dat/Arc-loca.lev"; sourceTree = "<group>"; };
+		FBAC43D0298C379000CCFA26 /* Pri-loca.lev */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Pri-loca.lev"; path = "nethack/dat/Pri-loca.lev"; sourceTree = "<group>"; };
+		FBAC43D1298C379000CCFA26 /* Rogue.des */ = {isa = PBXFileReference; lastKnownFileType = text; name = Rogue.des; path = nethack/dat/Rogue.des; sourceTree = "<group>"; };
+		FBAC43D2298C379100CCFA26 /* Tou-fila.lev */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Tou-fila.lev"; path = "nethack/dat/Tou-fila.lev"; sourceTree = "<group>"; };
+		FBAC43D3298C379100CCFA26 /* data.base */ = {isa = PBXFileReference; lastKnownFileType = text; name = data.base; path = nethack/dat/data.base; sourceTree = "<group>"; };
+		FBAC43D4298C379100CCFA26 /* wizard3.lev */ = {isa = PBXFileReference; lastKnownFileType = file; name = wizard3.lev; path = nethack/dat/wizard3.lev; sourceTree = "<group>"; };
+		FBAC43D5298C379100CCFA26 /* Hea-goal.lev */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Hea-goal.lev"; path = "nethack/dat/Hea-goal.lev"; sourceTree = "<group>"; };
+		FBAC43D6298C379100CCFA26 /* minend-3.lev */ = {isa = PBXFileReference; lastKnownFileType = file; name = "minend-3.lev"; path = "nethack/dat/minend-3.lev"; sourceTree = "<group>"; };
+		FBAC43D7298C379100CCFA26 /* options */ = {isa = PBXFileReference; lastKnownFileType = text; name = options; path = nethack/dat/options; sourceTree = "<group>"; };
+		FBAC43D8298C379100CCFA26 /* tribute */ = {isa = PBXFileReference; lastKnownFileType = text; name = tribute; path = nethack/dat/tribute; sourceTree = "<group>"; };
+		FBAC43D9298C379100CCFA26 /* asmodeus.lev */ = {isa = PBXFileReference; lastKnownFileType = file; name = asmodeus.lev; path = nethack/dat/asmodeus.lev; sourceTree = "<group>"; };
+		FBAC43DA298C379100CCFA26 /* knox.lev */ = {isa = PBXFileReference; lastKnownFileType = file; name = knox.lev; path = nethack/dat/knox.lev; sourceTree = "<group>"; };
+		FBAC43DB298C379100CCFA26 /* bigrm-3.lev */ = {isa = PBXFileReference; lastKnownFileType = file; name = "bigrm-3.lev"; path = "nethack/dat/bigrm-3.lev"; sourceTree = "<group>"; };
+		FBAC43DC298C379100CCFA26 /* tower.des */ = {isa = PBXFileReference; lastKnownFileType = text; name = tower.des; path = nethack/dat/tower.des; sourceTree = "<group>"; };
+		FBAC43DD298C379100CCFA26 /* Mon-goal.lev */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Mon-goal.lev"; path = "nethack/dat/Mon-goal.lev"; sourceTree = "<group>"; };
+		FBAC43DE298C379100CCFA26 /* Bar-strt.lev */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Bar-strt.lev"; path = "nethack/dat/Bar-strt.lev"; sourceTree = "<group>"; };
+		FBAC43DF298C379100CCFA26 /* Rog-goal.lev */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Rog-goal.lev"; path = "nethack/dat/Rog-goal.lev"; sourceTree = "<group>"; };
+		FBAC43E0298C379100CCFA26 /* water.lev */ = {isa = PBXFileReference; lastKnownFileType = file; name = water.lev; path = nethack/dat/water.lev; sourceTree = "<group>"; };
+		FBAC43E1298C379100CCFA26 /* Arc-strt.lev */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Arc-strt.lev"; path = "nethack/dat/Arc-strt.lev"; sourceTree = "<group>"; };
+		FBAC43E2298C379100CCFA26 /* Ran-fila.lev */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Ran-fila.lev"; path = "nethack/dat/Ran-fila.lev"; sourceTree = "<group>"; };
+		FBAC43E3298C379200CCFA26 /* soko1-2.lev */ = {isa = PBXFileReference; lastKnownFileType = file; name = "soko1-2.lev"; path = "nethack/dat/soko1-2.lev"; sourceTree = "<group>"; };
+		FBAC43E4298C379200CCFA26 /* sanctum.lev */ = {isa = PBXFileReference; lastKnownFileType = file; name = sanctum.lev; path = nethack/dat/sanctum.lev; sourceTree = "<group>"; };
+		FBAC43E5298C379200CCFA26 /* epitaph */ = {isa = PBXFileReference; lastKnownFileType = text; name = epitaph; path = nethack/dat/epitaph; sourceTree = "<group>"; };
+		FBAC43E6298C379200CCFA26 /* soko1-1.lev */ = {isa = PBXFileReference; lastKnownFileType = file; name = "soko1-1.lev"; path = "nethack/dat/soko1-1.lev"; sourceTree = "<group>"; };
+		FBAC43E7298C379200CCFA26 /* Sam-filb.lev */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Sam-filb.lev"; path = "nethack/dat/Sam-filb.lev"; sourceTree = "<group>"; };
+		FBAC43E8298C379200CCFA26 /* minetn-7.lev */ = {isa = PBXFileReference; lastKnownFileType = file; name = "minetn-7.lev"; path = "nethack/dat/minetn-7.lev"; sourceTree = "<group>"; };
+		FBAC43E9298C379200CCFA26 /* Mon-fila.lev */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Mon-fila.lev"; path = "nethack/dat/Mon-fila.lev"; sourceTree = "<group>"; };
+		FBAC43EA298C379200CCFA26 /* minetn-4.lev */ = {isa = PBXFileReference; lastKnownFileType = file; name = "minetn-4.lev"; path = "nethack/dat/minetn-4.lev"; sourceTree = "<group>"; };
+		FBAC43EB298C379200CCFA26 /* bigrm-8.lev */ = {isa = PBXFileReference; lastKnownFileType = file; name = "bigrm-8.lev"; path = "nethack/dat/bigrm-8.lev"; sourceTree = "<group>"; };
+		FBAC43EC298C379200CCFA26 /* engrave.txt */ = {isa = PBXFileReference; lastKnownFileType = text; name = engrave.txt; path = nethack/dat/engrave.txt; sourceTree = "<group>"; };
+		FBAC43ED298C379200CCFA26 /* rumors */ = {isa = PBXFileReference; lastKnownFileType = text; name = rumors; path = nethack/dat/rumors; sourceTree = "<group>"; };
+		FBAC43EE298C379200CCFA26 /* nhdat */ = {isa = PBXFileReference; lastKnownFileType = text; name = nhdat; path = nethack/dat/nhdat; sourceTree = "<group>"; };
+		FBAC43EF298C379200CCFA26 /* oracle.des */ = {isa = PBXFileReference; lastKnownFileType = text; name = oracle.des; path = nethack/dat/oracle.des; sourceTree = "<group>"; };
+		FBAC43F0298C379200CCFA26 /* Bar-fila.lev */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Bar-fila.lev"; path = "nethack/dat/Bar-fila.lev"; sourceTree = "<group>"; };
+		FBAC43F1298C379200CCFA26 /* Sam-loca.lev */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Sam-loca.lev"; path = "nethack/dat/Sam-loca.lev"; sourceTree = "<group>"; };
+		FBAC43F2298C379200CCFA26 /* medusa.des */ = {isa = PBXFileReference; lastKnownFileType = text; name = medusa.des; path = nethack/dat/medusa.des; sourceTree = "<group>"; };
+		FBAC43F3298C379200CCFA26 /* Arc-goal.lev */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Arc-goal.lev"; path = "nethack/dat/Arc-goal.lev"; sourceTree = "<group>"; };
+		FBAC43F4298C379300CCFA26 /* bigroom.des */ = {isa = PBXFileReference; lastKnownFileType = text; name = bigroom.des; path = nethack/dat/bigroom.des; sourceTree = "<group>"; };
+		FBAC43F5298C379300CCFA26 /* Wizard.des */ = {isa = PBXFileReference; lastKnownFileType = text; name = Wizard.des; path = nethack/dat/Wizard.des; sourceTree = "<group>"; };
+		FBAC43F6298C379300CCFA26 /* Rog-strt.lev */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Rog-strt.lev"; path = "nethack/dat/Rog-strt.lev"; sourceTree = "<group>"; };
+		FBAC43F7298C379300CCFA26 /* bigrm-6.lev */ = {isa = PBXFileReference; lastKnownFileType = file; name = "bigrm-6.lev"; path = "nethack/dat/bigrm-6.lev"; sourceTree = "<group>"; };
+		FBAC43F8298C379300CCFA26 /* medusa-3.lev */ = {isa = PBXFileReference; lastKnownFileType = file; name = "medusa-3.lev"; path = "nethack/dat/medusa-3.lev"; sourceTree = "<group>"; };
+		FBAC43F9298C379300CCFA26 /* epitaph.txt */ = {isa = PBXFileReference; lastKnownFileType = text; name = epitaph.txt; path = nethack/dat/epitaph.txt; sourceTree = "<group>"; };
+		FBAC43FA298C379300CCFA26 /* soko3-1.lev */ = {isa = PBXFileReference; lastKnownFileType = file; name = "soko3-1.lev"; path = "nethack/dat/soko3-1.lev"; sourceTree = "<group>"; };
+		FBAC43FB298C379300CCFA26 /* Tou-strt.lev */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Tou-strt.lev"; path = "nethack/dat/Tou-strt.lev"; sourceTree = "<group>"; };
+		FBAC43FC298C379300CCFA26 /* Makefile */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.make; name = Makefile; path = nethack/dat/Makefile; sourceTree = "<group>"; };
+		FBAC43FD298C379300CCFA26 /* castle.des */ = {isa = PBXFileReference; lastKnownFileType = text; name = castle.des; path = nethack/dat/castle.des; sourceTree = "<group>"; };
+		FBAC43FE298C379300CCFA26 /* rumors.tru */ = {isa = PBXFileReference; lastKnownFileType = text; name = rumors.tru; path = nethack/dat/rumors.tru; sourceTree = "<group>"; };
+		FBAC43FF298C379300CCFA26 /* minend-1.lev */ = {isa = PBXFileReference; lastKnownFileType = file; name = "minend-1.lev"; path = "nethack/dat/minend-1.lev"; sourceTree = "<group>"; };
+		FBAC4400298C379300CCFA26 /* tower3.lev */ = {isa = PBXFileReference; lastKnownFileType = file; name = tower3.lev; path = nethack/dat/tower3.lev; sourceTree = "<group>"; };
+		FBAC4401298C379300CCFA26 /* minetn-1.lev */ = {isa = PBXFileReference; lastKnownFileType = file; name = "minetn-1.lev"; path = "nethack/dat/minetn-1.lev"; sourceTree = "<group>"; };
+		FBAC4402298C379300CCFA26 /* Hea-filb.lev */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Hea-filb.lev"; path = "nethack/dat/Hea-filb.lev"; sourceTree = "<group>"; };
+		FBAC4403298C379300CCFA26 /* hh */ = {isa = PBXFileReference; lastKnownFileType = text; name = hh; path = nethack/dat/hh; sourceTree = "<group>"; };
+		FBAC4404298C379300CCFA26 /* baalz.lev */ = {isa = PBXFileReference; lastKnownFileType = file; name = baalz.lev; path = nethack/dat/baalz.lev; sourceTree = "<group>"; };
+		FBAC4405298C379400CCFA26 /* Sam-strt.lev */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Sam-strt.lev"; path = "nethack/dat/Sam-strt.lev"; sourceTree = "<group>"; };
+		FBAC4406298C379400CCFA26 /* Cav-filb.lev */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Cav-filb.lev"; path = "nethack/dat/Cav-filb.lev"; sourceTree = "<group>"; };
+		FBAC4407298C379400CCFA26 /* knox.des */ = {isa = PBXFileReference; lastKnownFileType = text; name = knox.des; path = nethack/dat/knox.des; sourceTree = "<group>"; };
+		FBAC4408298C379400CCFA26 /* valley.lev */ = {isa = PBXFileReference; lastKnownFileType = file; name = valley.lev; path = nethack/dat/valley.lev; sourceTree = "<group>"; };
+		FBAC4409298C379400CCFA26 /* Wiz-goal.lev */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Wiz-goal.lev"; path = "nethack/dat/Wiz-goal.lev"; sourceTree = "<group>"; };
+		FBAC440A298C379400CCFA26 /* Wiz-strt.lev */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Wiz-strt.lev"; path = "nethack/dat/Wiz-strt.lev"; sourceTree = "<group>"; };
+		FBAC440B298C379400CCFA26 /* opthelp */ = {isa = PBXFileReference; lastKnownFileType = text; name = opthelp; path = nethack/dat/opthelp; sourceTree = "<group>"; };
+		FBAC440C298C379400CCFA26 /* Cav-strt.lev */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Cav-strt.lev"; path = "nethack/dat/Cav-strt.lev"; sourceTree = "<group>"; };
+		FBAC440D298C379400CCFA26 /* Rog-fila.lev */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Rog-fila.lev"; path = "nethack/dat/Rog-fila.lev"; sourceTree = "<group>"; };
+		FBAC440E298C379400CCFA26 /* Wiz-loca.lev */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Wiz-loca.lev"; path = "nethack/dat/Wiz-loca.lev"; sourceTree = "<group>"; };
+		FBAC440F298C379400CCFA26 /* air.lev */ = {isa = PBXFileReference; lastKnownFileType = file; name = air.lev; path = nethack/dat/air.lev; sourceTree = "<group>"; };
+		FBAC4410298C379400CCFA26 /* Ran-filb.lev */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Ran-filb.lev"; path = "nethack/dat/Ran-filb.lev"; sourceTree = "<group>"; };
+		FBAC4411298C379400CCFA26 /* Samurai.des */ = {isa = PBXFileReference; lastKnownFileType = text; name = Samurai.des; path = nethack/dat/Samurai.des; sourceTree = "<group>"; };
+		FBAC4412298C379400CCFA26 /* soko4-2.lev */ = {isa = PBXFileReference; lastKnownFileType = file; name = "soko4-2.lev"; path = "nethack/dat/soko4-2.lev"; sourceTree = "<group>"; };
+		FBAC4413298C379400CCFA26 /* bigrm-1.lev */ = {isa = PBXFileReference; lastKnownFileType = file; name = "bigrm-1.lev"; path = "nethack/dat/bigrm-1.lev"; sourceTree = "<group>"; };
+		FBAC4414298C379400CCFA26 /* Tourist.des */ = {isa = PBXFileReference; lastKnownFileType = text; name = Tourist.des; path = nethack/dat/Tourist.des; sourceTree = "<group>"; };
+		FBAC4415298C379500CCFA26 /* medusa-4.lev */ = {isa = PBXFileReference; lastKnownFileType = file; name = "medusa-4.lev"; path = "nethack/dat/medusa-4.lev"; sourceTree = "<group>"; };
+		FBAC4416298C379500CCFA26 /* juiblex.lev */ = {isa = PBXFileReference; lastKnownFileType = file; name = juiblex.lev; path = nethack/dat/juiblex.lev; sourceTree = "<group>"; };
+		FBAC4417298C379500CCFA26 /* bigrm-2.lev */ = {isa = PBXFileReference; lastKnownFileType = file; name = "bigrm-2.lev"; path = "nethack/dat/bigrm-2.lev"; sourceTree = "<group>"; };
+		FBAC4418298C379500CCFA26 /* Val-filb.lev */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Val-filb.lev"; path = "nethack/dat/Val-filb.lev"; sourceTree = "<group>"; };
+		FBAC4419298C379500CCFA26 /* bigrm-5.lev */ = {isa = PBXFileReference; lastKnownFileType = file; name = "bigrm-5.lev"; path = "nethack/dat/bigrm-5.lev"; sourceTree = "<group>"; };
+		FBAC441A298C379500CCFA26 /* wizhelp */ = {isa = PBXFileReference; lastKnownFileType = text; name = wizhelp; path = nethack/dat/wizhelp; sourceTree = "<group>"; };
+		FBAC441B298C379500CCFA26 /* Hea-strt.lev */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Hea-strt.lev"; path = "nethack/dat/Hea-strt.lev"; sourceTree = "<group>"; };
 		FBB7FAA41A89364F008F64AD /* Images-2.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = "Images-2.xcassets"; path = "iNetHack2/Images-2.xcassets"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -866,7 +1083,7 @@
 		19C28FACFE9D520D11CA2CBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				1D6058910D05DD3D006BFB54 /* iNetHack2.app */,
+				1D6058910D05DD3D006BFB54 /* iNetHack2test.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -874,6 +1091,7 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				FBAC4443298C37B300CCFA26 /* dat */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				43C0DCFC0FE79D9C00B63ED3 /* nethack */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
@@ -1349,6 +1567,191 @@
 			path = nethack/dat;
 			sourceTree = "<group>";
 		};
+		FBAC4443298C37B300CCFA26 /* dat */ = {
+			isa = PBXGroup;
+			children = (
+				FBAC440F298C379400CCFA26 /* air.lev */,
+				FBAC43C6298C379000CCFA26 /* Arc-fila.lev */,
+				FBAC437B298C378B00CCFA26 /* Arc-filb.lev */,
+				FBAC43F3298C379200CCFA26 /* Arc-goal.lev */,
+				FBAC43CF298C379000CCFA26 /* Arc-loca.lev */,
+				FBAC43E1298C379100CCFA26 /* Arc-strt.lev */,
+				FBAC4376298C378A00CCFA26 /* Arch.des */,
+				FBAC43D9298C379100CCFA26 /* asmodeus.lev */,
+				FBAC43BB298C378F00CCFA26 /* astral.lev */,
+				FBAC4404298C379300CCFA26 /* baalz.lev */,
+				FBAC43F0298C379200CCFA26 /* Bar-fila.lev */,
+				FBAC4387298C378C00CCFA26 /* Bar-filb.lev */,
+				FBAC43C7298C379000CCFA26 /* Bar-goal.lev */,
+				FBAC43B7298C378F00CCFA26 /* Bar-loca.lev */,
+				FBAC43DE298C379100CCFA26 /* Bar-strt.lev */,
+				FBAC4385298C378B00CCFA26 /* Barb.des */,
+				FBAC4413298C379400CCFA26 /* bigrm-1.lev */,
+				FBAC4417298C379500CCFA26 /* bigrm-2.lev */,
+				FBAC43DB298C379100CCFA26 /* bigrm-3.lev */,
+				FBAC43AC298C378E00CCFA26 /* bigrm-4.lev */,
+				FBAC4419298C379500CCFA26 /* bigrm-5.lev */,
+				FBAC43F7298C379300CCFA26 /* bigrm-6.lev */,
+				FBAC437D298C378B00CCFA26 /* bigrm-7.lev */,
+				FBAC43EB298C379200CCFA26 /* bigrm-8.lev */,
+				FBAC43B1298C378E00CCFA26 /* bigrm-9.lev */,
+				FBAC4375298C378A00CCFA26 /* bigrm-10.lev */,
+				FBAC43F4298C379300CCFA26 /* bigroom.des */,
+				FBAC43C3298C379000CCFA26 /* bogusmon */,
+				FBAC43C2298C378F00CCFA26 /* bogusmon.txt */,
+				FBAC43FD298C379300CCFA26 /* castle.des */,
+				FBAC4390298C378C00CCFA26 /* castle.lev */,
+				FBAC436E298C378A00CCFA26 /* Cav-fila.lev */,
+				FBAC4406298C379400CCFA26 /* Cav-filb.lev */,
+				FBAC439D298C378D00CCFA26 /* Cav-goal.lev */,
+				FBAC4380298C378B00CCFA26 /* Cav-loca.lev */,
+				FBAC440C298C379400CCFA26 /* Cav-strt.lev */,
+				FBAC43C5298C379000CCFA26 /* Caveman.des */,
+				FBAC437E298C378B00CCFA26 /* cmdhelp */,
+				FBAC43AA298C378E00CCFA26 /* data */,
+				FBAC43D3298C379100CCFA26 /* data.base */,
+				FBAC43BF298C378F00CCFA26 /* dungeon */,
+				FBAC43BE298C378F00CCFA26 /* dungeon.def */,
+				FBAC43C1298C378F00CCFA26 /* dungeon.pdf */,
+				FBAC438A298C378C00CCFA26 /* earth.lev */,
+				FBAC4379298C378B00CCFA26 /* endgame.des */,
+				FBAC4382298C378B00CCFA26 /* engrave */,
+				FBAC43EC298C379200CCFA26 /* engrave.txt */,
+				FBAC43E5298C379200CCFA26 /* epitaph */,
+				FBAC43F9298C379300CCFA26 /* epitaph.txt */,
+				FBAC438E298C378C00CCFA26 /* fakewiz1.lev */,
+				FBAC4378298C378A00CCFA26 /* fakewiz2.lev */,
+				FBAC43A1298C378D00CCFA26 /* fire.lev */,
+				FBAC438C298C378C00CCFA26 /* gehennom.des */,
+				FBAC437F298C378B00CCFA26 /* Hea-fila.lev */,
+				FBAC4402298C379300CCFA26 /* Hea-filb.lev */,
+				FBAC43D5298C379100CCFA26 /* Hea-goal.lev */,
+				FBAC43B5298C378F00CCFA26 /* Hea-loca.lev */,
+				FBAC441B298C379500CCFA26 /* Hea-strt.lev */,
+				FBAC439E298C378D00CCFA26 /* Healer.des */,
+				FBAC43C9298C379000CCFA26 /* help */,
+				FBAC4403298C379300CCFA26 /* hh */,
+				FBAC43A5298C378E00CCFA26 /* history */,
+				FBAC4416298C379500CCFA26 /* juiblex.lev */,
+				FBAC43C8298C379000CCFA26 /* keyhelp */,
+				FBAC43CA298C379000CCFA26 /* Kni-fila.lev */,
+				FBAC439B298C378D00CCFA26 /* Kni-filb.lev */,
+				FBAC438B298C378C00CCFA26 /* Kni-goal.lev */,
+				FBAC43CE298C379000CCFA26 /* Kni-loca.lev */,
+				FBAC438D298C378C00CCFA26 /* Kni-strt.lev */,
+				FBAC4397298C378D00CCFA26 /* Knight.des */,
+				FBAC4407298C379400CCFA26 /* knox.des */,
+				FBAC43DA298C379100CCFA26 /* knox.lev */,
+				FBAC43AB298C378E00CCFA26 /* license */,
+				FBAC43FC298C379300CCFA26 /* Makefile */,
+				FBAC436A298C378A00CCFA26 /* medusa-1.lev */,
+				FBAC43B9298C378F00CCFA26 /* medusa-2.lev */,
+				FBAC43F8298C379300CCFA26 /* medusa-3.lev */,
+				FBAC4415298C379500CCFA26 /* medusa-4.lev */,
+				FBAC43F2298C379200CCFA26 /* medusa.des */,
+				FBAC436F298C378A00CCFA26 /* minefill.lev */,
+				FBAC43FF298C379300CCFA26 /* minend-1.lev */,
+				FBAC4384298C378B00CCFA26 /* minend-2.lev */,
+				FBAC43D6298C379100CCFA26 /* minend-3.lev */,
+				FBAC436C298C378A00CCFA26 /* mines.des */,
+				FBAC4401298C379300CCFA26 /* minetn-1.lev */,
+				FBAC438F298C378C00CCFA26 /* minetn-2.lev */,
+				FBAC43B8298C378F00CCFA26 /* minetn-3.lev */,
+				FBAC43EA298C379200CCFA26 /* minetn-4.lev */,
+				FBAC4383298C378B00CCFA26 /* minetn-5.lev */,
+				FBAC4386298C378B00CCFA26 /* minetn-6.lev */,
+				FBAC43E8298C379200CCFA26 /* minetn-7.lev */,
+				FBAC43E9298C379200CCFA26 /* Mon-fila.lev */,
+				FBAC436D298C378A00CCFA26 /* Mon-filb.lev */,
+				FBAC43DD298C379100CCFA26 /* Mon-goal.lev */,
+				FBAC43CD298C379000CCFA26 /* Mon-loca.lev */,
+				FBAC4393298C378C00CCFA26 /* Mon-strt.lev */,
+				FBAC43B3298C378E00CCFA26 /* Monk.des */,
+				FBAC439F298C378D00CCFA26 /* news */,
+				FBAC43EE298C379200CCFA26 /* nhdat */,
+				FBAC440B298C379400CCFA26 /* opthelp */,
+				FBAC43D7298C379100CCFA26 /* options */,
+				FBAC43EF298C379200CCFA26 /* oracle.des */,
+				FBAC4370298C378A00CCFA26 /* oracle.lev */,
+				FBAC43BD298C378F00CCFA26 /* oracles */,
+				FBAC43AF298C378E00CCFA26 /* oracles.txt */,
+				FBAC43CB298C379000CCFA26 /* orcus.lev */,
+				FBAC43A6298C378E00CCFA26 /* Pri-fila.lev */,
+				FBAC4371298C378A00CCFA26 /* Pri-filb.lev */,
+				FBAC43AE298C378E00CCFA26 /* Pri-goal.lev */,
+				FBAC43D0298C379000CCFA26 /* Pri-loca.lev */,
+				FBAC43A2298C378D00CCFA26 /* Pri-strt.lev */,
+				FBAC4398298C378D00CCFA26 /* Priest.des */,
+				FBAC436B298C378A00CCFA26 /* quest_levs */,
+				FBAC43A7298C378E00CCFA26 /* quest.dat */,
+				FBAC43A3298C378D00CCFA26 /* quest.txt */,
+				FBAC43E2298C379100CCFA26 /* Ran-fila.lev */,
+				FBAC4410298C379400CCFA26 /* Ran-filb.lev */,
+				FBAC43B2298C378E00CCFA26 /* Ran-goal.lev */,
+				FBAC4374298C378A00CCFA26 /* Ran-loca.lev */,
+				FBAC43A9298C378E00CCFA26 /* Ran-strt.lev */,
+				FBAC43BC298C378F00CCFA26 /* Ranger.des */,
+				FBAC440D298C379400CCFA26 /* Rog-fila.lev */,
+				FBAC4377298C378A00CCFA26 /* Rog-filb.lev */,
+				FBAC43DF298C379100CCFA26 /* Rog-goal.lev */,
+				FBAC43A0298C378D00CCFA26 /* Rog-loca.lev */,
+				FBAC43F6298C379300CCFA26 /* Rog-strt.lev */,
+				FBAC43D1298C379000CCFA26 /* Rogue.des */,
+				FBAC43ED298C379200CCFA26 /* rumors */,
+				FBAC43C0298C378F00CCFA26 /* rumors.fal */,
+				FBAC43FE298C379300CCFA26 /* rumors.tru */,
+				FBAC4372298C378A00CCFA26 /* Sam-fila.lev */,
+				FBAC43E7298C379200CCFA26 /* Sam-filb.lev */,
+				FBAC4394298C378C00CCFA26 /* Sam-goal.lev */,
+				FBAC43F1298C379200CCFA26 /* Sam-loca.lev */,
+				FBAC4405298C379400CCFA26 /* Sam-strt.lev */,
+				FBAC4411298C379400CCFA26 /* Samurai.des */,
+				FBAC43E4298C379200CCFA26 /* sanctum.lev */,
+				FBAC43E6298C379200CCFA26 /* soko1-1.lev */,
+				FBAC43E3298C379200CCFA26 /* soko1-2.lev */,
+				FBAC43AD298C378E00CCFA26 /* soko2-1.lev */,
+				FBAC43B0298C378E00CCFA26 /* soko2-2.lev */,
+				FBAC43FA298C379300CCFA26 /* soko3-1.lev */,
+				FBAC4388298C378C00CCFA26 /* soko3-2.lev */,
+				FBAC439A298C378D00CCFA26 /* soko4-1.lev */,
+				FBAC4412298C379400CCFA26 /* soko4-2.lev */,
+				FBAC43B4298C378F00CCFA26 /* sokoban.des */,
+				FBAC4396298C378D00CCFA26 /* spec_levs */,
+				FBAC4399298C378D00CCFA26 /* symbols */,
+				FBAC43D2298C379100CCFA26 /* Tou-fila.lev */,
+				FBAC43BA298C378F00CCFA26 /* Tou-filb.lev */,
+				FBAC4395298C378D00CCFA26 /* Tou-goal.lev */,
+				FBAC437A298C378B00CCFA26 /* Tou-loca.lev */,
+				FBAC43FB298C379300CCFA26 /* Tou-strt.lev */,
+				FBAC4414298C379400CCFA26 /* Tourist.des */,
+				FBAC43DC298C379100CCFA26 /* tower.des */,
+				FBAC4373298C378A00CCFA26 /* tower1.lev */,
+				FBAC43A8298C378E00CCFA26 /* tower2.lev */,
+				FBAC4400298C379300CCFA26 /* tower3.lev */,
+				FBAC43D8298C379100CCFA26 /* tribute */,
+				FBAC439C298C378D00CCFA26 /* Val-fila.lev */,
+				FBAC4418298C379500CCFA26 /* Val-filb.lev */,
+				FBAC4392298C378C00CCFA26 /* Val-goal.lev */,
+				FBAC43C4298C379000CCFA26 /* Val-loca.lev */,
+				FBAC43CC298C379000CCFA26 /* Val-strt.lev */,
+				FBAC43B6298C378F00CCFA26 /* Valkyrie.des */,
+				FBAC4408298C379400CCFA26 /* valley.lev */,
+				FBAC43E0298C379100CCFA26 /* water.lev */,
+				FBAC4389298C378C00CCFA26 /* Wiz-fila.lev */,
+				FBAC437C298C378B00CCFA26 /* Wiz-filb.lev */,
+				FBAC4409298C379400CCFA26 /* Wiz-goal.lev */,
+				FBAC440E298C379400CCFA26 /* Wiz-loca.lev */,
+				FBAC440A298C379400CCFA26 /* Wiz-strt.lev */,
+				FBAC43F5298C379300CCFA26 /* Wizard.des */,
+				FBAC4381298C378B00CCFA26 /* wizard1.lev */,
+				FBAC4391298C378C00CCFA26 /* wizard2.lev */,
+				FBAC43D4298C379100CCFA26 /* wizard3.lev */,
+				FBAC441A298C379500CCFA26 /* wizhelp */,
+				FBAC43A4298C378E00CCFA26 /* yendor.des */,
+			);
+			name = dat;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1366,7 +1769,7 @@
 			);
 			name = iNetHack2;
 			productName = iNetHack;
-			productReference = 1D6058910D05DD3D006BFB54 /* iNetHack2.app */;
+			productReference = 1D6058910D05DD3D006BFB54 /* iNetHack2test.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -1404,162 +1807,201 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */,
-				43DD07B20FF4C64100580249 /* MainView.xib in Resources */,
-				43DD0AC20FF4E0FC00580249 /* air.lev in Resources */,
-				43DD0AC30FF4E0FC00580249 /* Arc-fila.lev in Resources */,
-				43DD0AC40FF4E0FC00580249 /* Arc-filb.lev in Resources */,
-				43DD0AC50FF4E0FC00580249 /* Arc-goal.lev in Resources */,
-				43DD0AC60FF4E0FC00580249 /* Arc-loca.lev in Resources */,
-				43DD0AC70FF4E0FC00580249 /* Arc-strt.lev in Resources */,
-				43DD0AC90FF4E0FC00580249 /* asmodeus.lev in Resources */,
-				43DD0ACA0FF4E0FC00580249 /* astral.lev in Resources */,
-				43DD0ACB0FF4E0FC00580249 /* baalz.lev in Resources */,
-				43DD0ACC0FF4E0FC00580249 /* Bar-fila.lev in Resources */,
-				43DD0ACD0FF4E0FC00580249 /* Bar-filb.lev in Resources */,
-				43DD0ACE0FF4E0FC00580249 /* Bar-goal.lev in Resources */,
-				43DD0ACF0FF4E0FC00580249 /* Bar-loca.lev in Resources */,
-				43DD0AD00FF4E0FC00580249 /* Bar-strt.lev in Resources */,
-				43DD0AD20FF4E0FC00580249 /* bigrm-1.lev in Resources */,
-				43DD0AD30FF4E0FC00580249 /* bigrm-2.lev in Resources */,
-				43DD0AD40FF4E0FC00580249 /* bigrm-3.lev in Resources */,
-				43DD0AD50FF4E0FC00580249 /* bigrm-4.lev in Resources */,
-				43DD0AD60FF4E0FC00580249 /* bigrm-5.lev in Resources */,
-				43DD0AD70FF4E0FC00580249 /* bigroom.des in Resources */,
-				43DD0AD90FF4E0FC00580249 /* castle.lev in Resources */,
-				43DD0ADA0FF4E0FC00580249 /* Cav-fila.lev in Resources */,
-				43DD0ADB0FF4E0FC00580249 /* Cav-filb.lev in Resources */,
-				43DD0ADC0FF4E0FC00580249 /* Cav-goal.lev in Resources */,
-				43DD0ADD0FF4E0FC00580249 /* Cav-loca.lev in Resources */,
-				43DD0ADE0FF4E0FC00580249 /* Cav-strt.lev in Resources */,
-				43DD0AE00FF4E0FC00580249 /* cmdhelp in Resources */,
-				43DD0AE10FF4E0FC00580249 /* data in Resources */,
-				43DD0AE20FF4E0FC00580249 /* data.base in Resources */,
-				43DD0AE30FF4E0FC00580249 /* dungeon in Resources */,
-				43DD0AE40FF4E0FC00580249 /* dungeon.def in Resources */,
-				43DD0AE50FF4E0FC00580249 /* dungeon.pdf in Resources */,
-				43DD0AE60FF4E0FC00580249 /* earth.lev in Resources */,
-				FB65445829884A98002F4737 /* chozo32b.png in Resources */,
-				43DD0AE80FF4E0FC00580249 /* fakewiz1.lev in Resources */,
-				43DD0AE90FF4E0FC00580249 /* fakewiz2.lev in Resources */,
-				43DD0AEA0FF4E0FC00580249 /* fire.lev in Resources */,
-				43DD0AEB0FF4E0FC00580249 /* gehennom.des in Resources */,
-				43DD0AEC0FF4E0FC00580249 /* Hea-fila.lev in Resources */,
-				43DD0AED0FF4E0FC00580249 /* Hea-filb.lev in Resources */,
-				43DD0AEE0FF4E0FC00580249 /* Hea-goal.lev in Resources */,
-				43DD0AEF0FF4E0FC00580249 /* Hea-loca.lev in Resources */,
-				43DD0AF00FF4E0FC00580249 /* Hea-strt.lev in Resources */,
-				43DD0AF20FF4E0FC00580249 /* help in Resources */,
-				43DD0AF30FF4E0FC00580249 /* hh in Resources */,
-				43DD0AF40FF4E0FC00580249 /* history in Resources */,
-				43DD0AF50FF4E0FC00580249 /* juiblex.lev in Resources */,
-				43DD0AF60FF4E0FC00580249 /* Kni-fila.lev in Resources */,
-				43DD0AF70FF4E0FC00580249 /* Kni-filb.lev in Resources */,
-				43DD0AF80FF4E0FC00580249 /* Kni-goal.lev in Resources */,
-				43DD0AF90FF4E0FC00580249 /* Kni-loca.lev in Resources */,
-				43DD0AFA0FF4E0FC00580249 /* Kni-strt.lev in Resources */,
-				43DD0AFD0FF4E0FC00580249 /* knox.lev in Resources */,
-				43DD0AFE0FF4E0FC00580249 /* license in Resources */,
 				43DD0B000FF4E0FC00580249 /* medusa-1.lev in Resources */,
-				43DD0B010FF4E0FC00580249 /* medusa-2.lev in Resources */,
+				43DD0B240FF4E0FC00580249 /* quest_levs in Resources */,
+				FBAC441C298C379500CCFA26 /* mines.des in Resources */,
+				43DD0B100FF4E0FC00580249 /* Mon-filb.lev in Resources */,
+				43DD0ADA0FF4E0FC00580249 /* Cav-fila.lev in Resources */,
 				43DD0B030FF4E0FC00580249 /* minefill.lev in Resources */,
-				43DD0B040FF4E0FC00580249 /* minend-1.lev in Resources */,
-				43DD0B050FF4E0FC00580249 /* minend-2.lev in Resources */,
-				43DD0B060FF4E0FC00580249 /* minend-3.lev in Resources */,
-				43DD0B080FF4E0FC00580249 /* minetn-1.lev in Resources */,
-				43DD0B090FF4E0FC00580249 /* minetn-2.lev in Resources */,
-				43DD0B0A0FF4E0FC00580249 /* minetn-3.lev in Resources */,
-				43DD0B0B0FF4E0FC00580249 /* minetn-4.lev in Resources */,
+				43DD0B180FF4E0FC00580249 /* oracle.lev in Resources */,
+				43DD0B1D0FF4E0FC00580249 /* Pri-filb.lev in Resources */,
+				43DD0B340FF4E0FC00580249 /* Sam-fila.lev in Resources */,
+				43DD0B4C0FF4E0FC00580249 /* tower1.lev in Resources */,
+				43DD0B280FF4E0FC00580249 /* Ran-loca.lev in Resources */,
+				FBAC441D298C379500CCFA26 /* bigrm-10.lev in Resources */,
+				FBAC441E298C379500CCFA26 /* Arch.des in Resources */,
+				43DD0B2C0FF4E0FC00580249 /* Rog-filb.lev in Resources */,
+				43DD0AE90FF4E0FC00580249 /* fakewiz2.lev in Resources */,
+				FBAC441F298C379500CCFA26 /* endgame.des in Resources */,
+				43DD0B480FF4E0FC00580249 /* Tou-loca.lev in Resources */,
+				43DD0AC40FF4E0FC00580249 /* Arc-filb.lev in Resources */,
+				43DD0B580FF4E0FC00580249 /* Wiz-filb.lev in Resources */,
+				FBAC4420298C379500CCFA26 /* bigrm-7.lev in Resources */,
+				43DD0AE00FF4E0FC00580249 /* cmdhelp in Resources */,
+				43DD0AEC0FF4E0FC00580249 /* Hea-fila.lev in Resources */,
+				43DD0ADD0FF4E0FC00580249 /* Cav-loca.lev in Resources */,
+				43DD0B5D0FF4E0FC00580249 /* wizard1.lev in Resources */,
+				FBAC4421298C379500CCFA26 /* engrave in Resources */,
 				43DD0B0C0FF4E0FC00580249 /* minetn-5.lev in Resources */,
+				43DD0B050FF4E0FC00580249 /* minend-2.lev in Resources */,
+				FBAC4422298C379500CCFA26 /* Barb.des in Resources */,
 				43DD0B0D0FF4E0FC00580249 /* minetn-6.lev in Resources */,
+				43DD0ACD0FF4E0FC00580249 /* Bar-filb.lev in Resources */,
+				43DD0B400FF4E0FC00580249 /* soko3-2.lev in Resources */,
+				43DD0B570FF4E0FC00580249 /* Wiz-fila.lev in Resources */,
+				43DD0AE60FF4E0FC00580249 /* earth.lev in Resources */,
+				43DD0AF80FF4E0FC00580249 /* Kni-goal.lev in Resources */,
+				43DD0AEB0FF4E0FC00580249 /* gehennom.des in Resources */,
+				43DD0AFA0FF4E0FC00580249 /* Kni-strt.lev in Resources */,
+				43DD0AE80FF4E0FC00580249 /* fakewiz1.lev in Resources */,
+				43DD0B090FF4E0FC00580249 /* minetn-2.lev in Resources */,
+				43DD0AD90FF4E0FC00580249 /* castle.lev in Resources */,
+				43DD0B5E0FF4E0FC00580249 /* wizard2.lev in Resources */,
+				43DD0B510FF4E0FC00580249 /* Val-goal.lev in Resources */,
+				43DD0B130FF4E0FC00580249 /* Mon-strt.lev in Resources */,
+				43DD0B360FF4E0FC00580249 /* Sam-goal.lev in Resources */,
+				43DD0B470FF4E0FC00580249 /* Tou-goal.lev in Resources */,
+				43DD0B440FF4E0FC00580249 /* spec_levs in Resources */,
+				FBAC4423298C379500CCFA26 /* Knight.des in Resources */,
+				FBAC4424298C379500CCFA26 /* Priest.des in Resources */,
+				FBAC4425298C379500CCFA26 /* symbols in Resources */,
+				43DD0B410FF4E0FC00580249 /* soko4-1.lev in Resources */,
+				43DD0AF70FF4E0FC00580249 /* Kni-filb.lev in Resources */,
+				43DD0B4F0FF4E0FC00580249 /* Val-fila.lev in Resources */,
+				43DD0ADC0FF4E0FC00580249 /* Cav-goal.lev in Resources */,
+				FBAC4426298C379500CCFA26 /* Healer.des in Resources */,
+				43D1142B10074E9F00082C8D /* news in Resources */,
+				43DD0B2E0FF4E0FC00580249 /* Rog-loca.lev in Resources */,
+				43DD0AEA0FF4E0FC00580249 /* fire.lev in Resources */,
+				43DD0B200FF4E0FC00580249 /* Pri-strt.lev in Resources */,
+				43DD0B230FF4E0FC00580249 /* quest.txt in Resources */,
+				FBAC4427298C379500CCFA26 /* yendor.des in Resources */,
+				43DD0AF40FF4E0FC00580249 /* history in Resources */,
+				43DD0B1C0FF4E0FC00580249 /* Pri-fila.lev in Resources */,
+				43DD0B220FF4E0FC00580249 /* quest.dat in Resources */,
+				43DD0B4D0FF4E0FC00580249 /* tower2.lev in Resources */,
+				43DD0B290FF4E0FC00580249 /* Ran-strt.lev in Resources */,
+				43DD0AE10FF4E0FC00580249 /* data in Resources */,
+				43DD0AFE0FF4E0FC00580249 /* license in Resources */,
+				43DD0AD50FF4E0FC00580249 /* bigrm-4.lev in Resources */,
+				43DD0B3D0FF4E0FC00580249 /* soko2-1.lev in Resources */,
+				43DD0B1E0FF4E0FC00580249 /* Pri-goal.lev in Resources */,
+				43DD0B1A0FF4E0FC00580249 /* oracles.txt in Resources */,
+				43DD0B3E0FF4E0FC00580249 /* soko2-2.lev in Resources */,
+				FBAC4428298C379500CCFA26 /* bigrm-9.lev in Resources */,
+				43DD0B270FF4E0FC00580249 /* Ran-goal.lev in Resources */,
+				FBAC4429298C379500CCFA26 /* Monk.des in Resources */,
+				FBAC442A298C379500CCFA26 /* sokoban.des in Resources */,
+				43DD0AEF0FF4E0FC00580249 /* Hea-loca.lev in Resources */,
+				FBAC442B298C379500CCFA26 /* Valkyrie.des in Resources */,
+				43DD0ACF0FF4E0FC00580249 /* Bar-loca.lev in Resources */,
+				43DD0B0A0FF4E0FC00580249 /* minetn-3.lev in Resources */,
+				43DD0B010FF4E0FC00580249 /* medusa-2.lev in Resources */,
+				43DD0B460FF4E0FC00580249 /* Tou-filb.lev in Resources */,
+				43DD0ACA0FF4E0FC00580249 /* astral.lev in Resources */,
+				FBAC442C298C379500CCFA26 /* Ranger.des in Resources */,
+				43DD0B190FF4E0FC00580249 /* oracles in Resources */,
+				43DD0AE40FF4E0FC00580249 /* dungeon.def in Resources */,
+				43DD0AE30FF4E0FC00580249 /* dungeon in Resources */,
+				43DD0B320FF4E0FC00580249 /* rumors.fal in Resources */,
+				43DD0AE50FF4E0FC00580249 /* dungeon.pdf in Resources */,
+				FBAC442D298C379500CCFA26 /* bogusmon.txt in Resources */,
+				FBAC442E298C379500CCFA26 /* bogusmon in Resources */,
+				43DD0B520FF4E0FC00580249 /* Val-loca.lev in Resources */,
+				FBAC442F298C379500CCFA26 /* Caveman.des in Resources */,
+				43DD0AC30FF4E0FC00580249 /* Arc-fila.lev in Resources */,
+				43DD0ACE0FF4E0FC00580249 /* Bar-goal.lev in Resources */,
+				FBAC4430298C379500CCFA26 /* keyhelp in Resources */,
+				43DD0AF20FF4E0FC00580249 /* help in Resources */,
+				43DD0AF60FF4E0FC00580249 /* Kni-fila.lev in Resources */,
+				43DD0B1B0FF4E0FC00580249 /* orcus.lev in Resources */,
+				43DD0B530FF4E0FC00580249 /* Val-strt.lev in Resources */,
+				43DD0B120FF4E0FC00580249 /* Mon-loca.lev in Resources */,
+				43DD0AF90FF4E0FC00580249 /* Kni-loca.lev in Resources */,
+				43DD0AC60FF4E0FC00580249 /* Arc-loca.lev in Resources */,
+				43DD0B1F0FF4E0FC00580249 /* Pri-loca.lev in Resources */,
+				FBAC4431298C379500CCFA26 /* Rogue.des in Resources */,
+				43DD0B450FF4E0FC00580249 /* Tou-fila.lev in Resources */,
+				43DD0AE20FF4E0FC00580249 /* data.base in Resources */,
+				43DD0B5F0FF4E0FC00580249 /* wizard3.lev in Resources */,
+				43DD0AEE0FF4E0FC00580249 /* Hea-goal.lev in Resources */,
+				43DD0B060FF4E0FC00580249 /* minend-3.lev in Resources */,
+				43DD0B160FF4E0FC00580249 /* options in Resources */,
+				FBAC4432298C379500CCFA26 /* tribute in Resources */,
+				43DD0AC90FF4E0FC00580249 /* asmodeus.lev in Resources */,
+				43DD0AFD0FF4E0FC00580249 /* knox.lev in Resources */,
+				43DD0AD40FF4E0FC00580249 /* bigrm-3.lev in Resources */,
+				FBAC4433298C379500CCFA26 /* tower.des in Resources */,
+				43DD0B110FF4E0FC00580249 /* Mon-goal.lev in Resources */,
+				43DD0AD00FF4E0FC00580249 /* Bar-strt.lev in Resources */,
+				43DD0B2D0FF4E0FC00580249 /* Rog-goal.lev in Resources */,
+				43DD0B560FF4E0FC00580249 /* water.lev in Resources */,
+				43DD0AC70FF4E0FC00580249 /* Arc-strt.lev in Resources */,
+				43DD0B250FF4E0FC00580249 /* Ran-fila.lev in Resources */,
+				43DD0B3C0FF4E0FC00580249 /* soko1-2.lev in Resources */,
+				43DD0B3A0FF4E0FC00580249 /* sanctum.lev in Resources */,
+				FBAC4434298C379500CCFA26 /* epitaph in Resources */,
+				43DD0B3B0FF4E0FC00580249 /* soko1-1.lev in Resources */,
+				43DD0B350FF4E0FC00580249 /* Sam-filb.lev in Resources */,
 				43DD0B0E0FF4E0FC00580249 /* minetn-7.lev in Resources */,
 				43DD0B0F0FF4E0FC00580249 /* Mon-fila.lev in Resources */,
-				43DD0B100FF4E0FC00580249 /* Mon-filb.lev in Resources */,
-				43DD0B110FF4E0FC00580249 /* Mon-goal.lev in Resources */,
-				43DD0B120FF4E0FC00580249 /* Mon-loca.lev in Resources */,
-				43DD0B130FF4E0FC00580249 /* Mon-strt.lev in Resources */,
-				FBA6D35E1D52410A006B4238 /* TextInputView.xib in Resources */,
+				43DD0B0B0FF4E0FC00580249 /* minetn-4.lev in Resources */,
+				FBAC4435298C379500CCFA26 /* bigrm-8.lev in Resources */,
+				FBAC4436298C379500CCFA26 /* engrave.txt in Resources */,
+				43DD0B310FF4E0FC00580249 /* rumors in Resources */,
+				FBAC4437298C379500CCFA26 /* nhdat in Resources */,
+				FBAC4438298C379500CCFA26 /* oracle.des in Resources */,
+				43DD0ACC0FF4E0FC00580249 /* Bar-fila.lev in Resources */,
+				43DD0B370FF4E0FC00580249 /* Sam-loca.lev in Resources */,
+				FBAC4439298C379500CCFA26 /* medusa.des in Resources */,
+				43DD0AC50FF4E0FC00580249 /* Arc-goal.lev in Resources */,
+				43DD0AD70FF4E0FC00580249 /* bigroom.des in Resources */,
+				43DD0B5C0FF4E0FC00580249 /* Wizard.des in Resources */,
+				43DD0B2F0FF4E0FC00580249 /* Rog-strt.lev in Resources */,
+				FBAC443A298C379500CCFA26 /* bigrm-6.lev in Resources */,
+				FBAC443B298C379500CCFA26 /* medusa-3.lev in Resources */,
+				FBAC443C298C379500CCFA26 /* epitaph.txt in Resources */,
+				43DD0B3F0FF4E0FC00580249 /* soko3-1.lev in Resources */,
+				43DD0B490FF4E0FC00580249 /* Tou-strt.lev in Resources */,
+				FBAC443D298C379500CCFA26 /* Makefile in Resources */,
+				FBAC443E298C379500CCFA26 /* castle.des in Resources */,
+				43DD0B330FF4E0FC00580249 /* rumors.tru in Resources */,
+				43DD0B040FF4E0FC00580249 /* minend-1.lev in Resources */,
+				43DD0B4E0FF4E0FC00580249 /* tower3.lev in Resources */,
+				43DD0B080FF4E0FC00580249 /* minetn-1.lev in Resources */,
+				43DD0AED0FF4E0FC00580249 /* Hea-filb.lev in Resources */,
+				43DD0AF30FF4E0FC00580249 /* hh in Resources */,
+				43DD0ACB0FF4E0FC00580249 /* baalz.lev in Resources */,
+				43DD0B380FF4E0FC00580249 /* Sam-strt.lev in Resources */,
+				43DD0ADB0FF4E0FC00580249 /* Cav-filb.lev in Resources */,
+				FBAC443F298C379600CCFA26 /* knox.des in Resources */,
+				43DD0B550FF4E0FC00580249 /* valley.lev in Resources */,
+				43DD0B590FF4E0FC00580249 /* Wiz-goal.lev in Resources */,
+				43DD0B5B0FF4E0FC00580249 /* Wiz-strt.lev in Resources */,
 				43DD0B150FF4E0FC00580249 /* opthelp in Resources */,
-				43DD0B160FF4E0FC00580249 /* options in Resources */,
-				43DD0B180FF4E0FC00580249 /* oracle.lev in Resources */,
+				43DD0ADE0FF4E0FC00580249 /* Cav-strt.lev in Resources */,
+				43DD0B2B0FF4E0FC00580249 /* Rog-fila.lev in Resources */,
+				43DD0B5A0FF4E0FC00580249 /* Wiz-loca.lev in Resources */,
+				43DD0AC20FF4E0FC00580249 /* air.lev in Resources */,
+				43DD0B260FF4E0FC00580249 /* Ran-filb.lev in Resources */,
+				FBAC4440298C379600CCFA26 /* Samurai.des in Resources */,
+				43DD0B420FF4E0FC00580249 /* soko4-2.lev in Resources */,
+				43DD0AD20FF4E0FC00580249 /* bigrm-1.lev in Resources */,
+				FBAC4441298C379600CCFA26 /* Tourist.des in Resources */,
+				FBAC4442298C379600CCFA26 /* medusa-4.lev in Resources */,
+				43DD0AF50FF4E0FC00580249 /* juiblex.lev in Resources */,
+				43DD0AD30FF4E0FC00580249 /* bigrm-2.lev in Resources */,
+				43DD0B500FF4E0FC00580249 /* Val-filb.lev in Resources */,
+				43DD0AD60FF4E0FC00580249 /* bigrm-5.lev in Resources */,
+				43DD0B600FF4E0FC00580249 /* wizhelp in Resources */,
+				43DD0AF00FF4E0FC00580249 /* Hea-strt.lev in Resources */,
+				28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */,
+				43DD07B20FF4C64100580249 /* MainView.xib in Resources */,
+				FB65445829884A98002F4737 /* chozo32b.png in Resources */,
+				FBA6D35E1D52410A006B4238 /* TextInputView.xib in Resources */,
 				FBA6C9DA1B47442C006C88B5 /* nevanda32.png in Resources */,
 				FB65445429884A03002F4737 /* nethackmodern.png in Resources */,
-				43DD0B190FF4E0FC00580249 /* oracles in Resources */,
-				43DD0B1A0FF4E0FC00580249 /* oracles.txt in Resources */,
-				43DD0B1B0FF4E0FC00580249 /* orcus.lev in Resources */,
 				FBB7FAA51A893650008F64AD /* Images-2.xcassets in Resources */,
-				43DD0B1C0FF4E0FC00580249 /* Pri-fila.lev in Resources */,
-				43DD0B1D0FF4E0FC00580249 /* Pri-filb.lev in Resources */,
-				43DD0B1E0FF4E0FC00580249 /* Pri-goal.lev in Resources */,
-				43DD0B1F0FF4E0FC00580249 /* Pri-loca.lev in Resources */,
-				43DD0B200FF4E0FC00580249 /* Pri-strt.lev in Resources */,
-				43DD0B220FF4E0FC00580249 /* quest.dat in Resources */,
-				43DD0B230FF4E0FC00580249 /* quest.txt in Resources */,
-				43DD0B240FF4E0FC00580249 /* quest_levs in Resources */,
-				43DD0B250FF4E0FC00580249 /* Ran-fila.lev in Resources */,
-				43DD0B260FF4E0FC00580249 /* Ran-filb.lev in Resources */,
-				43DD0B270FF4E0FC00580249 /* Ran-goal.lev in Resources */,
-				43DD0B280FF4E0FC00580249 /* Ran-loca.lev in Resources */,
-				43DD0B290FF4E0FC00580249 /* Ran-strt.lev in Resources */,
-				43DD0B2B0FF4E0FC00580249 /* Rog-fila.lev in Resources */,
 				FB4307201A72A0D7003B7010 /* Images.xcassets in Resources */,
-				43DD0B2C0FF4E0FC00580249 /* Rog-filb.lev in Resources */,
-				43DD0B2D0FF4E0FC00580249 /* Rog-goal.lev in Resources */,
-				43DD0B2E0FF4E0FC00580249 /* Rog-loca.lev in Resources */,
-				43DD0B2F0FF4E0FC00580249 /* Rog-strt.lev in Resources */,
-				43DD0B310FF4E0FC00580249 /* rumors in Resources */,
-				43DD0B320FF4E0FC00580249 /* rumors.fal in Resources */,
-				43DD0B330FF4E0FC00580249 /* rumors.tru in Resources */,
-				43DD0B340FF4E0FC00580249 /* Sam-fila.lev in Resources */,
 				FB65444E298849E1002F4737 /* absurd32.png in Resources */,
-				43DD0B350FF4E0FC00580249 /* Sam-filb.lev in Resources */,
-				43DD0B360FF4E0FC00580249 /* Sam-goal.lev in Resources */,
-				43DD0B370FF4E0FC00580249 /* Sam-loca.lev in Resources */,
-				43DD0B380FF4E0FC00580249 /* Sam-strt.lev in Resources */,
-				43DD0B3A0FF4E0FC00580249 /* sanctum.lev in Resources */,
-				43DD0B3B0FF4E0FC00580249 /* soko1-1.lev in Resources */,
-				43DD0B3C0FF4E0FC00580249 /* soko1-2.lev in Resources */,
-				43DD0B3D0FF4E0FC00580249 /* soko2-1.lev in Resources */,
-				43DD0B3E0FF4E0FC00580249 /* soko2-2.lev in Resources */,
-				43DD0B3F0FF4E0FC00580249 /* soko3-1.lev in Resources */,
-				43DD0B400FF4E0FC00580249 /* soko3-2.lev in Resources */,
-				43DD0B410FF4E0FC00580249 /* soko4-1.lev in Resources */,
-				43DD0B420FF4E0FC00580249 /* soko4-2.lev in Resources */,
-				43DD0B440FF4E0FC00580249 /* spec_levs in Resources */,
-				43DD0B450FF4E0FC00580249 /* Tou-fila.lev in Resources */,
-				43DD0B460FF4E0FC00580249 /* Tou-filb.lev in Resources */,
-				43DD0B470FF4E0FC00580249 /* Tou-goal.lev in Resources */,
-				43DD0B480FF4E0FC00580249 /* Tou-loca.lev in Resources */,
-				43DD0B490FF4E0FC00580249 /* Tou-strt.lev in Resources */,
-				43DD0B4C0FF4E0FC00580249 /* tower1.lev in Resources */,
-				43DD0B4D0FF4E0FC00580249 /* tower2.lev in Resources */,
-				43DD0B4E0FF4E0FC00580249 /* tower3.lev in Resources */,
 				FB64D9551A785ED80035BA74 /* Icon.png in Resources */,
-				43DD0B4F0FF4E0FC00580249 /* Val-fila.lev in Resources */,
-				43DD0B500FF4E0FC00580249 /* Val-filb.lev in Resources */,
-				43DD0B510FF4E0FC00580249 /* Val-goal.lev in Resources */,
-				43DD0B520FF4E0FC00580249 /* Val-loca.lev in Resources */,
-				43DD0B530FF4E0FC00580249 /* Val-strt.lev in Resources */,
-				43DD0B550FF4E0FC00580249 /* valley.lev in Resources */,
-				43DD0B560FF4E0FC00580249 /* water.lev in Resources */,
-				43DD0B570FF4E0FC00580249 /* Wiz-fila.lev in Resources */,
-				43DD0B580FF4E0FC00580249 /* Wiz-filb.lev in Resources */,
-				43DD0B590FF4E0FC00580249 /* Wiz-goal.lev in Resources */,
-				43DD0B5A0FF4E0FC00580249 /* Wiz-loca.lev in Resources */,
-				43DD0B5B0FF4E0FC00580249 /* Wiz-strt.lev in Resources */,
-				43DD0B5C0FF4E0FC00580249 /* Wizard.des in Resources */,
-				43DD0B5D0FF4E0FC00580249 /* wizard1.lev in Resources */,
-				43DD0B5E0FF4E0FC00580249 /* wizard2.lev in Resources */,
-				43DD0B5F0FF4E0FC00580249 /* wizard3.lev in Resources */,
 				FB65445629884A0E002F4737 /* pixelhack32x32.png in Resources */,
 				FB33C48B1A7F774A0020F638 /* dawnhack32.png in Resources */,
-				43DD0B600FF4E0FC00580249 /* wizhelp in Resources */,
 				43C103D30FF8D59C00DBD0EF /* MenuView.xib in Resources */,
 				43C5AD930FFA772B004F67ED /* NethackMenuView.xib in Resources */,
 				43ACB5D80FFF4A9F005DB589 /* DirectionInputView.xib in Resources */,
 				439F0DD51001FECB0050AED4 /* MenuViewLeaf.xib in Resources */,
 				439F0ED4100210770050AED4 /* ExtendedCommandView.xib in Resources */,
-				43D1142B10074E9F00082C8D /* news in Resources */,
 				431FD068100B598200DC7260 /* Settings.bundle in Resources */,
 				916CE038102C57E8000535FC /* credits.html in Resources */,
 				43A7B1CA103046EA0083CE1B /* petmark.png in Resources */,
@@ -1745,8 +2187,8 @@
 				INFOPLIST_FILE = Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MARKETING_VERSION = 2.0.8;
-				PRODUCT_BUNDLE_IDENTIFIER = com.futureshocksoftware.inethack2;
-				PRODUCT_NAME = iNetHack2;
+				PRODUCT_BUNDLE_IDENTIFIER = com.futureshocksoftware.inethack2TEST;
+				PRODUCT_NAME = iNetHack2test;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -1766,8 +2208,8 @@
 				INFOPLIST_FILE = Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MARKETING_VERSION = 2.0.8;
-				PRODUCT_BUNDLE_IDENTIFIER = com.futureshocksoftware.inethack2;
-				PRODUCT_NAME = iNetHack2;
+				PRODUCT_BUNDLE_IDENTIFIER = com.futureshocksoftware.inethack2TEST;
+				PRODUCT_NAME = iNetHack2test;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -1829,7 +2271,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MARKETING_VERSION = 2.0.8;
 				PRODUCT_BUNDLE_IDENTIFIER = com.futureshocksoftware.inethack2;
-				PRODUCT_NAME = iNetHack2;
+				PRODUCT_NAME = iNetHack2test;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

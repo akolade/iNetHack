@@ -6,7 +6,9 @@
 #include "hack.h"
 #include "lev.h"
 #include "tcap.h" /* for TERMLIB and ASCIIGRAPH */
-
+#if TARGET_OS_IPHONE
+#include "winiphone.h"
+#endif
 #if defined(MICRO)
 extern int dotcnt; /* shared with save */
 extern int dotrow; /* shared with save */
@@ -1033,7 +1035,9 @@ boolean ghostly;
 #ifdef TOS
     short tlev;
 #endif
-
+#if TARGET_OS_IPHONE
+            iphone_reset_glyph_cache();
+#endif
     if (ghostly)
         clear_id_mapping();
 
