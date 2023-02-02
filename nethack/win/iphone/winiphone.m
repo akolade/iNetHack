@@ -217,6 +217,7 @@ void iphone_askname() {
 	if (!wizard) {
 		NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 		NSString *name = [defaults objectForKey:kOptionUsername];
+
 		if (!name || name.length == 0) {
 			name = [NSFullUserName() capitalizedString];
 			[defaults setObject:name forKey:kOptionUsername];
@@ -229,8 +230,9 @@ void iphone_askname() {
 			plname[lossyName.length] = 0;
 		}
 		//NSCAssert1(plname[0], @"Failed to init plname from name '%@'", name);
-        // jrd inethack3
-        strcpy(plname, "mobile user");
+        if (!plname[0]) {
+            strcpy(plname, "Mobile User");
+        }
 	} else {
 		strcpy(plname, "wizard");
 	}
