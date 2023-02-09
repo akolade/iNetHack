@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment version="2304" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -38,15 +38,15 @@
             <connections>
                 <outlet property="dummyTextField" destination="12" id="13"/>
             </connections>
-            <point key="canvasLocation" x="47.826086956521742" y="36.160714285714285"/>
+            <point key="canvasLocation" x="46.399999999999999" y="35.467980295566505"/>
         </view>
         <viewController nibName="NethackMenuView" id="10" customClass="NethackMenuViewController">
             <extendedEdge key="edgesForExtendedLayout"/>
-            <point key="canvasLocation" x="140" y="564"/>
+            <point key="canvasLocation" x="47" y="599"/>
         </viewController>
         <viewController nibName="TextInputView" id="15" customClass="TextInputViewController">
             <extendedEdge key="edgesForExtendedLayout"/>
-            <point key="canvasLocation" x="469.56521739130437" y="17.410714285714285"/>
+            <point key="canvasLocation" x="754" y="18"/>
         </viewController>
         <viewController nibName="DirectionInputView" id="17" customClass="DirectionInputViewController">
             <extendedEdge key="edgesForExtendedLayout"/>
