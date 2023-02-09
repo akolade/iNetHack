@@ -168,7 +168,6 @@
 		9194B22C1032CADB009BDE61 /* RoleSelectionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9194B22B1032CADB009BDE61 /* RoleSelectionController.m */; };
 		9194B2AE1032E48A009BDE61 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9194B2AD1032E48A009BDE61 /* QuartzCore.framework */; };
 		FB33C48B1A7F774A0020F638 /* dawnhack32.png in Resources */ = {isa = PBXBuildFile; fileRef = FB33C48A1A7F774A0020F638 /* dawnhack32.png */; };
-		FB4307201A72A0D7003B7010 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FB43071F1A72A0D6003B7010 /* Images.xcassets */; };
 		FB64D9551A785ED80035BA74 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = FB64D9541A785ED80035BA74 /* Icon.png */; };
 		FB65443F298457F7002F4737 /* posixregex.c in Sources */ = {isa = PBXBuildFile; fileRef = FB65443E298457F7002F4737 /* posixregex.c */; };
 		FB65444129845A03002F4737 /* sys.c in Sources */ = {isa = PBXBuildFile; fileRef = FB65444029845A03002F4737 /* sys.c */; };
@@ -654,7 +653,6 @@
 		9194B22B1032CADB009BDE61 /* RoleSelectionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoleSelectionController.m; sourceTree = "<group>"; };
 		9194B2AD1032E48A009BDE61 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		FB33C48A1A7F774A0020F638 /* dawnhack32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dawnhack32.png; sourceTree = "<group>"; };
-		FB43071F1A72A0D6003B7010 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = iNetHack2/Images.xcassets; sourceTree = "<group>"; };
 		FB64D9541A785ED80035BA74 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		FB6544352984542F002F4737 /* sys.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = sys.h; sourceTree = "<group>"; };
 		FB65443629845430002F4737 /* context.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = context.h; sourceTree = "<group>"; };
@@ -981,7 +979,6 @@
 			children = (
 				FBAC4443298C37B300CCFA26 /* dat */,
 				FBB7FAA41A89364F008F64AD /* Images-2.xcassets */,
-				FB43071F1A72A0D6003B7010 /* Images.xcassets */,
 				4394EB9510394C5F0053C8C2 /* Tilesets */,
 				4325C35B1035FC3F00653E8A /* Entitlements.plist */,
 				43DC33691070CD1C00FBCE71 /* MainMenuView.xib */,
@@ -1712,7 +1709,6 @@
 				FBA6C9DA1B47442C006C88B5 /* nevanda32.png in Resources */,
 				FB65445429884A03002F4737 /* nethackmodern.png in Resources */,
 				FBB7FAA51A893650008F64AD /* Images-2.xcassets in Resources */,
-				FB4307201A72A0D7003B7010 /* Images.xcassets in Resources */,
 				FB65444E298849E1002F4737 /* absurd32.png in Resources */,
 				FB64D9551A785ED80035BA74 /* Icon.png in Resources */,
 				FB65445629884A0E002F4737 /* pixelhack32x32.png in Resources */,
