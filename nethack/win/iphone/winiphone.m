@@ -232,6 +232,7 @@ void iphone_askname() {
 		//NSCAssert1(plname[0], @"Failed to init plname from name '%@'", name);
         if (!plname[0]) {
             strcpy(plname, "Mobile User");
+            [defaults setObject:@"Mobile User" forKey:kOptionUsername];
         }
 	} else {
 		strcpy(plname, "wizard");
@@ -468,9 +469,13 @@ char iphone_yn_function(const char *question, const char *choices, CHAR_P def) {
 				}
 				NSRange r = NSMakeRange(start, index-start);
 				NSString *lets = [preLets substringWithRange:r];
-				r = [preLets rangeOfString:@"or "];
+				//r = [preLets rangeOfString:@"or "];
+                r = [preLets rangeOfString:@"*"]; // If you don't have the appopriate item we still need the * option to be visible.
 				if (r.location != NSNotFound) {
 					NSString *moreOptions = [preLets substringFromIndex:r.location+r.length];
+                    if ([preLets  isEqual: @"*"]) {
+                        moreOptions = preLets;
+                    }
 					for (int i = 0; i < moreOptions.length; ++i) {
 						char c = [moreOptions characterAtIndex:i];
 						if (c == '*') {
@@ -637,7 +642,8 @@ getlock(void)
 
 	const char* fq_lock = fqname(lock, LEVELPREFIX, 1);
 	if ((fd = open(lock, O_RDWR | O_EXCL | O_CREAT, 0644)) == -1) {
-		char c = yn("There are files from a game in progress. Recover?");
+		//char c = yn("There are files from a game in progress. Recover?");
+        char c = 'y'; // 2.1.0+: autoload checkpoint file to work smoothly with new saving method.
 		if (c != 'y' && c != 'Y') {
 			int fail = unlink(lock);
 			if (!fail) {
@@ -832,6 +838,7 @@ sys_random_seed()
     }
     return seed;
 }
+
 
 
 void iphone_main() {

@@ -45,7 +45,7 @@
 	IBOutlet TextInputViewController *textInputViewController;
 	IBOutlet DirectionInputViewController *directionInputViewController;
 	IBOutlet ExtendedCommandViewController *extendedCommandViewController;
-	
+
 	//NSMutableArray *windows;
     NSMutableDictionary *windows; //iNethack2 making this a dict
     int windowIdCounter; //iNethack2 for dict

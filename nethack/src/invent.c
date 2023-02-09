@@ -5,6 +5,10 @@
 
 #include "hack.h"
 
+#ifdef __APPLE__
+#include "TargetConditionals.h"
+#endif
+
 #ifndef C /* same as cmd.c */
 #define C(c) (0x1f & (c))
 #endif
@@ -2619,10 +2623,6 @@ long *out_cnt;
     /* oxymoron? temporarily assign permanent inventory letters */
     if (!flags.invlet_constant)
         reassign();
-
-#ifdef __APPLE__
-#include "TargetConditionals.h"
-#endif
 
 #if !TARGET_OS_IPHONE
         

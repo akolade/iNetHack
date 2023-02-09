@@ -75,22 +75,29 @@
 	}
 }
 
-/*
-//--iNethack2: Since applicationWillTerminate rarely (if ever) is called, we check for app in background to initiate saving your game
-    Only downside is it exits the game, but don't see a real way around it.
- */
 - (void) applicationDidEnterBackground:(UIApplication *)application {
-    return [self applicationWillTerminate:application];
+    // 2.0.8 and earlier we used to run the routine when app was about to terminate to do a save.
+    //    return [self applicationWillTerminate:application];
+
+    // Save the zoom level
+    [[NSUserDefaults standardUserDefaults] setFloat:[(MainView *) [[MainViewController instance] view] tileSize].width
+                                             forKey:kKeyTileSize];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+
+    if ([[MainViewController instance] gameInProgress]) {
+        // 2.1.0+, Now use the checkpoint system to create a save any time the app enters the background.
+        save_currentstate();
+    }
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
 	[Hearse stop];
-	
-	[[NSUserDefaults standardUserDefaults] setFloat:[(MainView *) [[MainViewController instance] view] tileSize].width
+
+    [[NSUserDefaults standardUserDefaults] setFloat:[(MainView *) [[MainViewController instance] view] tileSize].width
 											 forKey:kKeyTileSize];
 	[[NSUserDefaults standardUserDefaults] synchronize];
-	
-	if ([[MainViewController instance] gameInProgress]) {
+
+    if ([[MainViewController instance] gameInProgress]) {
 		dosave();
 	} else {
 		NSString *lockFile = [NSString stringWithCString:lock encoding:NSASCIIStringEncoding];

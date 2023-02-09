@@ -243,7 +243,7 @@ typedef uchar nhsym;
 #endif
 
 #if defined(X11_GRAPHICS) || defined(QT_GRAPHICS) || defined(GNOME_GRAPHICS) \
-    || defined(WIN32)
+    || defined(WIN32) || defined(IPHONE_GRAPHICS)
 #ifndef USE_TILES
 #define USE_TILES /* glyph2tile[] will be available */
 #endif

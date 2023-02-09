@@ -154,21 +154,14 @@ extern short glyph2tile[];
 	tv.backgroundColor = [UIColor blackColor];
     tv.allowsSelection=TRUE; //iNethack2: to help fix bugginess with amount selection transition
     tv.separatorStyle = UITableViewCellSeparatorStyleNone; //iNethack2: prevent line separator
-
-    //iNethack2 - fix for uitableview not scrolling down far enough on iphone5+
-    //iNethack2: Update iOS9: this scrolling fix no longer needed. Commenting out.
-    /*
-    long bottom;
-    bottom= (self.view.frame.size.height + self.view.frame.origin.y) - [NethackMenuViewController screenSize].height;
-    [tv setContentInset:UIEdgeInsetsMake(0, 0, bottom, 0)];
-    */
+    self.navigationController.navigationBar.backgroundColor = [UIColor blackColor];
+    self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName : [UIColor whiteColor]};
 }
 
 //--iNethack2 added to set the background color of headers in inventory
 - (void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section {
     // Background color
     view.tintColor = [UIColor lightGrayColor];
-    
     // Text Color
     UITableViewHeaderFooterView *header = (UITableViewHeaderFooterView *)view;
     [header.textLabel setTextColor:[UIColor whiteColor]];
@@ -344,6 +337,4 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
     }
     return UITableViewCellEditingStyleNone;
 }
-
-
 @end

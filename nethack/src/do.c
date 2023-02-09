@@ -1185,7 +1185,12 @@ void
 save_currentstate()
 {
     int fd;
-
+#if TARGET_OS_IPHONE
+    // Don't save if the game is over already.
+    if (program_state.gameover) {
+        return;
+    }
+#endif
     if (flags.ins_chkpt) {
         /* write out just-attained level, with pets and everything */
         fd = currentlevel_rewrite();
