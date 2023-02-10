@@ -469,8 +469,10 @@ char iphone_yn_function(const char *question, const char *choices, CHAR_P def) {
 				}
 				NSRange r = NSMakeRange(start, index-start);
 				NSString *lets = [preLets substringWithRange:r];
-				//r = [preLets rangeOfString:@"or "];
-                r = [preLets rangeOfString:@"*"]; // If you don't have the appopriate item we still need the * option to be visible.
+				r = [preLets rangeOfString:@"or "];
+                if (r.location == NSNotFound) {
+                    r = [preLets rangeOfString:@"*"]; // If you don't have the appopriate item we still need the * option to be visible.
+                }
 				if (r.location != NSNotFound) {
 					NSString *moreOptions = [preLets substringFromIndex:r.location+r.length];
                     if ([preLets  isEqual: @"*"]) {
