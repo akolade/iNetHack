@@ -27,6 +27,7 @@
 @interface AsciiTileSet : TileSet {
 	
 	NSArray *colorTable;
+    BOOL ibmTileset;
 
 }
 

@@ -137,6 +137,7 @@
 				<string>Tiles 32 (Classic)</string>
 				<string>Absurd</string>
 				<string>Pixelhack</string>
+				<string>IBMGraphics</string>
 				<string>ASCII</string>
 				<string>ASCII (monochrome)</string>
 			</array>
@@ -150,6 +151,7 @@
 				<string>tiles32classic</string>
 				<string>absurd32</string>
 				<string>pixelhack32x32</string>
+				<string>ibmgraphics</string>
 				<string>ascii</string>
 				<string>asciimono</string>
 			</array>

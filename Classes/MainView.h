@@ -47,7 +47,7 @@
 	
 	CGSize tilesetTileSize;
 	BOOL asciiTileset;
-	
+    BOOL ibmTileset;
 	UIButton *moreButton;
 	
 	NSString *bundleVersionString;

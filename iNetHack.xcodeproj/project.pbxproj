@@ -179,6 +179,7 @@
 		FB65445829884A98002F4737 /* chozo32b.png in Resources */ = {isa = PBXBuildFile; fileRef = FB65445729884A98002F4737 /* chozo32b.png */; };
 		FB6CDF7829944BF400BD5D0E /* lib in Resources */ = {isa = PBXBuildFile; fileRef = FB6CDF7729944BF400BD5D0E /* lib */; };
 		FB6CDF9D29B9C31A00BD5D0E /* tiles32classic.png in Resources */ = {isa = PBXBuildFile; fileRef = FB6CDF9C29B9C31500BD5D0E /* tiles32classic.png */; };
+		FB6CDF992996977600BD5D0E /* Px437_IBM_VGA_8x16.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FB6CDF982996976300BD5D0E /* Px437_IBM_VGA_8x16.ttf */; };
 		FBA6C9DA1B47442C006C88B5 /* nevanda32.png in Resources */ = {isa = PBXBuildFile; fileRef = FBA6C9D81B47442C006C88B5 /* nevanda32.png */; };
 		FBA6D35E1D52410A006B4238 /* TextInputView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FBA6D35D1D52410A006B4238 /* TextInputView.xib */; };
 		FBAC441C298C379500CCFA26 /* mines.des in Resources */ = {isa = PBXBuildFile; fileRef = FBAC436C298C378A00CCFA26 /* mines.des */; };
@@ -674,6 +675,7 @@
 		FB6CDF352994446700BD5D0E /* iNetHack2-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "iNetHack2-Bridging-Header.h"; sourceTree = "<group>"; };
 		FB6CDF7729944BF400BD5D0E /* lib */ = {isa = PBXFileReference; lastKnownFileType = folder; path = lib; sourceTree = "<group>"; };
 		FB6CDF9C29B9C31500BD5D0E /* tiles32classic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tiles32classic.png; sourceTree = "<group>"; };
+		FB6CDF982996976300BD5D0E /* Px437_IBM_VGA_8x16.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Px437_IBM_VGA_8x16.ttf; sourceTree = "<group>"; };
 		FBA6C9D81B47442C006C88B5 /* nevanda32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nevanda32.png; sourceTree = "<group>"; };
 		FBA6D35D1D52410A006B4238 /* TextInputView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TextInputView.xib; sourceTree = "<group>"; };
 		FBAC436A298C378A00CCFA26 /* medusa-1.lev */ = {isa = PBXFileReference; lastKnownFileType = file; name = "medusa-1.lev"; path = "nethack/dat/medusa-1.lev"; sourceTree = "<group>"; };
@@ -986,6 +988,7 @@
 				43DC33691070CD1C00FBCE71 /* MainMenuView.xib */,
 				28AD733E0D9D9553002E5188 /* MainWindow.xib */,
 				8D1107310486CEB800E47090 /* Info.plist */,
+				FB6CDF982996976300BD5D0E /* Px437_IBM_VGA_8x16.ttf */,
 				43DD07B10FF4C64100580249 /* MainView.xib */,
 				43C103D20FF8D59C00DBD0EF /* MenuView.xib */,
 				43C5AD920FFA772B004F67ED /* NethackMenuView.xib */,
@@ -1526,6 +1529,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FB6CDF992996977600BD5D0E /* Px437_IBM_VGA_8x16.ttf in Resources */,
 				FBAC4445298C5FAC00CCFA26 /* air.lev in Resources */,
 				FBAC4446298C5FAC00CCFA26 /* Arc-fila.lev in Resources */,
 				FBAC4447298C5FAC00CCFA26 /* Arc-filb.lev in Resources */,

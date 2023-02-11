@@ -78,9 +78,21 @@
 	if (!tilesetName) {
 		tilesetName = @"chozo32b";
 	}
-	if ([tilesetName isEqualToString:@"ascii"] || [tilesetName isEqualToString:@"asciimono"]) {
+	if ([tilesetName isEqualToString:@"ascii"]
+        || [tilesetName isEqualToString:@"asciimono"]
+        || [tilesetName isEqualToString:@"ibmgraphics"]) {
 		asciiTileset = YES;
-		tileSet = [[AsciiTileSet alloc] initWithTileSize:tilesetTileSize];
+        if ([tilesetName isEqualToString:@"ibmgraphics"]) {
+            ibmTileset = YES;
+            // Make the DOS font to look good.
+            tilesetTileSize = CGSizeMake(32,64);
+            maxTileSize = CGSizeMake(32,64);
+            minTileSize = CGSizeMake(4,8);
+            offset = CGPointMake(0,0);
+            float ts = [[NSUserDefaults standardUserDefaults] floatForKey:kKeyTileSize];
+            tileSize = CGSizeMake(ts,ts*2);
+        }
+        tileSet = [[AsciiTileSet alloc] initWithTileSize:tilesetTileSize];
 	} else {
         NSString *imgName = [NSString stringWithFormat:@"%@.png", tilesetName];
 		UIImage *tilesetImage = [UIImage imageNamed:imgName];
@@ -551,6 +563,9 @@
 	} else if (tileSize.width < minTileSize.width) {
 		tileSize = minTileSize;
 	}
+    if (ibmTileset) {
+        tileSize.height = tileSize.width*2;
+    }
 	CGFloat aspect = tileSize.width / originalSize.width;
 	offset.x *= aspect;
 	offset.y *= aspect;

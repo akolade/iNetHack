@@ -797,6 +797,15 @@ initoptions_init()
 #endif
     }
 #endif /* UNIX && TTY_GRAPHICS */
+
+#ifdef TARGET_OS_IPHONE
+    if (!symset[PRIMARY].explicitly)
+        load_symset("IBMGraphics", PRIMARY);
+    if (!symset[ROGUESET].explicitly)
+        load_symset("RogueIBM", ROGUESET);
+    switch_symbols(TRUE);
+#endif
+
 #if defined(UNIX) || defined(VMS)
 #ifdef TTY_GRAPHICS
     /* detect whether a "vt" terminal can handle alternate charsets */
