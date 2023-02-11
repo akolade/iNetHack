@@ -576,6 +576,14 @@ void iphone_init_options() {
     }
     iflags.bouldersym = (uchar) bould[0];
     
+    // Nethack 36: custom boulders work different now.
+    if (![boulderSym isEqual: @"`"]) {
+        ov_primary_syms[SYM_BOULDER + SYM_OFF_X] = (nhsym) iflags.bouldersym;
+        ov_rogue_syms[SYM_BOULDER + SYM_OFF_X] = (nhsym) iflags.bouldersym;
+        init_primary_symbols();
+        init_showsyms();
+    }
+
     //iNethack2: pickup_thrown setting
     flags.pickup_thrown = [defaults boolForKey:kOptionPickupThrown];
     
