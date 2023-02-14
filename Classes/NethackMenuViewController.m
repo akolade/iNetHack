@@ -162,10 +162,11 @@ extern short glyph2tile[];
 - (void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section {
     // Background color
     view.tintColor = [UIColor lightGrayColor];
+    view.tintColor = [UIColor darkGrayColor];
     // Text Color
     UITableViewHeaderFooterView *header = (UITableViewHeaderFooterView *)view;
     [header.textLabel setTextColor:[UIColor whiteColor]];
-    [header.textLabel setShadowColor:[UIColor darkGrayColor]];
+    [header.textLabel setShadowColor:[UIColor blackColor]];
 }
 
 - (void)viewDidDisappear:(BOOL)animated {

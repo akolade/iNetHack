@@ -666,9 +666,13 @@ getlock(void)
 		} else {
 			// Try to recover
 			if(!recover_savefile()) {
-				int fail = unlink(lock);
-				NSCAssert1(!fail, @"Failed to unlink lock %s", lock);
-				panic("Couldn't recover old game.");
+// iNethack36: let's just silently ignore it.
+//				int fail = unlink(lock);
+//				NSCAssert1(!fail, @"Failed to unlink lock %s", lock);
+//				panic("Couldn't recover old game.");
+                iphone_remove_stale_files();
+                fd = open(lock, O_RDWR | O_EXCL | O_CREAT, 0644);
+                delete_savefile();
 			} else {
 				set_levelfile_name(lock, 0);
 				fd = open(fq_lock, O_RDWR | O_EXCL | O_CREAT, 0644);

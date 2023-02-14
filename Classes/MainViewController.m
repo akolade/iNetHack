@@ -494,7 +494,7 @@ static MainViewController *instance;
 		if (touch.tapCount == 2) {
 			TouchInfo *ti = [touchInfoStore touchInfoForTouch:touch];
 			NSTimeInterval touchDuration = touch.timestamp - touchInfoStore.singleTapTimestamp;
-			if (doubleTapSensitivity >= 1.0f || doubleTapSensitivity == 0 || touchDuration < doubleTapSensitivity) {
+			if (doubleTapSensitivity >= 1.0f || touchDuration < doubleTapSensitivity) {
 				ti.doubleTap = YES;
 			}
 		} else {

@@ -3734,9 +3734,11 @@ recover_savefile()
     }
     if (read(gfd, (genericptr_t) &savelev, sizeof(savelev))
         != sizeof(savelev)) {
+#if !TARGET_OS_IPHONE
         raw_printf(
          "\nCheckpointing was not in effect for %s -- recovery impossible.\n",
                    lock);
+#endif
         (void) nhclose(gfd);
         return FALSE;
     }
