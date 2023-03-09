@@ -178,6 +178,7 @@
 		FB65445629884A0E002F4737 /* pixelhack32x32.png in Resources */ = {isa = PBXBuildFile; fileRef = FB65445529884A0E002F4737 /* pixelhack32x32.png */; };
 		FB65445829884A98002F4737 /* chozo32b.png in Resources */ = {isa = PBXBuildFile; fileRef = FB65445729884A98002F4737 /* chozo32b.png */; };
 		FB6CDF7829944BF400BD5D0E /* lib in Resources */ = {isa = PBXBuildFile; fileRef = FB6CDF7729944BF400BD5D0E /* lib */; };
+		FB6CDF9D29B9C31A00BD5D0E /* tiles32classic.png in Resources */ = {isa = PBXBuildFile; fileRef = FB6CDF9C29B9C31500BD5D0E /* tiles32classic.png */; };
 		FBA6C9DA1B47442C006C88B5 /* nevanda32.png in Resources */ = {isa = PBXBuildFile; fileRef = FBA6C9D81B47442C006C88B5 /* nevanda32.png */; };
 		FBA6D35E1D52410A006B4238 /* TextInputView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FBA6D35D1D52410A006B4238 /* TextInputView.xib */; };
 		FBAC441C298C379500CCFA26 /* mines.des in Resources */ = {isa = PBXBuildFile; fileRef = FBAC436C298C378A00CCFA26 /* mines.des */; };
@@ -672,6 +673,7 @@
 		FB65445729884A98002F4737 /* chozo32b.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chozo32b.png; sourceTree = "<group>"; };
 		FB6CDF352994446700BD5D0E /* iNetHack2-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "iNetHack2-Bridging-Header.h"; sourceTree = "<group>"; };
 		FB6CDF7729944BF400BD5D0E /* lib */ = {isa = PBXFileReference; lastKnownFileType = folder; path = lib; sourceTree = "<group>"; };
+		FB6CDF9C29B9C31500BD5D0E /* tiles32classic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tiles32classic.png; sourceTree = "<group>"; };
 		FBA6C9D81B47442C006C88B5 /* nevanda32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nevanda32.png; sourceTree = "<group>"; };
 		FBA6D35D1D52410A006B4238 /* TextInputView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TextInputView.xib; sourceTree = "<group>"; };
 		FBAC436A298C378A00CCFA26 /* medusa-1.lev */ = {isa = PBXFileReference; lastKnownFileType = file; name = "medusa-1.lev"; path = "nethack/dat/medusa-1.lev"; sourceTree = "<group>"; };
@@ -1022,6 +1024,7 @@
 				FBA6C9D81B47442C006C88B5 /* nevanda32.png */,
 				FB33C48A1A7F774A0020F638 /* dawnhack32.png */,
 				43A103A710B5706E006DD634 /* tiles32.png */,
+				FB6CDF9C29B9C31500BD5D0E /* tiles32classic.png */,
 				43A7B1C9103046EA0083CE1B /* petmark.png */,
 			);
 			path = Tilesets;
@@ -1548,6 +1551,7 @@
 				FBAC445B298C5FAC00CCFA26 /* Cav-filb.lev in Resources */,
 				FBAC445C298C5FAC00CCFA26 /* Cav-goal.lev in Resources */,
 				FBAC445D298C5FAC00CCFA26 /* Cav-loca.lev in Resources */,
+				FB6CDF9D29B9C31A00BD5D0E /* tiles32classic.png in Resources */,
 				FBAC445E298C5FAC00CCFA26 /* Cav-strt.lev in Resources */,
 				FBAC445F298C5FAC00CCFA26 /* cmdhelp in Resources */,
 				FBAC4460298C5FAC00CCFA26 /* data in Resources */,

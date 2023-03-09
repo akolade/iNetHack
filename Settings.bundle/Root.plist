@@ -134,6 +134,7 @@
 				<string>DawnHack</string>
 				<string>Nevanda</string>
 				<string>Tiles32</string>
+				<string>Tiles 32 (Classic)</string>
 				<string>Absurd</string>
 				<string>Pixelhack</string>
 				<string>ASCII</string>
@@ -146,6 +147,7 @@
 				<string>dawnhack32</string>
 				<string>nevanda32</string>
 				<string>tiles32</string>
+				<string>tiles32classic</string>
 				<string>absurd32</string>
 				<string>pixelhack32x32</string>
 				<string>ascii</string>
