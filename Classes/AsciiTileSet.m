@@ -156,14 +156,23 @@ static float _colorTable[][4] = {
 
         NSString *s = [NSString stringWithFormat:@"%C", (unichar)ochar];
         CGSize size = [s sizeWithAttributes:@{NSFontAttributeName:font}];
-		CGPoint p = CGPointMake((tileSize.width-size.width)/2, (tileSize.height-size.height)/2);
-        UIGraphicsBeginImageContextWithOptions(tileSize, YES , 1);
-		CGContextRef ctx = UIGraphicsGetCurrentContext();
-        CGContextSetShouldAntialias(ctx, false);
-        CGContextSetAllowsAntialiasing(ctx, 0);
-		UIColor *color = [self mapNetHackColor:ocolor];
+        CGPoint p = CGPointMake((tileSize.width-size.width)/2, (tileSize.height-size.height)/2);
+        if (ibmTileset) {
+            UIGraphicsBeginImageContextWithOptions(tileSize, YES , 1);
+        } else {
+            UIGraphicsBeginImageContext(tileSize);
+        }
+        UIColor *color = [self mapNetHackColor:ocolor];
+        CGContextRef ctx = UIGraphicsGetCurrentContext();
+        if (ibmTileset) {
+            CGContextSetShouldAntialias(ctx, false);
+            CGContextSetAllowsAntialiasing(ctx, 0);
+        }
         if (Is_rogue_level(&u.uz) && !ibmTileset) {
             color = [UIColor lightGrayColor];
+            if (ochar == '@') {
+                color = [UIColor whiteColor];
+            }
         }
 		CGContextSetFillColorWithColor(ctx, [UIColor blackColor].CGColor);
 		CGRect r = CGRectZero;
