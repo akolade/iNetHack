@@ -42,19 +42,17 @@
  * Define all of those you want supported in your binary.
  * Some combinations make no sense.  See the installation document.
  */
+//#if !defined(NOTTYGRAPHICS)
+//#define TTY_GRAPHICS /* good old tty based graphics */
+//#endif
+/* #define CURSES_GRAPHICS *//* Curses interface - Karl Garrison*/
 /* #define X11_GRAPHICS */   /* X11 interface */
 /* #define QT_GRAPHICS */    /* Qt interface */
 /* #define GNOME_GRAPHICS */ /* Gnome interface */
 /* #define MSWIN_GRAPHICS */ /* Windows NT, CE, Graphics */
-/* #define TTY_GRAPHICS	*/ /* good old tty based graphics */
-/* #define X11_GRAPHICS */	/* X11 interface */
-/* #define QT_GRAPHICS */	/* Qt interface */
-/* #define GNOME_GRAPHICS */	/* Gnome interface */
-/* #define MSWIN_GRAPHICS */	/* Windows NT, CE, Graphics */
-#define IPHONE_GRAPHICS
- 
-#define TARGET_OS_IPHONE 1
 
+#define IPHONE_GRAPHICS
+#define TARGET_OS_IPHONE 1
 
 /*
  * Define the default window system.  This should be one that is compiled
@@ -246,6 +244,33 @@
 #else
 #define PERS_IS_UID 0
 #endif
+#endif
+
+/*
+ *      If COMPRESS is defined, it should contain the full path name of your
+ *      'compress' program.
+ *
+ *      If you define COMPRESS, you must also define COMPRESS_EXTENSION
+ *      as the extension your compressor appends to filenames after
+ *      compression. Currently, only UNIX fully implements
+ *      COMPRESS; other ports should be able to uncompress save files a
+ *      la unixmain.c if so inclined.
+ *
+ *      Defining ZLIB_COMP builds in support for zlib compression. If you
+ *      define ZLIB_COMP, you must link with a zlib library. Not all ports
+ *      support ZLIB_COMP.
+ *
+ *      COMPRESS and ZLIB_COMP are mutually exclusive.
+ *
+ */
+
+#if defined(UNIX) && !defined(ZLIB_COMP) && !defined(COMPRESS)
+/* path and file name extension for compression program */
+#define COMPRESS "/usr/bin/compress" /* Lempel-Ziv compression */
+#define COMPRESS_EXTENSION ".Z"      /* compress's extension */
+/* An example of one alternative you might want to use: */
+/* #define COMPRESS "/usr/local/bin/gzip" */ /* FSF gzip compression */
+/* #define COMPRESS_EXTENSION ".gz" */       /* normal gzip extension */
 #endif
 
 #if TARGET_OS_IPHONE
@@ -494,7 +519,7 @@ typedef unsigned char uchar;
  * Only available with POSIX_TYPES or GNU C */
 /* #define MSGHANDLER */
 
-#define STATUS_HILITES        /* support hilites of status fields */
+#define STATUS_HILITES         /* support hilites of status fields */
 
 /* #define WINCHAIN */              /* stacked window systems */
 

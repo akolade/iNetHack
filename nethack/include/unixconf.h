@@ -246,9 +246,9 @@
 /* fcntl(2) is a POSIX-portable call for manipulating file descriptors.
  * Comment out the USE_FCNTL if for some reason you have a strange
  * OS/filesystem combination for which fcntl(2) does not work. */
-//jrd #ifdef POSIX_TYPES
-//jrd #define USE_FCNTL
-//jrd #endif
+// #ifdef POSIX_TYPES
+// #define USE_FCNTL
+// #endif
 
 /*
  * The remainder of the file should not need to be changed.
