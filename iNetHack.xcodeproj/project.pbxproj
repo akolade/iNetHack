@@ -178,8 +178,8 @@
 		FB65445629884A0E002F4737 /* pixelhack32x32.png in Resources */ = {isa = PBXBuildFile; fileRef = FB65445529884A0E002F4737 /* pixelhack32x32.png */; };
 		FB65445829884A98002F4737 /* chozo32b.png in Resources */ = {isa = PBXBuildFile; fileRef = FB65445729884A98002F4737 /* chozo32b.png */; };
 		FB6CDF7829944BF400BD5D0E /* lib in Resources */ = {isa = PBXBuildFile; fileRef = FB6CDF7729944BF400BD5D0E /* lib */; };
-		FB6CDF9D29B9C31A00BD5D0E /* tiles32classic.png in Resources */ = {isa = PBXBuildFile; fileRef = FB6CDF9C29B9C31500BD5D0E /* tiles32classic.png */; };
 		FB6CDF992996977600BD5D0E /* Px437_IBM_VGA_8x16.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FB6CDF982996976300BD5D0E /* Px437_IBM_VGA_8x16.ttf */; };
+		FB6CDF9D29B9C31A00BD5D0E /* tiles32classic.png in Resources */ = {isa = PBXBuildFile; fileRef = FB6CDF9C29B9C31500BD5D0E /* tiles32classic.png */; };
 		FBA6C9DA1B47442C006C88B5 /* nevanda32.png in Resources */ = {isa = PBXBuildFile; fileRef = FBA6C9D81B47442C006C88B5 /* nevanda32.png */; };
 		FBA6D35E1D52410A006B4238 /* TextInputView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FBA6D35D1D52410A006B4238 /* TextInputView.xib */; };
 		FBAC441C298C379500CCFA26 /* mines.des in Resources */ = {isa = PBXBuildFile; fileRef = FBAC436C298C378A00CCFA26 /* mines.des */; };
@@ -539,11 +539,7 @@
 		43C0DDE90FE79E3C00B63ED3 /* display.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = display.h; sourceTree = "<group>"; };
 		43C0DDEA0FE79E3C00B63ED3 /* dlb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dlb.h; sourceTree = "<group>"; };
 		43C0DDEB0FE79E3C00B63ED3 /* dungeon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dungeon.h; sourceTree = "<group>"; };
-		43C0DDEC0FE79E3C00B63ED3 /* edog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = edog.h; sourceTree = "<group>"; };
-		43C0DDED0FE79E3C00B63ED3 /* emin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = emin.h; sourceTree = "<group>"; };
 		43C0DDEE0FE79E3C00B63ED3 /* engrave.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = engrave.h; sourceTree = "<group>"; };
-		43C0DDEF0FE79E3C00B63ED3 /* epri.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = epri.h; sourceTree = "<group>"; };
-		43C0DDF00FE79E3C00B63ED3 /* eshk.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = eshk.h; sourceTree = "<group>"; };
 		43C0DDF10FE79E3C00B63ED3 /* extern.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = extern.h; sourceTree = "<group>"; };
 		43C0DDF20FE79E3C00B63ED3 /* flag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = flag.h; sourceTree = "<group>"; };
 		43C0DDF30FE79E3C00B63ED3 /* func_tab.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = func_tab.h; sourceTree = "<group>"; };
@@ -569,7 +565,6 @@
 		43C0DE070FE79E3C00B63ED3 /* monst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = monst.h; sourceTree = "<group>"; };
 		43C0DE080FE79E3C00B63ED3 /* monsym.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = monsym.h; sourceTree = "<group>"; };
 		43C0DE090FE79E3C00B63ED3 /* mttypriv.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mttypriv.h; sourceTree = "<group>"; };
-		43C0DE0A0FE79E3C00B63ED3 /* nhlan.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nhlan.h; sourceTree = "<group>"; };
 		43C0DE0B0FE79E3C00B63ED3 /* ntconf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ntconf.h; sourceTree = "<group>"; };
 		43C0DE0C0FE79E3C00B63ED3 /* obj.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = obj.h; sourceTree = "<group>"; };
 		43C0DE0D0FE79E3C00B63ED3 /* objclass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = objclass.h; sourceTree = "<group>"; };
@@ -600,7 +595,6 @@
 		43C0DE260FE79E3C00B63ED3 /* trampoli.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = trampoli.h; sourceTree = "<group>"; };
 		43C0DE270FE79E3C00B63ED3 /* trap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = trap.h; sourceTree = "<group>"; };
 		43C0DE280FE79E3C00B63ED3 /* unixconf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = unixconf.h; sourceTree = "<group>"; };
-		43C0DE290FE79E3C00B63ED3 /* vault.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vault.h; sourceTree = "<group>"; };
 		43C0DE2A0FE79E3C00B63ED3 /* vision.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vision.h; sourceTree = "<group>"; };
 		43C0DE2B0FE79E3C00B63ED3 /* vmsconf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vmsconf.h; sourceTree = "<group>"; };
 		43C0DE2C0FE79E3C00B63ED3 /* wceconf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wceconf.h; sourceTree = "<group>"; };
@@ -674,8 +668,8 @@
 		FB65445729884A98002F4737 /* chozo32b.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chozo32b.png; sourceTree = "<group>"; };
 		FB6CDF352994446700BD5D0E /* iNetHack2-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "iNetHack2-Bridging-Header.h"; sourceTree = "<group>"; };
 		FB6CDF7729944BF400BD5D0E /* lib */ = {isa = PBXFileReference; lastKnownFileType = folder; path = lib; sourceTree = "<group>"; };
-		FB6CDF9C29B9C31500BD5D0E /* tiles32classic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tiles32classic.png; sourceTree = "<group>"; };
 		FB6CDF982996976300BD5D0E /* Px437_IBM_VGA_8x16.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Px437_IBM_VGA_8x16.ttf; sourceTree = "<group>"; };
+		FB6CDF9C29B9C31500BD5D0E /* tiles32classic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tiles32classic.png; sourceTree = "<group>"; };
 		FBA6C9D81B47442C006C88B5 /* nevanda32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nevanda32.png; sourceTree = "<group>"; };
 		FBA6D35D1D52410A006B4238 /* TextInputView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TextInputView.xib; sourceTree = "<group>"; };
 		FBAC436A298C378A00CCFA26 /* medusa-1.lev */ = {isa = PBXFileReference; lastKnownFileType = file; name = "medusa-1.lev"; path = "nethack/dat/medusa-1.lev"; sourceTree = "<group>"; };
@@ -1186,11 +1180,7 @@
 				43C0DDE90FE79E3C00B63ED3 /* display.h */,
 				43C0DDEA0FE79E3C00B63ED3 /* dlb.h */,
 				43C0DDEB0FE79E3C00B63ED3 /* dungeon.h */,
-				43C0DDEC0FE79E3C00B63ED3 /* edog.h */,
-				43C0DDED0FE79E3C00B63ED3 /* emin.h */,
 				43C0DDEE0FE79E3C00B63ED3 /* engrave.h */,
-				43C0DDEF0FE79E3C00B63ED3 /* epri.h */,
-				43C0DDF00FE79E3C00B63ED3 /* eshk.h */,
 				43C0DDF10FE79E3C00B63ED3 /* extern.h */,
 				43C0DDF20FE79E3C00B63ED3 /* flag.h */,
 				43C0DDF30FE79E3C00B63ED3 /* func_tab.h */,
@@ -1218,7 +1208,6 @@
 				43C0DE070FE79E3C00B63ED3 /* monst.h */,
 				43C0DE080FE79E3C00B63ED3 /* monsym.h */,
 				43C0DE090FE79E3C00B63ED3 /* mttypriv.h */,
-				43C0DE0A0FE79E3C00B63ED3 /* nhlan.h */,
 				43C0DE0B0FE79E3C00B63ED3 /* ntconf.h */,
 				43C0DE0C0FE79E3C00B63ED3 /* obj.h */,
 				43C0DE0D0FE79E3C00B63ED3 /* objclass.h */,
@@ -1250,7 +1239,6 @@
 				43C0DE260FE79E3C00B63ED3 /* trampoli.h */,
 				43C0DE270FE79E3C00B63ED3 /* trap.h */,
 				43C0DE280FE79E3C00B63ED3 /* unixconf.h */,
-				43C0DE290FE79E3C00B63ED3 /* vault.h */,
 				43C0DE2A0FE79E3C00B63ED3 /* vision.h */,
 				43C0DE2B0FE79E3C00B63ED3 /* vmsconf.h */,
 				43C0DE2C0FE79E3C00B63ED3 /* wceconf.h */,

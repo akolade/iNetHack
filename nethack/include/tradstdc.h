@@ -429,11 +429,13 @@ typedef genericptr genericptr_t; /* (void *) or (char *) */
 #if __GNUC__ >= 3
 #define UNUSED __attribute__((unused))
 #define NORETURN __attribute__((noreturn))
+#if (!defined(__linux__) && !defined(__APPLE__)) || defined(GCC_URWARN)
 /* disable gcc's __attribute__((__warn_unused_result__)) since explicitly
    discarding the result by casting to (void) is not accepted as a 'use' */
 //iNethack comment out next 2 lines so we can compile
 // #define __warn_unused_result__ /*empty*/
 // #define warn_unused_result /*empty*/
+#endif
 #endif
 #endif
 
