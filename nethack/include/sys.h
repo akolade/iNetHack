@@ -51,6 +51,7 @@ struct sysopt {
 
 extern struct sysopt sysopt;
 
-#define SYSOPT_SEDUCE sysopt.seduce
+// iNethack2: enable seduce.
+#define SYSOPT_SEDUCE 1
 
 #endif /* SYS_H */
