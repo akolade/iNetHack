@@ -128,7 +128,7 @@ static float _colorTable[][4] = {
 
         if (ibmTileset) {
             font = [UIFont fontWithName:@"Px437_IBM_VGA_8x16" size:64];
-            NSLog(@"glyph %d, spcl %d, tile %d %c", g, special, tile, ochar);
+            //NSLog(@"glyph %d, spcl %d, tile %d %c", g, special, tile, ochar);
             int baseTile = tile;
 
             // Adjust for special wall tiles (see tile.c)
@@ -152,7 +152,7 @@ static float _colorTable[][4] = {
             }
         }
 
-        NSLog(@"glyph %d, tile %d %C", g, tile, (unichar) ochar);
+        //NSLog(@"glyph %d, tile %d %C", g, tile, (unichar) ochar);
 
         NSString *s = [NSString stringWithFormat:@"%C", (unichar)ochar];
         CGSize size = [s sizeWithAttributes:@{NSFontAttributeName:font}];
