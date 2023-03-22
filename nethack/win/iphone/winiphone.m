@@ -652,7 +652,7 @@ getlock(void)
 
 	const char* fq_lock = fqname(lock, LEVELPREFIX, 1);
 	if ((fd = open(lock, O_RDWR | O_EXCL | O_CREAT, 0644)) == -1) {
-		//char c = yn("There are files from a game in progress. Recover?");
+        //char c = yn("There are files from a game in progress. Recover?");
         char c = 'y'; // 2.1.0+: autoload checkpoint file to work smoothly with new saving method.
 		if (c != 'y' && c != 'Y') {
 			int fail = unlink(lock);
@@ -896,12 +896,14 @@ void iphone_main() {
 	getlock();
 
 	register int fd;
+    bool restored = false;
 	if ((fd = restore_saved_game()) >= 0) {
 #ifdef WIZARD
 		/* Since wizard is actually flags.debug, restoring might
 		 * overwrite it.
 		 */
 		boolean remember_wiz_mode = wizard;
+        restored = true;
 #endif
 		//(void) chmod(fq_save,0);	/* disallow parallel restores */
 		(void) signal(SIGINT, (SIG_RET_TYPE) done1);
@@ -931,22 +933,19 @@ void iphone_main() {
 			    //compress(fq_save);
 			}
 		}
-		//jrd flags.move = 0;
 	} else {
 	not_recovered:
+        restored = false;
 		player_selection();
 		newgame();
 		//wd_message();
-		
-		//jrdflags.move = 0;
         set_wear(0);
 		(void) pickup(1);
 	}
 	
 	iphone_override_options();
 	[[MainViewController instance] setGameInProgress:YES];
-	//jrdmoveloop();
-    moveloop(false);
+	moveloop(restored);
 	[[MainViewController instance] setGameInProgress:NO];
 	exit(EXIT_SUCCESS);
 }
