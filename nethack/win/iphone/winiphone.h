@@ -49,7 +49,7 @@ void iphone_mark_synch();
 void iphone_wait_synch();
 void iphone_cliparound(int x, int y);
 void iphone_cliparound_window(winid wid, int x, int y);
-void iphone_print_glyph(winid wid, XCHAR_P x, XCHAR_P y, int glyph);
+void iphone_print_glyph(winid wid, XCHAR_P x, XCHAR_P y, int glyph, int ignore);
 void iphone_raw_print(const char *str);
 void iphone_raw_print_bold(const char *str);
 int iphone_nhgetch();
@@ -63,7 +63,7 @@ void iphone_number_pad(int num);
 void iphone_delay_output();
 void iphone_start_screen();
 void iphone_end_screen();
-void iphone_outrip(winid wid, int how);
+void iphone_outrip(winid wid, int how, long ignore);
 
 // bones will be loaded
 void iphone_will_load_bones(const char *bonesid);

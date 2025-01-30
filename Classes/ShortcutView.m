@@ -27,6 +27,7 @@
 
 NSString *const ShortcutPrefencesIdentifier = @"Shortcut Bar";
 CGSize ShortcutTileSize;
+BOOL colorInvert; // Textmode: White background, black becomes white.
 #define ShortcutMainMenuIdentifier @"mainMenu"
 #define ShortcutKeyboardIdentifier @"keyboard"
 #define ShortcutLogIdentifier @"log"
@@ -52,6 +53,9 @@ static Shortcut *ShortcutForIdentifier (NSString *identifier) {
 #define BackgroundColor  UIColor.darkGrayColor.CGColor
 #define HighlightColor   UIColor.greenColor.CGColor
 
+#define TextColorInvert  UIColor.blackColor.CGColor
+#define BackgroundColorInvert  UIColor.lightGrayColor.CGColor
+
 @interface ShortcutLayer : CALayer
 {
 	NSString *title;
@@ -68,11 +72,13 @@ static Shortcut *ShortcutForIdentifier (NSString *identifier) {
 {
 	if (self = [super init]) {
         ShortcutTileSize =  CGSizeMake(40, 40);
+        colorInvert = [[NSUserDefaults standardUserDefaults] floatForKey:@"colorInvert"];
+
         if ([[UIScreen mainScreen] bounds].size.width>900)  //iNethack2: increase shortcut boxes slightly for larger screens
             ShortcutTileSize =  CGSizeMake(60, 60);
 		self.opacity       = 1.0f;
 		self.isHighlighted = NO;
-		self.borderColor   = UIColor.whiteColor.CGColor;
+        self.borderColor   = colorInvert?[UIColor blackColor].CGColor:[UIColor whiteColor].CGColor;
         self.borderWidth   = 0.5;
 		self.cornerRadius  = 5;
 		self.bounds        = (CGRect){CGPointZero, ShortcutTileSize};
@@ -88,7 +94,7 @@ static Shortcut *ShortcutForIdentifier (NSString *identifier) {
 - (void)setIsHighlighted:(BOOL)flag
 {
 	isHighlighted = flag;
-	self.backgroundColor = self.isHighlighted ? HighlightColor : BackgroundColor;
+    self.backgroundColor = self.isHighlighted ? HighlightColor : colorInvert ? BackgroundColorInvert : BackgroundColor;
 }
 
 - (void)drawInContext:(CGContextRef)context
@@ -99,7 +105,11 @@ static Shortcut *ShortcutForIdentifier (NSString *identifier) {
         if ([[UIScreen mainScreen] bounds].size.width>900)  //iNethack2: increase shortcut font slightly for larger screens.
             font = [UIFont boldSystemFontOfSize:16];
         UIGraphicsPushContext(context);
-		CGContextSetFillColorWithColor(context, TextColor);
+        if (colorInvert) {
+            CGContextSetFillColorWithColor(context, TextColorInvert);
+        } else {
+            CGContextSetFillColorWithColor(context, TextColor);
+        }
         CGSize stringSize = [self.title sizeWithAttributes: @{NSFontAttributeName: font}];
 		CGPoint p;
         p.x = (self.bounds.size.width - stringSize.width) / 2;

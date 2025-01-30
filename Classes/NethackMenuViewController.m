@@ -150,12 +150,13 @@ extern short glyph2tile[];
 
 - (void)viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:animated];
+    colorInvert = [[NSUserDefaults standardUserDefaults] floatForKey:@"colorInvert"];
 	tv = (UITableView *) self.view;
-	tv.backgroundColor = [UIColor blackColor];
+    tv.backgroundColor = colorInvert?[UIColor whiteColor]:[UIColor blackColor];
     tv.allowsSelection=TRUE; //iNethack2: to help fix bugginess with amount selection transition
     tv.separatorStyle = UITableViewCellSeparatorStyleNone; //iNethack2: prevent line separator
-    self.navigationController.navigationBar.backgroundColor = [UIColor blackColor];
-    self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName : [UIColor whiteColor]};
+    self.navigationController.navigationBar.backgroundColor = colorInvert?[UIColor whiteColor]:[UIColor blackColor];
+    self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName : colorInvert?[UIColor blackColor]:[UIColor whiteColor]};
 }
 
 //--iNethack2 added to set the background color of headers in inventory
@@ -278,7 +279,7 @@ extern short glyph2tile[];
 	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
 	if (!cell) {
 		cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellId] autorelease];
-		cell.textLabel.textColor = [UIColor whiteColor];
+		cell.textLabel.textColor = colorInvert?[UIColor blackColor]:[UIColor whiteColor];
 	}
     cell.backgroundColor = [UIColor clearColor];
 

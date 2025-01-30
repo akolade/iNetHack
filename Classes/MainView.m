@@ -63,6 +63,9 @@
     maxTileSize = CGSizeMake(48,48);    //iNethack2 increasing max zoom-in a little bit.
 	minTileSize = CGSizeMake(8,8);
 	offset = CGPointMake(0,0);
+    asciiTileset = NO;
+    colorInvert = [[NSUserDefaults standardUserDefaults] floatForKey:@"colorInvert"];
+    
 	float ts = [[NSUserDefaults standardUserDefaults] floatForKey:kKeyTileSize];
 	tileSize = CGSizeMake(ts,ts);
 	if (tileSize.width > maxTileSize.width) {
@@ -94,6 +97,7 @@
         }
         tileSet = [[AsciiTileSet alloc] initWithTileSize:tilesetTileSize];
 	} else {
+        asciiTileset = NO;
         NSString *imgName = [NSString stringWithFormat:@"%@.png", tilesetName];
 		UIImage *tilesetImage = [UIImage imageNamed:imgName];
 		if (!tilesetImage) {
@@ -223,8 +227,16 @@
     start = CGPointMake(-mainViewController.clip.x*tileSize.width + center.x + offset.x,
 						-mainViewController.clip.y*tileSize.height + center.y + offset.y);
     // indicate level boundaries
-	float bgColor[] = {0.1f,0.1f,0.f,1.0f};
-	float levelBgColor[] = {0.0f,0.0f,0.0f,1.0f};
+    float bgColor[] = {colorInvert ? 0.9f : 0.1f,
+                            colorInvert ? 0.9f : 0.1f,
+                            colorInvert ? 0.9f : 0.1f,
+                            1.0f};
+
+    float levelBgColor[] = {colorInvert ? 1.0f : 0.0f,
+                            colorInvert ? 1.0f : 0.0f,
+                            colorInvert ? 1.0f : 0.0f,
+                            1.0f};
+    
     CGColorRef   bgColorRef = [[UIColor colorWithRed:bgColor[0] green:bgColor[1] blue:bgColor[2] alpha:bgColor[3]] CGColor];
     CGColorRef   levelBgColorRef = [[UIColor colorWithRed:levelBgColor[0] green:levelBgColor[1] blue:levelBgColor[2] alpha:levelBgColor[3]] CGColor];
     //CGContextSetStrokeColor(ctx, playerRectColor);
@@ -255,7 +267,14 @@
 
     versionLocation.x += borderRect.size.width - size.width;
 	versionLocation.y += borderRect.size.height;
-	float versionStringColor[] = {0.8f,0.8f,0.8f,1.0f};
+
+    float versionStringColor[] = {
+        colorInvert ? 0.2f : 0.8f,
+        colorInvert ? 0.2f : 0.8f,
+        colorInvert ? 0.2f : 0.8f,
+        1.0f
+    };
+    
     UIColor *versionStringColorCol = [UIColor colorWithRed:versionStringColor[0] green:versionStringColor[1] blue:versionStringColor[2] alpha:versionStringColor[3]];
 
     [bundleVersionString drawAtPoint:versionLocation withAttributes:@ { NSFontAttributeName: statusFont, NSForegroundColorAttributeName: versionStringColorCol}];
@@ -367,7 +386,7 @@
 	CGSize total = CGSizeMake(size.width, 0);
 	CGRect backgroundRect = CGRectMake(p.x, p.y, size.width, size.height);
     NSShadow *shadow = [NSShadow new];
-    [shadow setShadowColor: [UIColor colorWithWhite:0.0f alpha:1.0f]];
+    [shadow setShadowColor: colorInvert?[UIColor colorWithWhite:1.0f alpha:1.0f]:[UIColor colorWithWhite:0.0f alpha:1.0f]];
     [shadow setShadowOffset: CGSizeMake(1.0f, 1.0f)];
     [shadow setShadowBlurRadius:1.5f];
     
@@ -381,11 +400,7 @@
 		CGContextFillRect(ctx, backgroundRect);
         CGSize tmp = [s sizeWithAttributes:@{NSFontAttributeName:font}];
         //iNethack2: some users reported missing status bars. Couldn't reproduce, but using below as it worked for the messages...
-        [s drawAtPoint:p withAttributes:@{ NSFontAttributeName:font, NSForegroundColorAttributeName: [UIColor whiteColor], NSShadowAttributeName: shadow}];
-        //iNethack2: old drawAtPoint below
-        //   [s drawAtPoint:p withAttributes: @ {NSFontAttributeName:font, NSForegroundColorAttributeName: [UIColor whiteColor],NSShadowAttributeName: shadow,
-        // NSBackgroundColorAttributeName: [UIColor clearColor]}]; //iNethack2: fix for drawAtPoint
-
+        [s drawAtPoint:p withAttributes:@{ NSFontAttributeName:font, NSForegroundColorAttributeName: colorInvert?[UIColor blackColor]:[UIColor whiteColor], NSShadowAttributeName: shadow}];
         p.y += tmp.height;
 		total.height += tmp.height;
 	}
@@ -403,7 +418,7 @@
     CGPoint center = self.subViewedCenter;
 
     NSShadow *shadow = [NSShadow new];
-    [shadow setShadowColor: [UIColor colorWithWhite:0.0f alpha:1.0f]];
+    [shadow setShadowColor: colorInvert?[UIColor colorWithWhite:1.0f alpha:1.0f]:[UIColor colorWithWhite:0.0f alpha:1.0f]];
     [shadow setShadowOffset: CGSizeMake(1.0f, 1.0f)];
     [shadow setShadowBlurRadius:1.5f];
     
@@ -412,13 +427,18 @@
 		[self drawTiledMap:map clipRect:rect];
 		if (map.blocking) {
 			CGContextRef ctx = UIGraphicsGetCurrentContext();
-            CGColorRef   whiteColorRef = [[UIColor colorWithRed:1 green:1 blue:1 alpha:1] CGColor];
+            CGColorRef whiteColorRef = [[UIColor colorWithRed:1 green:1 blue:1 alpha:1] CGColor];
+            if (colorInvert) {
+                whiteColorRef = [[UIColor colorWithRed:0 green:0 blue:0 alpha:1] CGColor];
+            } else {
+                whiteColorRef = [[UIColor colorWithRed:1 green:1 blue:1 alpha:1] CGColor];
+            }
             CGContextSetFillColorWithColor(ctx, whiteColorRef);
 			NSString *m = @"Single tap to continue ...";
             CGSize size = [m sizeWithAttributes:@{NSFontAttributeName:statusFont}];
 			center.x -= size.width/2;
 			center.y -= size.height/2;
-            [m drawAtPoint:center withAttributes:@{NSFontAttributeName:statusFont, NSForegroundColorAttributeName: [UIColor whiteColor], NSShadowAttributeName: shadow}];
+            [m drawAtPoint:center withAttributes:@{NSFontAttributeName:statusFont, NSForegroundColorAttributeName: colorInvert?[UIColor blackColor]:[UIColor whiteColor], NSShadowAttributeName: shadow}];
         }
 	}
 	
@@ -465,7 +485,7 @@
 				}
 				if (p.x + size.width < bounds.width) {
                     size = [s sizeWithAttributes: @ { NSFontAttributeName: statusFont}];
-                    [s drawAtPoint:p withAttributes:@{ NSFontAttributeName:statusFont, NSForegroundColorAttributeName: [UIColor whiteColor], NSShadowAttributeName: shadow}];
+                    [s drawAtPoint:p withAttributes:@{ NSFontAttributeName:statusFont, NSForegroundColorAttributeName: colorInvert?[UIColor blackColor]:[UIColor whiteColor], NSShadowAttributeName: shadow}];
 					p.x += size.width + 4;
 				} else {
 					if (p.x != 0) {
@@ -474,7 +494,7 @@
 					p.x = 0;
 					UIFont *font = [self fontAndSize:&size forString:s withFont:statusFont];
                     size = [s sizeWithAttributes: @ { NSFontAttributeName: font}];
-                    [s drawAtPoint:p withAttributes:@{ NSFontAttributeName:font, NSForegroundColorAttributeName: [UIColor whiteColor], NSShadowAttributeName: shadow}];
+                    [s drawAtPoint:p withAttributes:@{ NSFontAttributeName:font, NSForegroundColorAttributeName: colorInvert?[UIColor blackColor]:[UIColor whiteColor], NSShadowAttributeName: shadow}];
 					p.x += size.width;
 				}
 			}

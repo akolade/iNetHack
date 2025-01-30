@@ -48,6 +48,7 @@
 	CGSize tilesetTileSize;
 	BOOL asciiTileset;
     BOOL ibmTileset;
+    BOOL colorInvert; // Textmode: White background, black becomes white.
 	UIButton *moreButton;
 	
 	NSString *bundleVersionString;
@@ -57,6 +58,7 @@
 
 @property (nonatomic, readonly) CGPoint start;
 @property (nonatomic, readonly) CGSize tileSize;
+@property (nonatomic, readonly) BOOL colorInvert;
 @property (nonatomic, readonly) IBOutlet UITextField *dummyTextField;
 @property (nonatomic, readonly, getter=isMoved) BOOL moved;
 @property (nonatomic, readonly, retain) TileSet *tileSet;

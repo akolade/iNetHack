@@ -27,7 +27,7 @@
 
 @implementation ExtendedCommandViewController
 
-@synthesize result, filteredExtCmd, filteredExtCmdIndex;
+@synthesize result, filteredExtCmd, filteredExtCmdIndex, colorInvert;
 
 
 // Override to allow orientations other than the default portrait orientation.
@@ -52,8 +52,9 @@
 - (void)viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:animated];
 	result = -1;
+    colorInvert = [[NSUserDefaults standardUserDefaults] floatForKey:@"colorInvert"];
 	UITableView *tv = (UITableView *) self.view;
-	tv.backgroundColor = [UIColor blackColor];
+    tv.backgroundColor = !colorInvert?[UIColor blackColor]:[UIColor whiteColor];
     tv.separatorStyle = UITableViewCellSeparatorStyleNone;
     //iNethack2: Update iOS9: this scrolling fix no longer needed. Commenting out.
     /*
@@ -169,8 +170,8 @@
 	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
 	if (!cell) {
         cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero] autorelease];
-		cell.backgroundColor = [UIColor blackColor];
-		cell.textLabel.textColor = [UIColor whiteColor];
+        cell.backgroundColor = !colorInvert?[UIColor blackColor]:[UIColor whiteColor];
+        cell.textLabel.textColor = colorInvert?[UIColor blackColor]:[UIColor whiteColor];
 	}
 	int row = (int) [indexPath row];
 

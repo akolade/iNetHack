@@ -28,6 +28,7 @@
 	
 	NSArray *colorTable;
     BOOL ibmTileset;
+    BOOL colorInvert;
 
 }
 

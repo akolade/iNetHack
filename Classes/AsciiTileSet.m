@@ -54,12 +54,19 @@ static float _colorTable[][4] = {
 		size_t size = numImages * sizeof(CGImageRef);
 		images = malloc(size);
 		memset(images, 0, size);
-		UIColor *brightGreenColor = [[UIColor alloc] initWithRed:0 green:1 blue:0 alpha:1];
+
+        colorInvert = [[NSUserDefaults standardUserDefaults] floatForKey:@"colorInvert"];
+
+        UIColor *brightGreenColor = [[UIColor alloc] initWithRed:0 green:1 blue:0 alpha:1];
 		UIColor *brightBlueColor = [[UIColor alloc] initWithRed:0 green:0 blue:1 alpha:1];
 		UIColor *brightMagentaColor = [[UIColor alloc] initWithRed:0.2f green:0 blue:0.2f alpha:1];
 		UIColor *brightCyanColor = [[UIColor alloc] initWithRed:0 green:1 blue:1 alpha:1];
         UIColor *blackColor = [[UIColor alloc] initWithRed:0.2f green:0.2f blue:0.2f alpha:1];
-
+        UIColor *whiteColor = colorInvert ? [[UIColor alloc] initWithRed:0.2f green:0.2f blue:0.2f alpha:1] : [UIColor whiteColor];
+        // Darken the yellow a bit for invert mode.
+        UIColor *yellowColor = colorInvert ? [[UIColor alloc] initWithRed:0.9f green:0.9f blue:0.1f alpha:1] : [UIColor yellowColor];
+        UIColor *monoColor = colorInvert ? [UIColor darkGrayColor] : [UIColor lightGrayColor];
+        
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         NSString *theTileset = [defaults objectForKey:@"tileset"];
         ibmTileset = NO;
@@ -68,22 +75,22 @@ static float _colorTable[][4] = {
         }
         if ([theTileset isEqualToString:@"asciimono"]) {
             colorTable = [[NSArray alloc] initWithObjects:
-                          [UIColor lightGrayColor],
-                          [UIColor lightGrayColor],
-                          [UIColor lightGrayColor],
-                          [UIColor lightGrayColor],
-                          [UIColor lightGrayColor],
-                          [UIColor lightGrayColor],
-                          [UIColor lightGrayColor],
-                          [UIColor lightGrayColor],
-                          [UIColor lightGrayColor], // NO_COLOR
-                          [UIColor lightGrayColor],
-                          [UIColor lightGrayColor],
-                          [UIColor lightGrayColor],
-                          [UIColor lightGrayColor],
-                          [UIColor lightGrayColor],
-                          [UIColor lightGrayColor],
-                          [UIColor lightGrayColor],
+                          monoColor,
+                          monoColor,
+                          monoColor,
+                          monoColor,
+                          monoColor,
+                          monoColor,
+                          monoColor,
+                          monoColor,
+                          monoColor, // NO_COLOR
+                          monoColor,
+                          monoColor,
+                          monoColor,
+                          monoColor,
+                          monoColor,
+                          monoColor,
+                          monoColor,
                           nil];
         } else {
             colorTable = [[NSArray alloc] initWithObjects:
@@ -98,17 +105,20 @@ static float _colorTable[][4] = {
 					  [UIColor whiteColor], // NO_COLOR
 					  [UIColor orangeColor],
 					  brightGreenColor,
-					  [UIColor yellowColor],
+                      yellowColor,
 					  brightBlueColor,
 					  brightMagentaColor,
 					  brightCyanColor,
-					  [UIColor whiteColor],
+                      whiteColor,
 					  nil];
         }
 		[brightGreenColor release];
 		[brightBlueColor release];
 		[brightMagentaColor release];
 		[brightCyanColor release];
+        [yellowColor release];
+        [whiteColor release];
+        [monoColor release];
 	}
 	return self;
 }
@@ -174,7 +184,12 @@ static float _colorTable[][4] = {
                 color = [UIColor whiteColor];
             }
         }
-		CGContextSetFillColorWithColor(ctx, [UIColor blackColor].CGColor);
+        UIColor *bgColor = [UIColor blackColor];
+        if (colorInvert) {
+            bgColor = [UIColor whiteColor];
+        }
+        
+        CGContextSetFillColorWithColor(ctx, bgColor.CGColor);
 		CGRect r = CGRectZero;
 		r.size = tileSize;
 		CGContextFillRect(ctx, r);

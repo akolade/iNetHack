@@ -352,7 +352,7 @@ void iphone_cliparound_window(winid wid, int x, int y) {
 	NSLog(@"iphone_cliparound_window %d %d,%d", wid, x, y);
 }
 
-void iphone_print_glyph(winid wid, XCHAR_P x, XCHAR_P y, int glyph) {
+void iphone_print_glyph(winid wid, XCHAR_P x, XCHAR_P y, int glyph, int ignore) {
 	//NSLog(@"iphone_print_glyph %d %d,%d", wid, x, y);
 	Window *w = [[MainViewController instance] windowWithId:wid];
 	[w setGlyph:glyph atX:x y:y];
@@ -551,7 +551,7 @@ void iphone_end_screen() {
 	//NSLog(@"iphone_end_screen");
 }
 
-void iphone_outrip(winid wid, int how) {
+void iphone_outrip(winid wid, int how, long ignore) {
 	//NSLog(@"iphone_outrip %d", wid);
 }
 

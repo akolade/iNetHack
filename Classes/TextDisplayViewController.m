@@ -72,16 +72,18 @@
 
 - (void)viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:animated];
+    colorInvert = [[NSUserDefaults standardUserDefaults] floatForKey:@"colorInvert"];
+
 	if (self.isHTML) {
 		webView = [[UIWebView alloc] initWithFrame:self.view.frame];
-		webView.backgroundColor = [UIColor blackColor];
+		webView.backgroundColor = !colorInvert?[UIColor blackColor]:[UIColor whiteColor];
 		webView.delegate = self;
 		self.view = webView;
 		[webView release];
 	} else {
         textView = [[UITextView alloc] initWithFrame:self.view.frame];
-		textView.backgroundColor = [UIColor blackColor];
-		textView.textColor = [UIColor whiteColor];
+        textView.backgroundColor = !colorInvert?[UIColor blackColor]:[UIColor whiteColor];
+		textView.textColor = colorInvert?[UIColor blackColor]:[UIColor whiteColor];
 		textView.editable = NO;
         textView.scrollEnabled = NO;    //iOS9 fix: disable then enable scrolling so initial scrolling works
         textView.scrollEnabled = YES;   //...

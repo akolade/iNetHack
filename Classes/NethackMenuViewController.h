@@ -31,6 +31,7 @@
 	IBOutlet ItemAmountViewController *itemAmountViewController;
 	UITableView *tv;
 	BOOL selectAll;
+    BOOL colorInvert; // Textmode: White background, black becomes white.
 
 }
 @property (nonatomic, assign) Window *menuWindow;

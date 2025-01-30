@@ -28,5 +28,7 @@
 @property (nonatomic, readonly) int result;
 @property (nonatomic, readonly, retain) NSMutableArray *filteredExtCmd; /* visible list of extended commands */
 @property (nonatomic, readonly, retain) NSMutableArray *filteredExtCmdIndex; /* index of visible to full list of extended commands */
+@property (nonatomic, readonly) BOOL colorInvert; // Textmode: White background, black becomes white.
+
 
 @end

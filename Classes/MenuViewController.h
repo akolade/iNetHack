@@ -26,7 +26,7 @@
 @interface MenuViewController : UITableViewController <UITableViewDelegate, UITableViewDataSource> {
 	
 	UITableView *tv;
-
+    BOOL colorInvert; // Textmode: White background, black becomes white.
 }
 
 @property (nonatomic, retain) NSArray *menuItems;

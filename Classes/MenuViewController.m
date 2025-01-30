@@ -60,11 +60,12 @@
 
 - (void)viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:animated];
-	tv = (UITableView *) self.view;
-	tv.backgroundColor = [UIColor blackColor];
+    colorInvert = [[NSUserDefaults standardUserDefaults] floatForKey:@"colorInvert"];
+    tv = (UITableView *) self.view;
+    tv.backgroundColor = colorInvert?[UIColor whiteColor]:[UIColor blackColor];
     tv.separatorStyle = UITableViewCellSeparatorStyleNone; // iNethack2: prevent line separator
 
-    //iNethack2: fix for not scrolling all the way to bottom for iphone5+
+    //iNethack2: fix for not scrolling all the way to bottom for iphone5+/var/folders/_k/xgdmrll51_3g21f5nsv_trxw0000gn/T/simulator_screenshot_00F54EC7-C471-4767-8997-80B7B643CF29.png
     //iNethack2: only needed for iOS8 and less..
     if (NSFoundationVersionNumber <= NSFoundationVersionNumber_iOS_8_3) {
         long bottom;
@@ -109,7 +110,7 @@
 	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
 	if (!cell) {
         cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero] autorelease];
-		cell.textLabel.textColor = [UIColor whiteColor];
+        cell.textLabel.textColor = colorInvert?[UIColor blackColor]:[UIColor whiteColor];
 	}
 	int row = (int) [indexPath row];
 	MenuItem *menuItem = [menuItems objectAtIndex:row];

@@ -26,6 +26,7 @@
 @interface TextDisplayViewController : UIViewController <UIWebViewDelegate> {
 	UIWebView *webView;
 	UITextView *textView;
+    BOOL colorInvert; // Textmode: White background, black becomes white.
 }
 
 @property (nonatomic, copy) NSString *text;

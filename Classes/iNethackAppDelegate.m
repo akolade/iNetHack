@@ -62,11 +62,9 @@
     //iNethack2 commented out below, added line after, to get rid of "Application windows are expected to have a root view controller at the end of application launch" message
     //	[window addSubview:mainNavigationController.view];
     [self.window setRootViewController:mainNavigationController];
-
     //[window addSubview:mainMenuViewController.view];
     [window makeKeyAndVisible];
     self.window.frame = [UIScreen mainScreen].bounds; //iNethack2
-
     [application setStatusBarHidden:YES];
 	
 	if (!badBonesSeen) {
