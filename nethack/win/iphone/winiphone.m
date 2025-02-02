@@ -31,6 +31,9 @@
 #import "NSString+Regexp.h"
 #import "TilePosition.h"
 
+#import <UIKit/UIKit.h>
+#import <CoreHaptics/CoreHaptics.h>
+
 // for md5 methods
 #import "Hearse.h"
 
@@ -60,6 +63,9 @@
 
 #undef DEFAULT_WINDOW_SYS
 #define DEFAULT_WINDOW_SYS "iphone"
+
+static CHHapticEngine *hapticEngine = nil;
+boolean dohaptics = TRUE;
 
 boolean winiphone_autokick = TRUE;
 boolean winiphone_clickable_tiles = FALSE;
@@ -725,10 +731,83 @@ void iphone_finished_bones(const char *bonesid) {
 	[[NSFileManager defaultManager] removeItemAtPath:dest error:&error];
 }
 //iNethack2: pass along the glyph cache reset
-void iphone_reset_glyph_cache() {
+void iphone_reset_glyph_cache(void) {
 	[[MainViewController instance] resetGlyphCache];
 }
 
+// Trigger haptic feedback when damaged.
+void iphone_haptic(int haptictype) {
+    dohaptics = [[NSUserDefaults standardUserDefaults] floatForKey:@"haptics"];
+    if ([[NSUserDefaults standardUserDefaults] objectForKey:@"haptics"] == nil) {
+        // Possible they haven't updated settings since this option was added. Default is true.
+        [[NSUserDefaults standardUserDefaults] setBool:TRUE forKey:@"haptics"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        dohaptics = TRUE;
+    }
+    if (!dohaptics) {
+        return;
+    }
+
+    if (@available(iOS 13.0, *)) { // Core Haptics requires iOS 13 or later
+        if (!hapticEngine) {  // Create the engine only once
+            // Check if the device supports haptics
+            if (!CHHapticEngine.capabilitiesForHardware.supportsHaptics) {
+                NSLog(@"Haptics not supported on this device");
+                dohaptics = FALSE;
+                return;
+            }
+
+            NSError *error = nil;
+            
+            hapticEngine = [[CHHapticEngine alloc] initAndReturnError:&error];
+            if (!hapticEngine) {
+                NSLog(@"Failed to create haptic engine: %@", error);
+                dohaptics = FALSE;
+                return; // Early return if engine creation fails
+            }
+            [hapticEngine startAndReturnError:&error];
+            if (error) {
+                NSLog(@"Failed to start haptic engine: %@", error);
+                dohaptics = FALSE;
+                hapticEngine = nil; // Reset if start fails. Important!
+                return;
+            }
+        }
+
+        NSError *error = nil;
+        CHHapticEvent *event = nil;
+        CHHapticEventParameter *intensity;
+        CHHapticEventParameter *sharpness;
+        if (haptictype == HAPTIC_VIBRATING) {
+            intensity = [[CHHapticEventParameter alloc] initWithParameterID:CHHapticEventParameterIDHapticIntensity value:1.0];
+            sharpness = [[CHHapticEventParameter alloc] initWithParameterID:CHHapticEventParameterIDHapticSharpness value:0.2];
+            event = [[CHHapticEvent alloc] initWithEventType:CHHapticEventTypeHapticContinuous parameters:@[intensity, sharpness] relativeTime:0.0 duration:0.6];
+        } else {
+            intensity = [[CHHapticEventParameter alloc] initWithParameterID:CHHapticEventParameterIDHapticIntensity value:1.0];
+            sharpness = [[CHHapticEventParameter alloc] initWithParameterID:CHHapticEventParameterIDHapticSharpness value:0.5];
+            event = [[CHHapticEvent alloc] initWithEventType:CHHapticEventTypeHapticContinuous parameters:@[intensity, sharpness] relativeTime:0.0 duration:0.2];
+        }
+        CHHapticPattern *pattern = [[CHHapticPattern alloc] initWithEvents:@[event] parameterCurves:@[] error:&error];
+                if (pattern) {
+                    id<CHHapticPatternPlayer> player = [hapticEngine createPlayerWithPattern:pattern error:&error];
+                    if (error) {
+                        NSLog(@"Error creating haptic player: %@", error.localizedDescription);
+                        return;
+                    }
+                    // Start the player
+                    [player startAtTime:0 error:&error];
+                    if (error) {
+                        NSLog(@"Error starting haptic player: %@", error.localizedDescription);
+                    }
+                } else {
+                    NSLog(@"Failed to create haptic pattern: %@", error);
+                }
+    } else {
+        // Use simple method.
+        UINotificationFeedbackGenerator *generator = [[UINotificationFeedbackGenerator alloc] init];
+        [generator notificationOccurred:UINotificationFeedbackTypeSuccess];
+    }
+}
 
 boolean
 check_version_64(version_data, filename, complain)

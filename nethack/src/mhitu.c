@@ -5,6 +5,9 @@
 
 #include "hack.h"
 #include "artifact.h"
+#if TARGET_OS_IPHONE
+#include "winiphone.h"
+#endif
 
 STATIC_VAR NEARDATA struct obj *mon_currwep = (struct obj *) 0;
 
@@ -2360,6 +2363,10 @@ mdamageu(mtmp, n)
 struct monst *mtmp;
 int n;
 {
+#if TARGET_OS_IPHONE
+    iphone_haptic(HAPTIC_DAMAGE);
+#endif
+
     context.botl = 1;
     if (Upolyd) {
         u.mh -= n;

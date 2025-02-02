@@ -4,6 +4,9 @@
 /* NetHack may be freely redistributed.  See license for details. */
 
 #include "hack.h"
+#if TARGET_OS_IPHONE
+#include "winiphone.h"
+#endif
 
 /* #define DEBUG */ /* uncomment for debugging */
 
@@ -2012,6 +2015,9 @@ invocation_message()
             Sprintf(buf, "under your %s", makeplural(body_part(FOOT)));
 
         You_feel("a strange vibration %s.", buf);
+        #if TARGET_OS_IPHONE
+        iphone_haptic(HAPTIC_VIBRATING);
+        #endif
         u.uevent.uvibrated = 1;
         if (otmp && otmp->spe == 7 && otmp->lamplit)
             pline("%s %s!", The(xname(otmp)),
@@ -2990,6 +2996,9 @@ register int n;
 register const char *knam;
 boolean k_format;
 {
+#if TARGET_OS_IPHONE
+    iphone_haptic(HAPTIC_DAMAGE);
+#endif
     if (Upolyd) {
         u.mh -= n;
         if (u.mhmax < u.mh)
