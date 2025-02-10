@@ -138,6 +138,28 @@ genl_status_update,
 genl_can_suspend_no,
 };
 
+// ScreenTimer object to handle updating map for animated tilesets.
+@interface ScreenTimer : NSObject
+@end
+
+@implementation ScreenTimer
+
+- (void)timerAction {
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        while (true) {
+            [[MainViewController instance] updateScreen];
+            
+            if ([[MainViewController instance] animFrame] == 0) {
+                [[MainViewController instance] setAnimFrame: 2];
+            } else {
+                [[MainViewController instance] setAnimFrame: 0];
+            }
+            usleep(500000); // sleep for 0.5 seconds.
+        }
+    });
+}
+@end
+
 @interface WinIPhone : NSObject {}
 
 + (void) triggerInitialize;
@@ -606,11 +628,14 @@ void iphone_init_options() {
         }
         [tmp getCString:flags.pickup_types maxLength:MAXOCLASSES encoding:NSASCIIStringEncoding];
     }
+
 #if TARGET_IPHONE_SIMULATOR
-    wizard = NO; //iNethack2 YES for sim usually..
-#else
+    wizard = YES; //iNethack2 YES for sim usually..
+#else */
     wizard = [defaults boolForKey:kOptionWizard];
+
 #endif
+
     winiphone_autokick = [defaults boolForKey:kOptionAutokick];
     //iNethack2: travel setting. not the travelcmd setting as that would prevent clickable tiles from working.
     winiphone_travel = [defaults boolForKey:kOptionTravel];
@@ -943,6 +968,11 @@ sys_random_seed()
 void iphone_main() {
 	int argc = 0;
 	char **argv = NULL;
+    
+    ScreenTimer *screenTimer = [[ScreenTimer alloc] init];
+    [screenTimer timerAction];
+    
+
 	
 	// from macmain.c, enables special levels like sokoban
 	x_maze_max = COLNO-1;

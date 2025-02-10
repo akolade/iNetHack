@@ -56,7 +56,7 @@ static MainViewController *instance;
 @implementation MainViewController
 
 @synthesize windows, clip, nethackEventQueue;
-@synthesize gameInProgress;
+@synthesize gameInProgress, animFrame;
 
 + (MainViewController *) instance {
 	return instance;
@@ -95,6 +95,7 @@ static MainViewController *instance;
 	lastSingleTapDelta = [[TilePosition alloc] init];
 	clip = [[TilePosition alloc] init];
 	dmath = [[DMath alloc] init];
+    animFrame = 0;
 	// read options
 	doubleTapSensitivity = [[NSUserDefaults standardUserDefaults] floatForKey:kOptionDoubleTapSensitivity];
 }

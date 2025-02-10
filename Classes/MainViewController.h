@@ -72,6 +72,7 @@
 	
 	BOOL gameInProgress;
 	BOOL keyboardReturnShouldQueueEscape;
+    int animFrame;
 	
 	NSTimeInterval doubleTapSensitivity;
 	
@@ -88,6 +89,7 @@
 @property (nonatomic, readonly) Window *statusWindow;
 @property (nonatomic, retain) NethackEventQueue *nethackEventQueue;
 @property (assign) BOOL gameInProgress;
+@property (assign) int animFrame;
 
 + (MainViewController *) instance;
 + (void) message:(NSString *)format, ...;

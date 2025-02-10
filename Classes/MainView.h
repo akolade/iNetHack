@@ -38,7 +38,8 @@
 
 	BOOL tiled;
 	TileSet *tileSet;
-	TileSet *tileSets[2];
+    TileSet *tileSetAnim;
+	TileSet *tileSets[3];
 	
 	CGPoint offset;
 	ShortcutView *shortcutView;
@@ -49,11 +50,14 @@
 	BOOL asciiTileset;
     BOOL ibmTileset;
     BOOL colorInvert; // Textmode: White background, black becomes white.
+    BOOL animatedTileset;
 	UIButton *moreButton;
 	
 	NSString *bundleVersionString;
     
     NSCache * cache; //iNethack2: glyph cache for faster rendering
+    NSCache * cache2; //iNethack2: second glyph cache for animated tilsets.
+    
 }
 
 @property (nonatomic, readonly) CGPoint start;
@@ -67,6 +71,7 @@
 @property (nonatomic, retain) Window *message;
 @property (nonatomic, readonly) CGPoint subViewedCenter;
 @property (nonatomic, readonly, retain) NSCache *cache; //iNethack2: glyph cache
+@property (nonatomic, readonly, retain) NSCache *cache2; //iNethack2: animated glyph cache
 
 - (void) drawTiledMap:(Window *)m clipRect:(CGRect)clipRect;
 - (void) checkForRogueLevel;

@@ -35,7 +35,7 @@
 
 @synthesize start, tileSize, dummyTextField, tileSet;
 @synthesize status, map, message;
-@synthesize cache;
+@synthesize cache, cache2;
 
 + (void) initialize {
 	@autoreleasepool {
@@ -64,6 +64,7 @@
 	minTileSize = CGSizeMake(8,8);
 	offset = CGPointMake(0,0);
     asciiTileset = NO;
+    animatedTileset = NO;
     colorInvert = [[NSUserDefaults standardUserDefaults] floatForKey:@"colorInvert"];
     
 	float ts = [[NSUserDefaults standardUserDefaults] floatForKey:kKeyTileSize];
@@ -81,6 +82,11 @@
 	if (!tilesetName) {
 		tilesetName = @"chozo32b";
 	}
+    if ([tilesetName hasSuffix:@"-anim"]) {
+        animatedTileset = true;
+        cache2 = [NSCache new];
+    }
+    
 	if ([tilesetName isEqualToString:@"ascii"]
         || [tilesetName isEqualToString:@"asciimono"]
         || [tilesetName isEqualToString:@"ibmgraphics"]) {
@@ -99,6 +105,7 @@
 	} else {
         asciiTileset = NO;
         NSString *imgName = [NSString stringWithFormat:@"%@.png", tilesetName];
+        NSString *animImgName = [NSString stringWithFormat:@"%@1.png", tilesetName];
 		UIImage *tilesetImage = [UIImage imageNamed:imgName];
 		if (!tilesetImage) {
 			tilesetImage = [UIImage imageNamed:@"chozo32b.png"];
@@ -106,11 +113,19 @@
 			maxTileSize = tilesetTileSize;
 			[[NSUserDefaults standardUserDefaults] setObject:@"chozo32b" forKey:kKeyTileset];
 			[[NSUserDefaults standardUserDefaults] synchronize];
+		}
+        tileSet = [[TileSet alloc] initWithImage:tilesetImage tileSize:tilesetTileSize];
+        if (animatedTileset) {
+            tilesetImage = [UIImage imageNamed:animImgName];
+            tileSetAnim = [[TileSet alloc] initWithImage:tilesetImage tileSize:tilesetTileSize];
         }
-		tileSet = [[TileSet alloc] initWithImage:tilesetImage tileSize:tilesetTileSize];
 	}
 	tileSets[0] = tileSet;
-	tileSets[1] = nil;
+    tileSets[1] = nil;
+
+    if (animatedTileset) {
+        tileSets[2] = tileSetAnim;
+    }
 	NSString *bundlePath = [[NSBundle mainBundle] resourcePath];
 	petMark = [[UIImage alloc] initWithContentsOfFile:[bundlePath stringByAppendingPathComponent:@"petmark.png"]];
 
@@ -223,6 +238,13 @@
 	CGPoint center = self.subViewedCenter;
 	center.x -= tileSize.width/2;
 	center.y -= tileSize.height/2;
+
+    // Check if animated tileset, and NOT rogue level.
+    if (animatedTileset && !(u.uz.dlevel && Is_rogue_level(&u.uz))) {
+        int tilesetIndex = 0;
+        tilesetIndex = [[MainViewController instance] animFrame];
+        tileSet = tileSets[tilesetIndex];
+    }
 
     start = CGPointMake(-mainViewController.clip.x*tileSize.width + center.x + offset.x,
 						-mainViewController.clip.y*tileSize.height + center.y + offset.y);
@@ -338,8 +360,13 @@
 - (UIImage *)imageForGlyph:(int)glyph size:(int)size
 {
     NSNumber * key = @(size*MAX_GLYPH + glyph);
-
-    UIImage * img = [cache objectForKey:key];
+    NSCache *curCache;
+    if ([[MainViewController instance] animFrame] == 0) {
+        curCache = cache;
+    } else {
+        curCache = cache2;
+    }
+    UIImage * img = [curCache objectForKey:key];
     if ( img == nil ) {
         //#if 1
         CGImageRef imageRef = [tileSet imageForGlyph:glyph];
@@ -360,7 +387,7 @@
         CGContextRelease(bitmap);
         CGImageRelease(newImageRef);
         
-        [cache setObject:img forKey:key];
+        [curCache setObject:img forKey:key];
     }
     return img;
 }
@@ -601,7 +628,8 @@
 
 - (void)dealloc {
 	[tileSets[0] release];
-	[tileSets[1] release];
+    [tileSets[1] release];
+	[tileSets[2] release];
 	[shortcutView release];
 	[petMark release];
 	[bundleVersionString release];

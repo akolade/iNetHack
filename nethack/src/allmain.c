@@ -89,7 +89,7 @@ boolean resuming;
 #ifdef POSITIONBAR
         do_positionbar();
 #endif
-
+        
         if (context.move) {
             /* actual time passed */
             youmonst.movement -= NORMAL_SPEED;
