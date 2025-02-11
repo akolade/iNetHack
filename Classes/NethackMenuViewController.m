@@ -305,6 +305,21 @@ extern short glyph2tile[];
 	
 	NSArray *strings = [i.title splitNetHackDetails];
 	cell.textLabel.text = [strings objectAtIndex:0];
+
+    BOOL showMenuLetters = [[NSUserDefaults standardUserDefaults] floatForKey:@"showmenuletters"];
+
+    char invletter = i.identifier.a_char;
+    if (showMenuLetters && menuWindow != [[MainViewController instance] windowWithId:WIN_INVEN]) {
+        // If its not an inventory screen, we need to check for accelerator values instead.
+        if (i.accelerator > 0) {
+            invletter = i.accelerator;
+        } else {
+            showMenuLetters = false;
+        }
+    }
+    if (showMenuLetters) {
+        cell.textLabel.text = [NSString stringWithFormat:@"%c - %@", invletter, [strings objectAtIndex:0]];
+    }
 	if (strings.count == 2) {
 		cell.detailTextLabel.text = [strings objectAtIndex:1];
         cell.detailTextLabel.textColor = [UIColor grayColor];

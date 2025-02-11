@@ -106,7 +106,7 @@
 			maxTileSize = tilesetTileSize;
 			[[NSUserDefaults standardUserDefaults] setObject:@"chozo32b" forKey:kKeyTileset];
 			[[NSUserDefaults standardUserDefaults] synchronize];
-		}
+        }
 		tileSet = [[TileSet alloc] initWithImage:tilesetImage tileSize:tilesetTileSize];
 	}
 	tileSets[0] = tileSet;

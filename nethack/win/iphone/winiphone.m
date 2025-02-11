@@ -310,7 +310,7 @@ void iphone_add_menu(winid wid, int glyph, const ANY_P *identifier,
 					 CHAR_P accelerator, CHAR_P group_accel, int attr, 
 					 const char *str, BOOLEAN_P presel) {
 	//NSLog(@"iphone_add_menu %d %s", wid, str);
-	NethackMenuItem *i = [[NethackMenuItem alloc] initWithId:identifier title:str glyph:glyph preselected:presel?YES:NO];
+    NethackMenuItem *i = [[NethackMenuItem alloc] initWithId:identifier title:str glyph:glyph preselected:presel?YES:NO accelerator:accelerator];
 	Window *w = [[MainViewController instance] windowWithId:wid];
 	[w addMenuItem:i];
 	[i release];
@@ -547,6 +547,7 @@ void iphone_number_pad(int num) {
 
 void iphone_delay_output() {
 	//NSLog(@"iphone_delay_output");
+    usleep(50000); // Standard delay so animations are visible.
 }
 
 void iphone_start_screen() {
@@ -733,6 +734,11 @@ void iphone_finished_bones(const char *bonesid) {
 //iNethack2: pass along the glyph cache reset
 void iphone_reset_glyph_cache(void) {
 	[[MainViewController instance] resetGlyphCache];
+}
+
+// Reset haptic engine so it is recreated next time.
+void iphone_haptic_reset() {
+    hapticEngine = nil;
 }
 
 // Trigger haptic feedback when damaged.

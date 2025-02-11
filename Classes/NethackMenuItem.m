@@ -24,9 +24,9 @@
 
 @implementation NethackMenuItem
 
-@synthesize identifier, title, isTitle, children, selected = isSelected, glyph, meta = isMeta, amount, gold = isGold;
+@synthesize identifier, title, isTitle, children, selected = isSelected, glyph, meta = isMeta, amount, gold = isGold, accelerator;
 
-- (id) initWithId:(const anything *)i title:(const char *)t glyph:(int)g isMeta:(BOOL)m preselected:(BOOL)p {
+- (id) initWithId:(const anything *)i title:(const char *)t glyph:(int)g isMeta:(BOOL)m preselected:(BOOL)p accelerator:(int) a {
 	if (self = [super init]) {
 		identifier = *i;
 		if (!i->a_int) {
@@ -36,6 +36,7 @@
         title =	[[NSString alloc] initWithCString:t encoding:NSASCIIStringEncoding];
 		isSelected = p;
 		glyph = g;
+        accelerator = a;
 		self.meta = m;
 		amount = -1;
 	}
@@ -43,7 +44,15 @@
 }
 
 - (id) initWithId:(const anything *)i title:(const char *)t glyph:(int)g preselected:(BOOL)p {
-	return [self initWithId:i title:t glyph:g isMeta:NO preselected:p];
+    return [self initWithId:i title:t glyph:g isMeta:NO preselected:p accelerator:0];
+}
+
+- (id) initWithId:(const anything *)i title:(const char *)t glyph:(int)g isMeta:(BOOL)m preselected:(BOOL)p {
+    return [self initWithId:i title:t glyph:g isMeta:m preselected:p accelerator:0];
+}
+
+- (id) initWithId:(const anything *)i title:(const char *)t glyph:(int)g preselected:(BOOL)p accelerator:(int) a {
+    return [self initWithId:i title:t glyph:g isMeta:NO preselected:p accelerator:a];
 }
 
 - (void) dealloc {

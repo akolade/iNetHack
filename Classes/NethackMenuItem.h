@@ -26,6 +26,7 @@
 @interface NethackMenuItem : NSObject
 
 @property (nonatomic, readonly) anything identifier;
+@property (nonatomic, readonly) int accelerator;
 @property (nonatomic, readonly, copy) NSString *title;
 @property (nonatomic, readonly) BOOL isTitle;
 @property (nonatomic, readonly, retain) NSMutableArray *children;
@@ -36,6 +37,7 @@
 @property (nonatomic, assign, getter=isGold) BOOL gold;
 
 - (instancetype) initWithId:(const anything *)i title:(const char *)t glyph:(int)g isMeta:(BOOL)m preselected:(BOOL)p;
+- (instancetype) initWithId:(const anything *)i title:(const char *)t glyph:(int)g preselected:(BOOL)p accelerator:(int) a;
 - (instancetype) initWithId:(const anything *)i title:(const char *)t glyph:(int)g preselected:(BOOL)p;
 
 @end

@@ -132,5 +132,6 @@
 
 - (void) updateScreen;
 - (void) showKeyboard:(BOOL)d;
+- (void) didBecomeActive;
 
 @end

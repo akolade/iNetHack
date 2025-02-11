@@ -274,7 +274,14 @@ static NSArray *DefaultShortcuts () {
 }
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
-	if (buttonIndex == 4) {
+    if (buttonIndex == 4) {
+        // Insert new shortcut to the right of touched shortcut.
+        NSMutableArray* identifiers = [[[NSUserDefaults standardUserDefaults] arrayForKey:ShortcutPrefencesIdentifier] mutableCopy];
+        [identifiers insertObject:@" " atIndex:editIndex+1];
+        [[NSUserDefaults standardUserDefaults] setObject:identifiers forKey:ShortcutPrefencesIdentifier];
+        [identifiers release];
+    }
+    if (buttonIndex == 5) {
 		// Remove shortcut
 		NSMutableArray* identifiers = [[[NSUserDefaults standardUserDefaults] arrayForKey:ShortcutPrefencesIdentifier] mutableCopy];
 		[identifiers removeObjectAtIndex:editIndex];
@@ -309,12 +316,13 @@ static NSArray *DefaultShortcuts () {
 	[menu addButtonWithTitle:@"Show Keyboard"];
     [menu addButtonWithTitle:@"Show Log"];
 	[menu addButtonWithTitle:@"Custom Key Sequence"];
-	[menu addButtonWithTitle:@"Remove Shortcut"];
+    [menu addButtonWithTitle:@"Add new Shortcut"];
+    [menu addButtonWithTitle:@"Remove Shortcut"];
 	[menu addButtonWithTitle:@"Cancel"];
 	menu.title                  = @"What action would you like this shortcut to perform?";
 	menu.delegate               = self;
-	menu.destructiveButtonIndex = 4;
-	menu.cancelButtonIndex      = 5;
+	menu.destructiveButtonIndex = 5;
+	menu.cancelButtonIndex      = 6;
 	[menu showInView:self.superview];
 	[menu release];
 }

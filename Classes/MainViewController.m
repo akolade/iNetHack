@@ -124,6 +124,7 @@ static MainViewController *instance;
 	[self.view setNeedsDisplay]; // seems necessary for shortcutview
 }
 
+
 - (void) launchNetHack {
 	if (!nethackThread) {
 		nethackThread = [[NSThread alloc] initWithTarget:self selector:@selector(mainNethackLoop:) object:nil];
@@ -959,6 +960,12 @@ static MainViewController *instance;
 		keyboardReturnShouldQueueEscape = NO;
 	}
 }
+
+- (void) didBecomeActive {
+    // Will need to reinitialize haptic engine.
+    iphone_haptic_reset();
+}
+
 
 #pragma mark condition utilities
 

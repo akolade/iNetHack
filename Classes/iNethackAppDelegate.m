@@ -88,6 +88,10 @@
     }
 }
 
+- (void) applicationDidBecomeActive:(UIApplication *)application {
+    [[MainViewController instance] didBecomeActive];    
+}
+
 - (void)applicationWillTerminate:(UIApplication *)application {
 	[Hearse stop];
 
