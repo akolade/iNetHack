@@ -40,6 +40,216 @@ shuffle_tiles()
     for (i = 0; i < NUM_OBJECTS; i++)
         glyph2tile[i + GLYPH_OBJ_OFF] = tmp_tilemap[i];
 }
+
+#define NUM_OBFUSCATED_OBJS 39
+
+#ifndef WORTHLESS_PIECE_OF_WHITE_GLASS
+#define    WORTHLESS_PIECE_OF_WHITE_GLASS    ( JADE + 1 )
+#define    WORTHLESS_PIECE_OF_BLUE_GLASS    ( JADE + 2 )
+#define    WORTHLESS_PIECE_OF_RED_GLASS    ( JADE + 3 )
+#define    WORTHLESS_PIECE_OF_YELLOWISH_B    ( JADE + 4 )
+#define    WORTHLESS_PIECE_OF_ORANGE_GLAS    ( JADE + 5 )
+#define    WORTHLESS_PIECE_OF_YELLOW_GLAS    ( JADE + 6 )
+#define    WORTHLESS_PIECE_OF_BLACK_GLASS    ( JADE + 7 )
+#define    WORTHLESS_PIECE_OF_GREEN_GLASS    ( JADE + 8 )
+#define    WORTHLESS_PIECE_OF_VIOLET_GLAS    ( JADE + 9 )
+#endif
+
+/* Array to store glyph2tile[] values to be used for items
+whose identities needs to be obfuscated. */
+struct obfuscated_obj { short objid; short kn_glyph_idx; short unk_glyph_idx; }
+obfuscated_objs[NUM_OBFUSCATED_OBJS] = {
+    { CORNUTHAUM, 0, 0 },
+    { FAKE_AMULET_OF_YENDOR, 0, 0 },
+    { OILSKIN_SACK, 0, 0 },
+    { BAG_OF_HOLDING, 0, 0 },
+    { BAG_OF_TRICKS, 0, 0 },
+    { MAGIC_LAMP, 0, 0 },
+    { TALLOW_CANDLE, 0, 0 },
+    { MAGIC_WHISTLE, 0, 0 },
+    { MAGIC_FLUTE, 0, 0 },
+    { FROST_HORN, 0, 0 },
+    { FIRE_HORN, 0, 0 },
+    { HORN_OF_PLENTY, 0, 0 },
+    { MAGIC_HARP, 0, 0 },
+    { DRUM_OF_EARTHQUAKE, 0, 0 },
+    { DILITHIUM_CRYSTAL, 0, 0 },
+    { DIAMOND, 0, 0 },
+    { RUBY, 0, 0 },
+    { JACINTH, 0, 0 },
+    { SAPPHIRE, 0, 0 },
+    { BLACK_OPAL, 0, 0 },
+    { EMERALD, 0, 0 },
+    { TURQUOISE, 0, 0 },
+    { CITRINE, 0, 0 },
+    { AQUAMARINE, 0, 0 },
+    { AMBER, 0, 0 },
+    { TOPAZ, 0, 0 },
+    { JET, 0, 0 },
+    { OPAL, 0, 0 },
+    { CHRYSOBERYL, 0, 0 },
+    { GARNET, 0, 0 },
+    { AMETHYST, 0, 0 },
+    { JASPER, 0, 0 },
+    { FLUORITE, 0, 0 },
+    { OBSIDIAN, 0, 0 },
+    { AGATE, 0, 0 },
+    { JADE, 0, 0 },
+    { LUCKSTONE, 0, 0 },
+    { LOADSTONE, 0, 0 },
+    { TOUCHSTONE, 0, 0 }
+};
+
+/* Initialize the obfuscated_objs array so it can be used by obfuscate_tile(). */
+void init_obfuscated_objs()
+{
+    int i;
+    for (i = 0; i < NUM_OBFUSCATED_OBJS; i++)
+    {    // get glyph indexes to use when item is known
+        obfuscated_objs[i].kn_glyph_idx =
+            glyph2tile[GLYPH_OBJ_OFF + obfuscated_objs[i].objid];
+        // get glyph indexes to use when item is unknown
+        switch (obfuscated_objs[i].objid)   // gem colors may be shuffled a bit
+        {
+        case CORNUTHAUM:
+            obfuscated_objs[i].unk_glyph_idx =
+                glyph2tile[GLYPH_OBJ_OFF + DUNCE_CAP];
+            break;
+        case FAKE_AMULET_OF_YENDOR:
+            obfuscated_objs[i].unk_glyph_idx =
+                glyph2tile[GLYPH_OBJ_OFF + AMULET_OF_YENDOR];
+            break;
+        case OILSKIN_SACK:
+        case BAG_OF_HOLDING:
+        case BAG_OF_TRICKS:
+            obfuscated_objs[i].unk_glyph_idx =
+                glyph2tile[GLYPH_OBJ_OFF + SACK];
+            break;
+        case TALLOW_CANDLE:
+            obfuscated_objs[i].unk_glyph_idx =
+                glyph2tile[GLYPH_OBJ_OFF + WAX_CANDLE];
+            break;
+        case MAGIC_LAMP:
+            obfuscated_objs[i].unk_glyph_idx =
+                glyph2tile[GLYPH_OBJ_OFF + OIL_LAMP];
+            break;
+        case MAGIC_WHISTLE:
+            obfuscated_objs[i].unk_glyph_idx =
+                glyph2tile[GLYPH_OBJ_OFF + TIN_WHISTLE];
+            break;
+        case MAGIC_FLUTE:
+            obfuscated_objs[i].unk_glyph_idx =
+                glyph2tile[GLYPH_OBJ_OFF + WOODEN_FLUTE];
+            break;
+        case FROST_HORN:
+        case FIRE_HORN:
+        case HORN_OF_PLENTY:
+            obfuscated_objs[i].unk_glyph_idx =
+                glyph2tile[GLYPH_OBJ_OFF + TOOLED_HORN];
+            break;
+        case MAGIC_HARP:
+            obfuscated_objs[i].unk_glyph_idx =
+                glyph2tile[GLYPH_OBJ_OFF + WOODEN_HARP];
+            break;
+        case DRUM_OF_EARTHQUAKE:
+            obfuscated_objs[i].unk_glyph_idx =
+                glyph2tile[GLYPH_OBJ_OFF + LEATHER_DRUM];
+            break;
+        case DILITHIUM_CRYSTAL:
+        case DIAMOND:
+        case OPAL:
+            obfuscated_objs[i].unk_glyph_idx =
+                glyph2tile[GLYPH_OBJ_OFF + WORTHLESS_PIECE_OF_WHITE_GLASS];
+            break;
+        case RUBY:
+        case GARNET:
+        case JASPER:
+            obfuscated_objs[i].unk_glyph_idx =
+                glyph2tile[GLYPH_OBJ_OFF + WORTHLESS_PIECE_OF_RED_GLASS];
+            break;
+        case JACINTH:
+        case AGATE:
+            obfuscated_objs[i].unk_glyph_idx =
+                glyph2tile[GLYPH_OBJ_OFF + WORTHLESS_PIECE_OF_ORANGE_GLAS];
+            break;
+        case SAPPHIRE:
+            obfuscated_objs[i].unk_glyph_idx =
+                glyph2tile[GLYPH_OBJ_OFF + WORTHLESS_PIECE_OF_BLUE_GLASS];
+            break;
+        case BLACK_OPAL:
+        case JET:
+        case OBSIDIAN:
+            obfuscated_objs[i].unk_glyph_idx =
+                glyph2tile[GLYPH_OBJ_OFF + WORTHLESS_PIECE_OF_BLACK_GLASS];
+            break;
+        case EMERALD:
+        case JADE:
+            obfuscated_objs[i].unk_glyph_idx =
+                glyph2tile[GLYPH_OBJ_OFF + WORTHLESS_PIECE_OF_GREEN_GLASS];
+            break;
+        case CITRINE:
+        case CHRYSOBERYL:
+            obfuscated_objs[i].unk_glyph_idx =
+                glyph2tile[GLYPH_OBJ_OFF + WORTHLESS_PIECE_OF_YELLOW_GLAS];
+            break;
+        case AMBER:
+        case TOPAZ:
+            obfuscated_objs[i].unk_glyph_idx =
+                glyph2tile[GLYPH_OBJ_OFF + WORTHLESS_PIECE_OF_YELLOWISH_B];
+            break;
+        case AMETHYST:
+            obfuscated_objs[i].unk_glyph_idx =
+                glyph2tile[GLYPH_OBJ_OFF + WORTHLESS_PIECE_OF_VIOLET_GLAS];
+            break;
+        case TURQUOISE:
+        case AQUAMARINE:
+            if (objects[obfuscated_objs[i].objid].oc_color == CLR_BLUE)
+                obfuscated_objs[i].unk_glyph_idx =
+                glyph2tile[GLYPH_OBJ_OFF + WORTHLESS_PIECE_OF_BLUE_GLASS];
+            else obfuscated_objs[i].unk_glyph_idx =
+                glyph2tile[GLYPH_OBJ_OFF + WORTHLESS_PIECE_OF_GREEN_GLASS];
+            break;
+        case FLUORITE:
+            if (objects[obfuscated_objs[i].objid].oc_color == CLR_WHITE)
+                obfuscated_objs[i].unk_glyph_idx =
+                glyph2tile[GLYPH_OBJ_OFF + WORTHLESS_PIECE_OF_WHITE_GLASS];
+            else if (objects[obfuscated_objs[i].objid].oc_color == CLR_GREEN)
+                obfuscated_objs[i].unk_glyph_idx =
+                glyph2tile[GLYPH_OBJ_OFF + WORTHLESS_PIECE_OF_GREEN_GLASS];
+            else if (objects[obfuscated_objs[i].objid].oc_color == CLR_BLUE)
+                obfuscated_objs[i].unk_glyph_idx =
+                glyph2tile[GLYPH_OBJ_OFF + WORTHLESS_PIECE_OF_BLUE_GLASS];
+            else obfuscated_objs[i].unk_glyph_idx =
+                glyph2tile[GLYPH_OBJ_OFF + WORTHLESS_PIECE_OF_VIOLET_GLAS];
+            break;
+        case LUCKSTONE:
+        case LOADSTONE:
+        case TOUCHSTONE:
+            obfuscated_objs[i].unk_glyph_idx = glyph2tile[GLYPH_OBJ_OFF + FLINT];
+            break;
+        } // switch (obfuscated_objs[i].objid)
+    } // for (i = 0; i < NUM_OBFUSCATED_OBJS; i++)
+    for (i = 0; i < NUM_OBJECTS; i++)
+        obfuscate_tile(i);
+}
+
+void obfuscate_tile(item)
+int item;
+{
+    int i;
+    for (i = 0; i < NUM_OBFUSCATED_OBJS; i++)
+    {
+        if (item == obfuscated_objs[i].objid)
+        {
+            if (objects[item].oc_name_known)
+                glyph2tile[item + GLYPH_OBJ_OFF] =
+                obfuscated_objs[i].kn_glyph_idx;
+            else glyph2tile[item + GLYPH_OBJ_OFF] =
+                obfuscated_objs[i].unk_glyph_idx;
+        }
+    }
+}
+
 #endif /* USE_TILES */
 
 STATIC_OVL void
@@ -362,6 +572,9 @@ boolean credit_hero;
             if (credit_hero)
                 exercise(A_WIS, TRUE);
         }
+        #ifdef USE_TILES
+        obfuscate_tile(oindx);
+        #endif
         /* moves==1L => initial inventory, gameover => final disclosure */
         if (moves > 1L && !program_state.gameover) {
             if (objects[oindx].oc_class == GEM_CLASS)
@@ -395,6 +608,9 @@ register int oindx;
         else
             impossible("named object not in disco");
 
+        #ifdef USE_TILES
+        obfuscate_tile(oindx);
+        #endif
         if (objects[oindx].oc_class == GEM_CLASS)
             gem_learned(oindx); /* ok, it's actually been unlearned */
         update_inventory();

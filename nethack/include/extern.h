@@ -1697,6 +1697,9 @@ E int NDECL(dodiscovered);
 E int NDECL(doclassdisco);
 E void NDECL(rename_disco);
 
+E void FDECL(obfuscate_tile, (int));
+E void NDECL(init_obfuscated_objs);
+
 /* ### objects.c ### */
 
 E void NDECL(objects_init);

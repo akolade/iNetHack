@@ -36,7 +36,9 @@ boolean resuming;
     decl_init();
     monst_init();
     objects_init();
-
+#ifdef USE_TILES
+    init_obfuscated_objs();
+#endif
     /* if a save file created in normal mode is now being restored in
        explore mode, treat it as normal restore followed by 'X' command
        to use up the save file and require confirmation for explore mode */
