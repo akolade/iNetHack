@@ -355,6 +355,9 @@
     if ( cache != nil ) {
         [cache removeAllObjects];
     }
+    if ( cache2 != nil ) {
+        [cache2 removeAllObjects];
+    }
 }
 
 - (UIImage *)imageForGlyph:(int)glyph size:(int)size
