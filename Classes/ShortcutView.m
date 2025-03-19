@@ -277,7 +277,7 @@ static NSArray *DefaultShortcuts () {
     if (buttonIndex == 4) {
         // Insert new shortcut to the right of touched shortcut.
         NSMutableArray* identifiers = [[[NSUserDefaults standardUserDefaults] arrayForKey:ShortcutPrefencesIdentifier] mutableCopy];
-        [identifiers insertObject:@" " atIndex:editIndex+1];
+        [identifiers insertObject:@"" atIndex:editIndex+1];
         [[NSUserDefaults standardUserDefaults] setObject:identifiers forKey:ShortcutPrefencesIdentifier];
         [identifiers release];
     }

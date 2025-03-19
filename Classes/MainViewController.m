@@ -280,6 +280,7 @@ static MainViewController *instance;
 	[viewController release];
 }
 
+
 - (void) showCredits:(id)obj {
 	NSString *path = [[NSBundle mainBundle] pathForResource:@"credits" ofType:@"html"];
 	TextDisplayViewController *viewController = [TextDisplayViewController new];

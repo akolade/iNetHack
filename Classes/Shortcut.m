@@ -25,6 +25,9 @@
 #import "NethackEventQueue.h"
 
 static NSString* ParseShortcutString (NSString* keys) {
+    if ([keys length] == 0) {
+        return keys;
+    }
 	if ([keys characterAtIndex:0] == '^') {
 		keys = [NSString stringWithFormat:@"%c", (0x1f & [keys characterAtIndex:1])];
 	}

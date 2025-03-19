@@ -642,6 +642,7 @@ void iphone_init_options() {
     flags.showexp = [defaults boolForKey:kOptionShowExp];
     flags.time = [defaults boolForKey:kOptionTime];
     flags.autodig = [defaults boolForKey:kOptionAutoDig];
+    flags.lit_corridor = true;
     NSLog(@"Wizard is %d", wizard);
 }
 

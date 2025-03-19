@@ -504,6 +504,7 @@
                 CGSize size = [s sizeWithAttributes: @ { NSFontAttributeName: statusFont}];
 				if (p.y > maxY) {
 					p.x = 0;
+                    p.x += [MainView screenXOffset];
 					p.y += size.height + 2;
 					CGRect frame = moreButton.frame;
 					frame.origin = p;
@@ -522,6 +523,7 @@
 						p.y += size.height + 2;
 					}
 					p.x = 0;
+                    p.x += [MainView screenXOffset];
 					UIFont *font = [self fontAndSize:&size forString:s withFont:statusFont];
                     size = [s sizeWithAttributes: @ { NSFontAttributeName: font}];
                     [s drawAtPoint:p withAttributes:@{ NSFontAttributeName:font, NSForegroundColorAttributeName: colorInvert?[UIColor blackColor]:[UIColor whiteColor], NSShadowAttributeName: shadow}];

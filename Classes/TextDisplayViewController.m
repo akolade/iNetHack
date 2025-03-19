@@ -22,52 +22,49 @@
 
 #import "TextDisplayViewController.h"
 #import "MainViewController.h"
+#import <WebKit/WebKit.h>
 
 @implementation TextDisplayViewController
 
 @synthesize text, condition, HTML = isHTML, log = isLog;
 
-- (void)dealloc
-{
-	[condition release];
-	self.text = nil;
-	[super dealloc];
+- (void)dealloc {
+    [condition release];
+    self.text = nil;
+    if (self.wkWebView) {
+        self.wkWebView.navigationDelegate = nil;
+    }
+    [super dealloc];
 }
 
 - (void)updateText {
-	if (textView) {
-		textView.text = self.text;
-		if (isLog && self.text && self.text.length > 0) {
-			NSRange r = NSMakeRange(self.text.length-1, 1);
-			[textView scrollRangeToVisible:r];
-		}
-	} else if (webView) {
-		[webView loadHTMLString:self.text baseURL:nil];
-	}
+    if (textView) {
+        textView.text = self.text;
+        if (isLog && self.text && self.text.length > 0) {
+            NSRange r = NSMakeRange(self.text.length - 1, 1);
+            [textView scrollRangeToVisible:r];
+        }
+    } else if (self.wkWebView) {
+        [self.wkWebView loadHTMLString:self.text baseURL:nil];
+    }
 }
 
-- (void)setText:(NSString *)newText {
-	if (newText != text) {
-		[text release];
-		text = [newText copy];
-		[self updateText];
-	}
-}
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-	return YES;
-}
-
-- (BOOL)webView:(UIWebView *)aWebView shouldStartLoadWithRequest:(NSURLRequest *)request
- navigationType:(UIWebViewNavigationType)navigationType
-{
-	if ([[NSArray arrayWithObjects:@"http", @"https", nil] containsObject:request.URL.scheme]
-		&& navigationType == UIWebViewNavigationTypeLinkClicked) {
-		// Open clicked http links in Safari
-		[[UIApplication sharedApplication] openURL:request.URL];
-		return NO;
-	}
-	return YES;
+- (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler {
+    if (navigationAction.navigationType == WKNavigationTypeLinkActivated) {
+        NSURL *url = navigationAction.request.URL;
+        if (url) {
+            [[UIApplication sharedApplication] openURL:url options:@{} completionHandler:^(BOOL success) {
+                if (success) {
+                    NSLog(@"URL opened successfully.");
+                } else {
+                    NSLog(@"Failed to open URL.");
+                }
+            }];
+            decisionHandler(WKNavigationActionPolicyCancel); // Prevent the web view from navigating
+            return;
+        }
+    }
+    decisionHandler(WKNavigationActionPolicyAllow);
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -75,11 +72,10 @@
     colorInvert = [[NSUserDefaults standardUserDefaults] floatForKey:@"colorInvert"];
 
 	if (self.isHTML) {
-		webView = [[UIWebView alloc] initWithFrame:self.view.frame];
-		webView.backgroundColor = !colorInvert?[UIColor blackColor]:[UIColor whiteColor];
-		webView.delegate = self;
-		self.view = webView;
-		[webView release];
+        self.wkWebView = [[WKWebView alloc] initWithFrame:self.view.frame];
+        self.wkWebView.backgroundColor = !colorInvert ? [UIColor blackColor] : [UIColor whiteColor];
+        self.wkWebView.navigationDelegate = self;
+        self.view = self.wkWebView;
 	} else {
         textView = [[UITextView alloc] initWithFrame:self.view.frame];
         textView.backgroundColor = !colorInvert?[UIColor blackColor]:[UIColor whiteColor];

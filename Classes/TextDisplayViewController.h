@@ -21,17 +21,17 @@
 //  along with iNetHack.  If not, see <http://www.gnu.org/licenses/>.
 
 #import <UIKit/UIKit.h>
+#import <WebKit/WebKit.h>
 
-
-@interface TextDisplayViewController : UIViewController <UIWebViewDelegate> {
-	UIWebView *webView;
-	UITextView *textView;
-    BOOL colorInvert; // Textmode: White background, black becomes white.
+@interface TextDisplayViewController : UIViewController <WKNavigationDelegate> {
+    UITextView *textView;
+    BOOL colorInvert;
 }
 
 @property (nonatomic, copy) NSString *text;
 @property (assign, getter=isHTML) BOOL HTML;
 @property (nonatomic, retain) NSCondition *condition;
 @property (assign, getter=isLog) BOOL log;
+@property (nonatomic, strong) WKWebView *wkWebView;
 
 @end
