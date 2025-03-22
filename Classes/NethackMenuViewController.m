@@ -309,11 +309,12 @@ extern short glyph2tile[];
     BOOL showMenuLetters = [[NSUserDefaults standardUserDefaults] floatForKey:@"showmenuletters"];
 
     char invletter = i.identifier.a_char;
+    if (i.accelerator > 0) {
+        invletter = i.accelerator;
+    }
     if (showMenuLetters && menuWindow != [[MainViewController instance] windowWithId:WIN_INVEN]) {
-        // If its not an inventory screen, we need to check for accelerator values instead.
-        if (i.accelerator > 0) {
-            invletter = i.accelerator;
-        } else {
+        // If its not an inventory screen, we need to check for accelerator values instead, or else just don't show letters.
+        if (i.accelerator <= 0) {
             showMenuLetters = false;
         }
     }

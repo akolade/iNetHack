@@ -44,7 +44,7 @@
 #define kOptionDoubleTapSensitivity (@"doubleTapSensitivity")
 #define kConstThingsThatAreHereTitle (@"Things that are here:")
 #define kConstThingsThatYouFeelHereTitle (@"Things that you feel here:")
-
+#define kConstIntroductoryStoryTitle (@"It is written in the Book of")
 extern volatile boolean winiphone_clickable_tiles;
 
 static MainViewController *instance;
@@ -712,52 +712,133 @@ static MainViewController *instance;
 }
 
 - (void) displayMessage:(Window *)w {
-	[w lock];
-	NSString *message = [w.text copy];
-	[w clearMessages];
-	[w unlock];
-	UIAlertView *alert = nil;
-
+    [w lock];
+    NSString *message = [w.text copy];
+    [w clearMessages];
+    [w unlock];
+    
     if ([message containsString:kConstThingsThatAreHereTitle] || [message containsString:kConstThingsThatYouFeelHereTitle]) {
-		NSRange r = [message rangeOfString:@"\n"];
-		NSString *title = [message substringToIndex:r.location];
-		NSString *toReplaced = [NSString stringWithFormat:@"%@\n", title];
-		NSString *text = [message stringByReplacingOccurrencesOfString:toReplaced withString:@""];
-        alert = [[UIAlertView alloc] initWithTitle:title message:text delegate:self cancelButtonTitle:@"OK" otherButtonTitles:@"Pickup", nil];
-        [alert show];
-	} else {
-        
+        NSRange r = [message rangeOfString:@"\n"];
+        NSString *title = [message substringToIndex:r.location];
+        NSString *toReplaced = [NSString stringWithFormat:@"%@\n", title];
+        NSString *text = [message stringByReplacingOccurrencesOfString:toReplaced withString:@""];
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:title
+                                                                                 message:text
+                                                                          preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK"
+                                                           style:UIAlertActionStyleCancel
+                                                         handler: ^(UIAlertAction *action) { [self broadcastUIEvent]; }];
+        UIAlertAction *pickupAction = [UIAlertAction actionWithTitle:@"Pickup"
+                                                               style:UIAlertActionStyleDefault
+                                                             handler:^(UIAlertAction *action) {
+            [nethackEventQueue addKeyEvent:','];
+            [self broadcastUIEvent];
+        }];
+        [alertController addAction:okAction];
+        [alertController addAction:pickupAction];
+        [self presentViewController:alertController animated:YES completion:nil];
+    } else {
         if (![UIAlertController class]) {
-           UIAlertView *alert2 = [[UIAlertView alloc] initWithTitle:@"Message" message:message delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            UIAlertView *alert2 = [[UIAlertView alloc] initWithTitle:@"Message" message:message delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
             [alert2 show];
             return;
-        
         } else {
-            UIAlertController *alert2 = [UIAlertController alertControllerWithTitle:@"Message" message:message
+            // Use monospace font if showing game ending info, the introductory text, or in wizard mode.
+            if (program_state.gameover == 1 || wizard || [message containsString:kConstIntroductoryStoryTitle]) {
+                if ([message containsString:kConstIntroductoryStoryTitle]) {
+                    // Format the intro text a bit better for narrow displays.
+                    message = [self formatMessageForWideScreen:message];
+                }
+                [self showMonospacedMessageInModalWithOK:message];
+                return;
+            }
+            UIAlertController *alert2 = [UIAlertController alertControllerWithTitle:@"Message"
+                                                                            message:nil // Initial message is nil
                                                                      preferredStyle:UIAlertControllerStyleAlert];
-
-            [alert2.view setTranslatesAutoresizingMaskIntoConstraints:NO];
-
-            alert2.view.frame = CGRectMake([[UIScreen mainScreen] applicationFrame].origin.x,
-                                           [[UIScreen mainScreen] applicationFrame].origin.y,
-                                           [[UIScreen mainScreen] applicationFrame].size.width+1,
-                                           [[UIScreen mainScreen] applicationFrame].size.height+1);// iNethack2 - fix for no scrolling on initial story text popup (ios8 bug?)
-
-            UIAlertAction* ok = [UIAlertAction
-                                 actionWithTitle:@"OK"
-                                 style:UIAlertActionStyleDefault
-                                 handler:^(UIAlertAction * action)
-                                 {
-                                     [alert2 dismissViewControllerAnimated:YES completion:nil];
-                                     [self broadcastUIEvent];
-                                 }];
-
-            [alert2 addAction:ok];
+            alert2.message = message;
+            UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK"
+                                                         style:UIAlertActionStyleDefault
+                                                       handler:^(UIAlertAction *action) {
+                [self broadcastUIEvent];
+            }];
             
+            [alert2 addAction:ok];
             [self presentViewController:alert2 animated:YES completion:nil];
             return;
         }
-	}
+    }
+}
+
+- (NSString *)formatMessageForWideScreen:(NSString *)message {
+    NSMutableString *formattedMessage = [NSMutableString stringWithString:message];
+
+    // Replace single line breaks with spaces, but keep double line breaks.
+    NSRange range = [formattedMessage rangeOfString:@"\n"];
+    while (range.location != NSNotFound) {
+        if (range.location + 1 < formattedMessage.length &&
+            [formattedMessage characterAtIndex:range.location + 1] == '\n') {
+            // Double line break.
+            range = [formattedMessage rangeOfString:@"\n" options:0 range:NSMakeRange(range.location + 2, formattedMessage.length - (range.location + 2))];
+        } else {
+            // Single line break, turn into space.
+            [formattedMessage replaceCharactersInRange:range withString:@" "];
+            range = [formattedMessage rangeOfString:@"\n" options:0 range:NSMakeRange(range.location + 1, formattedMessage.length - (range.location + 1))];
+        }
+    }
+
+    // Remove multiple spaces and replace with single space.
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@" +" options:0 error:nil];
+    [regex replaceMatchesInString:formattedMessage options:0 range:NSMakeRange(0, formattedMessage.length) withTemplate:@" "];
+
+    return formattedMessage;
+}
+
+- (void)showMonospacedMessageInModalWithOK:(NSString *)message {
+    UIViewController *modalVC = [[UIViewController alloc] init];
+    modalVC.view.backgroundColor = [UIColor whiteColor];
+
+    UITextView *textView = [[UITextView alloc] init];
+    textView.text = message;
+    if (@available(iOS 13.0, *)) {
+        textView.font = [UIFont monospacedSystemFontOfSize:12 weight:UIFontWeightRegular];
+    } else {
+        textView.font = [UIFont fontWithName:@"Courier" size:12];
+    }
+
+    textView.editable = NO;
+    textView.translatesAutoresizingMaskIntoConstraints = NO;
+    [modalVC.view addSubview:textView];
+
+    // OK button
+    UIButton *okButton = [UIButton buttonWithType:UIButtonTypeSystem];
+    [okButton setTitle:@"OK" forState:UIControlStateNormal];
+    okButton.translatesAutoresizingMaskIntoConstraints = NO;
+    [okButton addTarget:self action:@selector(dismissModal:) forControlEvents:UIControlEventTouchUpInside]; // Ensure target and action are set correctly
+    [modalVC.view addSubview:okButton];
+
+    // Auto Layout constraints
+    NSDictionary *views = NSDictionaryOfVariableBindings(textView, okButton);
+
+    // Text View Constraints
+    [modalVC.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-10-[textView]-10-|" options:0 metrics:nil views:views]];
+    [modalVC.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-20-[textView]-80-|" options:0 metrics:nil views:views]];
+
+    // OK Button Constraints
+    [modalVC.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[okButton(100)]" options:0 metrics:nil views:views]];
+    [modalVC.view addConstraint:[NSLayoutConstraint constraintWithItem:okButton attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:modalVC.view attribute:NSLayoutAttributeCenterX multiplier:1.0 constant:0.0]];
+    [modalVC.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[okButton(40)]-20-|" options:0 metrics:nil views:views]];
+
+    // Present the modal
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:modalVC];
+    navController.modalPresentationStyle = UIModalPresentationPageSheet;
+
+    [self presentViewController:navController animated:YES completion:nil];
+}
+
+- (void)dismissModal:(UIButton *)sender {
+    NSLog(@"dismissModal called"); // Add this line for debugging
+    [self dismissViewControllerAnimated:YES completion:nil];
+    [self broadcastUIEvent];
 }
 
 - (void) displayMenuWindow:(Window *)w {
