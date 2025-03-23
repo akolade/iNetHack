@@ -813,30 +813,50 @@ static MainViewController *instance;
     UIButton *okButton = [UIButton buttonWithType:UIButtonTypeSystem];
     [okButton setTitle:@"OK" forState:UIControlStateNormal];
     okButton.translatesAutoresizingMaskIntoConstraints = NO;
-    [okButton addTarget:self action:@selector(dismissModal:) forControlEvents:UIControlEventTouchUpInside]; // Ensure target and action are set correctly
+    [okButton addTarget:self action:@selector(dismissModal:) forControlEvents:UIControlEventTouchUpInside];
     [modalVC.view addSubview:okButton];
 
     // Auto Layout constraints
-    NSDictionary *views = NSDictionaryOfVariableBindings(textView, okButton);
+    UILayoutGuide *safeArea = modalVC.view.safeAreaLayoutGuide;
 
-    // Text View Constraints
-    [modalVC.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-10-[textView]-10-|" options:0 metrics:nil views:views]];
-    [modalVC.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-20-[textView]-80-|" options:0 metrics:nil views:views]];
+    // Text View Constraints (using safe area)
+    [textView.leadingAnchor constraintEqualToAnchor:safeArea.leadingAnchor constant:10].active = YES;
+    [textView.trailingAnchor constraintEqualToAnchor:safeArea.trailingAnchor constant:-10].active = YES;
+    [textView.topAnchor constraintEqualToAnchor:safeArea.topAnchor constant:20].active = YES;
+    [textView.bottomAnchor constraintEqualToAnchor:okButton.topAnchor constant:-20].active = YES;
 
-    // OK Button Constraints
-    [modalVC.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[okButton(100)]" options:0 metrics:nil views:views]];
-    [modalVC.view addConstraint:[NSLayoutConstraint constraintWithItem:okButton attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:modalVC.view attribute:NSLayoutAttributeCenterX multiplier:1.0 constant:0.0]];
-    [modalVC.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[okButton(40)]-20-|" options:0 metrics:nil views:views]];
+    // OK Button Constraints (using safe area)
+    [okButton.centerXAnchor constraintEqualToAnchor:safeArea.centerXAnchor].active = YES;
+    [okButton.bottomAnchor constraintEqualToAnchor:safeArea.bottomAnchor constant:-20].active = YES;
+    [okButton.widthAnchor constraintEqualToConstant:100].active = YES;
+    [okButton.heightAnchor constraintEqualToConstant:40].active = YES;
+
+    // Calculate text width for horizontal scrolling
+    CGSize textSize = [message boundingRectWithSize:CGSizeMake(CGFLOAT_MAX, modalVC.view.bounds.size.height - 100)
+                                         options:NSStringDrawingUsesLineFragmentOrigin
+                                      attributes:@{NSFontAttributeName: textView.font}
+                                         context:nil].size;
+
+    // Constrain TextView Width (with priority)
+    NSLayoutConstraint *widthConstraint = [textView.widthAnchor constraintEqualToConstant:textSize.width + 20];
+    widthConstraint.priority = UILayoutPriorityDefaultLow;
+    widthConstraint.active = YES;
+
+    // Set content hugging priority
+    [textView setContentHuggingPriority:UILayoutPriorityDefaultLow forAxis:UILayoutConstraintAxisHorizontal];
 
     // Present the modal
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:modalVC];
-    navController.modalPresentationStyle = UIModalPresentationPageSheet;
-
+    navController.modalPresentationStyle = UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad ? UIModalPresentationPopover : UIModalPresentationFormSheet;
+    navController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+    if (@available(iOS 13.0, *)) {
+        navController.modalInPresentation = YES; //disallow swipe down to dismiss window
+    }
     [self presentViewController:navController animated:YES completion:nil];
+
 }
 
 - (void)dismissModal:(UIButton *)sender {
-    NSLog(@"dismissModal called"); // Add this line for debugging
     [self dismissViewControllerAnimated:YES completion:nil];
     [self broadcastUIEvent];
 }
