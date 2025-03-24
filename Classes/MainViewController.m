@@ -847,11 +847,25 @@ static MainViewController *instance;
 
     // Present the modal
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:modalVC];
-    navController.modalPresentationStyle = UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad ? UIModalPresentationPopover : UIModalPresentationFormSheet;
+       navController.modalPresentationStyle = UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad ? UIModalPresentationPopover : UIModalPresentationFormSheet;
+
     navController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
     if (@available(iOS 13.0, *)) {
         navController.modalInPresentation = YES; //disallow swipe down to dismiss window
     }
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad && navController.modalPresentationStyle == UIModalPresentationPopover) {
+        // Configure popover presentation on iPad
+        navController.popoverPresentationController.sourceView = self.view;
+        navController.popoverPresentationController.sourceRect = self.view.bounds;
+        navController.popoverPresentationController.permittedArrowDirections = 0;
+
+        // Adjust preferred content size
+        CGFloat width = self.view.bounds.size.width * 0.75;
+        CGFloat height = self.view.bounds.size.height * 0.75;
+        navController.preferredContentSize = CGSizeMake(width, height);
+    }
+    
+    
     [self presentViewController:navController animated:YES completion:nil];
 
 }
